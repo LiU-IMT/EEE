@@ -10,5 +10,7 @@ A detailed paper is in the works, in the meantime have a look at the following:
 - http://www.imt.liu.se/~erisu/2011/20110222-EEE-Brazil.pdf (Presentation 2011)
 - http://www.imt.liu.se/~erisu/2011/MIE2011-bookmarking-Sundvall.pdf (Poster abstract 2011)
 
+The openEHR website is at http://www.openehr.org
+
 Coordinator:
 Erik Sundvall, http://www.imt.liu.se/~erisu/

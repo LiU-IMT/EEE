@@ -12,5 +12,5 @@ A detailed paper is in the works, in the meantime have a look at the following:
 
 The openEHR website is at http://www.openehr.org
 
-Coordinator:
+LiU EEE Coordinator:
 Erik Sundvall, http://www.imt.liu.se/~erisu/

@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>se.liu.imt</groupId>
+  <artifactId>EEE</artifactId>
+  <version>0.0.2-SNAPSHOT</version>
+  <name>LiU EEE</name>
+  <description>LiU EEE is an educational EHR environment based on openEHR and REST. The scientific publication describing it is available at http://www.biomedcentral.com/1472-6947/13/57/</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <url>https://github.com/LiU-IMT/EEE</url>
+  <organization>
+  	<url>http://www.imt.liu.se/</url>
+  	<name>Linköping University, Department of Biomedical Engineering</name>
+  </organization>
+  <scm>
+  	<url>scm:git:https://github.com/LiU-IMT/EEE.git</url>
+  </scm>
+  <issueManagement>
+  	<url>https://github.com/LiU-IMT/EEE/issues</url>
+  </issueManagement>
+</project>

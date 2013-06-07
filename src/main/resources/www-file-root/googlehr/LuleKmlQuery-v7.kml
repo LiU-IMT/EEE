@@ -1,0 +1,65 @@
+<kml:kml xmlns:v1="http://schemas.openehr.org/v1" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:eee="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns="http://schemas.openehr.org/v1"><kml:Document><kml:name>SoS LuleDemo</kml:name><kml:Style xmlns="http://www.opengis.net/kml/2.2" id="sn_ylw-pushpin"><IconStyle><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon><hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle><LabelStyle><color>ffcccccc</color><scale>0.9</scale></LabelStyle></kml:Style><kml:Style xmlns="http://www.opengis.net/kml/2.2" id="sh_ylw-pushpin"><IconStyle><scale>1.3</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon><hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle><LabelStyle><color>ffcccccc</color><scale>0.9</scale></LabelStyle></kml:Style><kml:StyleMap xmlns="http://www.opengis.net/kml/2.2" id="msn_ylw-pushpin"><Pair><key>normal</key><styleUrl>#sn_ylw-pushpin</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#sh_ylw-pushpin</styleUrl></Pair></kml:StyleMap><kml:StyleMap xmlns="http://www.opengis.net/kml/2.2" id="msn_B"><Pair><key>normal</key><styleUrl>#sn_B</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#sh_B</styleUrl></Pair></kml:StyleMap><kml:Style xmlns="http://www.opengis.net/kml/2.2" id="sn_B"><IconStyle><color>b3ffffff</color><scale>0.8</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/B.png</href></Icon><hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/></IconStyle><LabelStyle><color>ffcccccc</color><scale>0.9</scale></LabelStyle><ListStyle><ItemIcon><href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href></ItemIcon></ListStyle></kml:Style><kml:Style xmlns="http://www.opengis.net/kml/2.2" id="sh_B"><IconStyle><color>b3ffffff</color><scale>0.945455</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/B.png</href></Icon><hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/></IconStyle><LabelStyle><color>ffcccccc</color><scale>0.9</scale></LabelStyle><ListStyle><ItemIcon><href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href></ItemIcon></ListStyle></kml:Style><kml:Folder><kml:Name>Anna</kml:Name><kml:Folder><kml:Name>Anteckningar</kml:Name><kml:Placemark id="6f69eafa-8bf7-426e-8f4d-30299209a815::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/6f69eafa-8bf7-426e-8f4d-30299209a815::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2007-10-23T09:05:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.01473554033485540335,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="41e9285b-9c0f-43e3-b2b9-485f8d9fb670::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/41e9285b-9c0f-43e3-b2b9-485f8d9fb670::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2007-11-07T14:20:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.05643074581430745814,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="d129eb82-17de-4cbe-9610-f0805630589c::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/d129eb82-17de-4cbe-9610-f0805630589c::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2007-11-21T11:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.094434931506849315,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="38391544-3131-4c65-93c7-3fab7780fb45::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/38391544-3131-4c65-93c7-3fab7780fb45::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2007-12-07T09:45:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.138099315068493151,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="612543de-fd08-4a7a-abd5-e6b0c827a529::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/612543de-fd08-4a7a-abd5-e6b0c827a529::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2007-12-21T09:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.17639840182648401826,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="ddcd7ac1-0ff9-4cc4-a163-aa61f01f2146::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/ddcd7ac1-0ff9-4cc4-a163-aa61f01f2146::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-01-04T09:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.2147545662100456621,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="066403ed-a0ed-4670-bde6-58dbd5c5cdf9::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/066403ed-a0ed-4670-bde6-58dbd5c5cdf9::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-02-01T09:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.29146689497716894977,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="e8ad4e11-dac4-4d4b-ad89-fc4c38b9769e::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/e8ad4e11-dac4-4d4b-ad89-fc4c38b9769e::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-03-01T09:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.37091894977168949772,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="b924f056-2387-40b2-b354-9fcc527c20a6::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/b924f056-2387-40b2-b354-9fcc527c20a6::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-03-15T21:15:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.41064497716894977169,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="9d76facc-8f11-436c-86ef-eb9ab7c9470f::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/9d76facc-8f11-436c-86ef-eb9ab7c9470f::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-03-28T11:00:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.44509132420091324201,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="235692ae-9f26-4e36-8961-842472415c39::test1.eee.mi.imt.liu.se::1"><kml:name>Besšksanteckning</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/235692ae-9f26-4e36-8961-842472415c39::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2008-06-30T13:25:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>22.70290144596651445967,65.01,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="15fca5a8-d0cf-4aac-a6aa-0745ebca2038::test1.eee.mi.imt.liu.se::1"><kml:name>Epikris</kml:name><kml:description> 
+		 Link: http://localhost:8182/ehr/AnnaTest-v3/15fca5a8-d0cf-4aac-a6aa-0745ebca2038::test1.eee.mi.imt.liu.se::1
+ 		 Time: 2009-09-09T11:03:00</kml:description><kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl><kml:Point><kml:coordinates>23.89715182648401826484,65.01,0</kml:coordinates></kml:Point></kml:Placemark></kml:Folder><kml:Folder><kml:Name>Blodtrycksnoteringar</kml:Name><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 200.0 / 110.0</kml:name><kml:description>2007-10-23T09:11:00Blodtryck
+		 
+		 Systoliskt: 200.0
+		 Diastoliskt: 110.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/6f69eafa-8bf7-426e-8f4d-30299209a815::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.0147469558599695586, 65.02,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 190.0 / 105.0</kml:name><kml:description>2007-11-07T14:29:00Blodtryck
+		 
+		 Systoliskt: 190.0
+		 Diastoliskt: 105.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/41e9285b-9c0f-43e3-b2b9-485f8d9fb670::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.05644786910197869102, 65.019,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 185.0 / 105.0</kml:name><kml:description>2007-11-21T11:18:00Blodtryck
+		 
+		 Systoliskt: 185.0
+		 Diastoliskt: 105.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/d129eb82-17de-4cbe-9610-f0805630589c::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.09444063926940639269, 65.0185,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 180.0 / 100.0</kml:name><kml:description>2007-12-07T09:47:00Blodtryck
+		 
+		 Systoliskt: 180.0
+		 Diastoliskt: 100.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/38391544-3131-4c65-93c7-3fab7780fb45::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.13810312024353120244, 65.018,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 190.0 / 100.0</kml:name><kml:description>2007-12-21T09:18:00Blodtryck
+		 
+		 Systoliskt: 190.0
+		 Diastoliskt: 100.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/612543de-fd08-4a7a-abd5-e6b0c827a529::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.176404109589041096, 65.019,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 180.0 / 100.0</kml:name><kml:description>2008-01-04T09:18:00Blodtryck
+		 
+		 Systoliskt: 180.0
+		 Diastoliskt: 100.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/ddcd7ac1-0ff9-4cc4-a163-aa61f01f2146::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.21476027397260274, 65.018,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 160.0 / 90.0</kml:name><kml:description>2008-02-01T09:18:00Blodtryck
+		 
+		 Systoliskt: 160.0
+		 Diastoliskt: 90.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/066403ed-a0ed-4670-bde6-58dbd5c5cdf9::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.291472602739726027, 65.016,0</kml:coordinates></kml:Point></kml:Placemark><kml:Placemark id="$version/uid/value/text()"><kml:name>Bt. 145.0 / 90.0</kml:name><kml:description>2008-03-01T09:18:00Blodtryck
+		 
+		 Systoliskt: 145.0
+		 Diastoliskt: 90.0		 
+		 
+		 Se besšk: http://localhost:8182/ehr/AnnaTest-v3/e8ad4e11-dac4-4d4b-ad89-fc4c38b9769e::test1.eee.mi.imt.liu.se::1</kml:description><kml:styleUrl>#msn_B</kml:styleUrl><kml:Point><kml:coordinates>22.370924657534246575, 65.0145,0</kml:coordinates></kml:Point></kml:Placemark></kml:Folder><kml:Folder><kml:Name>Blodtryckskurva</kml:Name></kml:Folder></kml:Folder></kml:Document></kml:kml>

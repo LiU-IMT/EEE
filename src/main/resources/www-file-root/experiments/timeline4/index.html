@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Timeline experiment 4</title>
+<link rel="stylesheet" href="timeline4.css" type="text/css" />
+
+<!-- link rel="stylesheet" href="swimlane.css" type="text/css" / -->
+
+
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery.masonry-2.1.03.min.js.js" ></script>
+<!-- <script type="text/javascript" src="jquery.masonry.min.js.js" ></script> -->
+
+<!-- CDN versions 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.05/jquery.masonry.min.js" ></script>
+-->
+
+<!-- script src="http://d3js.org/d3.v2.js"></script -->
+<script type="text/javascript" src="d3.v2.min.js"></script>
+<script type="text/javascript" src="EEE-utils.js" ></script> 
+<!-- script type="text/javascript" src="randomData.js"></script --> 
+<!-- script type="text/javascript" src="swimLaneDiagram.js"></script -->
+<script type="text/javascript" src="testfall/ehrdata.js" ></script> 
+<script type="text/javascript" src="log4javascript.js"></script>
+</head>
+<body>
+<!-- For the vertical (facebook-like) timeline explanation/inspiration see http://www.9lessons.info/2012/01/facebook-timeline-design-using-jquery.html -->
+
+<div id="topHeaderWrapper">
+ <div id="topHeaderUser" class="topHeader"><!-- User related info and</br>controls will go here -->
+ <span id="admLabel">Adm: </span>
+   <select id="testConfig" name="testConfig">
+ 	 <option value="III">III</option>
+ 	 <option value="II">II</option>
+	 <option value="I">I</option>
+   </select> 	 
+  <span id="admControls">	
+	<select id="patientConfig" name="patientConfig">
+		<option value="Patient_TEST">TEST</option>
+		<option value="Patient_A">A</option>
+		<option value="Patient_B">B</option>
+		<option value="Patient_C">C</option>
+	</select>
+	<input id="startButton" type="button" value="Start & reset counters" />
+	<input id="responseButton" type="button" value="Open response form" />
+	<!-- input type="checkbox" id="logOnOff" checked="checked">show log</input -->
+	
+  </span> Window: { <span id="admSize"> </span> } User: <span id="user"></span>
+ </div><!-- End div id="topHeaderUser" -->
+ <!-- TODO: ENABLE AGAIN div id="horizontalMiniTimeline" class="topHeader"></div -->
+ <div id="topHeaderPatient" class="topHeader">
+	<span style='float: right'><!-- img src="/static/images/avatars/anna-avatar.jpg" height="35" width="35" border="1" alt="anna"ﬁ/>&nbsp;--><img id="alertsymbol" src="signal.gif" height="32" width="32" alt="no alert"/></span>
+	<strong>&nbsp;<span id="patientName">Anna&nbsp;Exempelsson</span>&nbsp;</strong><br/>&nbsp;<span id="patientId">19310909-9000</span>&nbsp;
+ </div>
+</div>
+
+<div id="containerTopSpacer"><br/><br/></div>
+
+<!-- TODO: MOVE AND ENABLE AGAIN <div id="horizontalTimeline"></div --> 
+
+<div id="verticalTimeline">
+
+<div id="sidebar" >
+
+	<div id="controlBox"><!-- div class="sideBox"-->
+	 <div>
+	   <!-- span id="numOfSidebarItems">2</span> sidebar boxes below <br/> 
+	   	  <h3 class="collapsible">Filters & Highlighting</h3>-->
+	   	  
+	   	<div class="controlTable">
+
+	   		<div class="controlRow ">
+		   	<span class="controlCellLeft controlLabel">Sorting: </span>
+		   	<span class="hide_II controlCellLeft controlLabel bgLightB">Compression: </span>   	
+		   	<span class="hide_II controlCellLeft controlLabel">Columns:</span>
+		   	</div>
+
+		   	<div class="controlRow ">
+		   	<span class="controlCellLeft "><input id="oldFirst" type="radio" name="sorting" checked="checked" value="old_first" />old...</span>
+		   	<span class="hide_II controlCellLeft  bgLightB"><input type="radio" name="compression" checked="checked" value="compress-none" />none</span>
+		   	<span class="hide_II controlCellLeft "><input type="radio" name="columns" value="one_col" checked="checked" />one</span>
+		   	</div>
+
+		   	<div class="controlRow ">
+		   	<span class="controlCellLeft "><input type="radio" name="sorting" value="new_first" />recent...</span>
+		   	<span class="hide_II controlCellLeft  bgLightB"><input type="radio" name="compression" value="compress-nospace" />no space</span>
+		   	<span class="hide_II controlCellLeft "><input type="radio" name="columns" value="two_col" />two</span>
+		   	</div>
+
+		   	<div class="controlRow ">
+		   	<span class="controlCellLeft "> notes on top</span>   	
+		   	<span class="hide_II controlCellLeft  bgLightB"><input type="radio" name="compression" value="compress-shrink" />shrink</span> 	
+		   	</div>
+
+		   	<div class="controlRow ">
+		   	<span class="controlCellLeft "></span> 
+		   	<span class="hide_II controlCellLeft  bgLightB"><input type="radio" name="compression" value="compress-hide" />hide</span> 	
+		   	</div>
+		   	
+		   	</div>
+	   
+		<hr/>  
+		
+	<div id="highlSection" class="hide_I">
+		<div>Highlighting palette</div>
+	   	<div class="controlTable" id="sortingControl">
+	   	<div class="controlRow" title="Select color for highlighting">
+	   	<span class="controlCell controlLabel"></span>
+	   	<span class="controlCell colorBox val highlight1 selectedPaletteBox" value="highlight1"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight2 " value="highlight2"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight3 " value="highlight3"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight4 " value="highlight4"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight5 " value="highlight5"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight6 " value="highlight6"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight7 " value="highlight7"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight8 " value="highlight8"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell colorBox val highlight9 " value="highlight9"><span class="subheading3">t</span>xt</span>
+	   	<span class="controlCell">All</span>
+	   	</div>
+	   	<div class="controlRow" title="Turn highlighting for specific colors on or off">
+	   	<span class="controlCell controlLabel"></span>
+	   	<span class="controlCell highlight1"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight1"></span>
+	   	<span class="controlCell highlight2"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight2"></span>
+	   	<span class="controlCell highlight3"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight3"></span>
+	   	<span class="controlCell highlight4"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight4"></span>
+	   	<span class="controlCell highlight5"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight5"></span>
+	   	<span class="controlCell highlight6"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight6"></span>
+	   	<span class="controlCell highlight7"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight7"></span>
+	   	<span class="controlCell highlight8"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight8"></span>
+	   	<span class="controlCell highlight9"><input type="checkbox" name="highlightOnOff" checked="checked" value="highlight9"></span>
+	   	<span class="controlCell"><input type="checkbox" id="highlightAllOnOff" checked="checked"></span>	  
+	   	</div>
+   	</div>
+   	
+		<!-- span class="compress-shrink" -->
+		<span id="legendContainer" class="itemBody no_select">
+		</span>
+		<!-- /span -->	
+		
+		<hr/> 	   			
+		<div class="visible_only_when_collapsed bottom_right"><small style="float:right">click to view and edit details</small></div>
+	   </div><!-- end #highlSection-->
+	   
+		<div id="careSettings"> 
+	   	<p>
+			<b>Care settings:</b> (emergency: <span class="openEHR-setting-1228">primary</span> & <span class="openEHR-setting-227">secondary</span>)<br/><span class="openEHR-setting-228">primary medical</span>, <span class="openEHR-setting-229">primary nursing</span>, <span class="openEHR-setting-230">primary allied</span>, 
+			<span class="openEHR-setting-232">secondary medical</span>, <span class="openEHR-setting-233">secondary nursing</span>, <span class="openEHR-setting-234">secondary allied</span> 
+			<span class="openEHR-setting-225">home</span>, <span class="openEHR-setting-238">other care</span>
+		    </p>
+		    <hr/>
+	    </div>
+	   
+	 </div>
+	</div> 
+	
+
+    
+	<div id="alertBox" class='sideBox'>
+		<h3>Patent specific alerts could go here</h3>
+		<img class="alertsymbol collapsible" src="signal.gif" height="32" width="32" alt="no alert"/>
+		<p class="collapsible">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris velit nunc, mollis eget pulvinar nec, pretium at ligula. Suspendisse aliquam est sit amet elit vestibulum condimentum. Donec eu luctus justo. Suspendisse euismod augue at lectus euismod sed volutpat massa elementum. Curabitur tempor, neque in imperdiet venenatis, neque massa congue mi, eget vehicula massa metus eu est.
+		</p>
+	</div>
+	
+	<div  class='sideBox'>
+		<h3>A place for patient specific decision support?</h3>
+		<div class="collapsible">
+		<ul>
+			<li>one</li>
+			<li>two</li> 
+			<li>three</li>
+			<li><a href="http://www.sunet.se/" target="awindow">Testing hyperlinking (to Sunet) in a box</a></li>  
+		</ul>
+		</div>	
+	</div>
+	
+	<div class='sideBox 3-target' id='3-target'>
+		<div>A technical scroll-target-test</div>
+		<div class="collapsible">
+		<ul>
+			<li>one</li>
+			<li>two</li> 
+			<li>three</li>
+			<li><a href="/">Testing hyperlinking in a box</a></li>  
+		</ul>
+		</div>	
+	</div>
+	
+</div><!-- END of div id="sidebar" -->
+
+<div id="container"><!-- This is the "facebook-like" timeline -->
+
+<div class="item infoBox "><img id="alertsymbol_instance2" src="signal.gif" alt="no alert" height="32" width="32"/> Alert detail placeholder. Not implemented in test setup.</div>
+
+<div class="timeline_container">
+	<div class="timeline"></div>
+</div>
+
+</div><!-- END of div id="container" -->
+
+</div><!-- END of div id="verticalTimeline" -->
+
+<script type="text/javascript">	
+console.log("Hello world, entering timeline-4 script tag");
+
+console.log("Setting up global variables");
+var sortOrder = "old_first";
+var doubleColumn = false;
+var masonryLoaded = false;
+var testWidth = 800;
+var labelYears = true; //false; //true;
+var wideYears = true; //false;  //true;
+var compression = "compress-none";
+var currentHighlight = "highlight1";
+var lastScrollTop = 0;
+var totalScroll = 0
+var lastTotalScrollReported = 0;
+var numberOfScrolls = 0;
+var numberOfClicks = 0;
+var indexMods = {};
+var start;
+var timeout;
+indexMods.removes=0
+indexMods.adds=0
+var popUpAppender;
+
+//var developerMode = false;
+//var developerMode = 1; // 1: stored XML result from local dir
+var developerMode = 2; // 2: pre-processed JSON result from variable
+
+var timelineResponseArray = []
+
+
+$(document).ready(function() {
+	var log = log4javascript.getDefaultLogger();
+	
+		log.debug("Starting $(document).ready function");
+		// Create a PopUpAppender with default options
+		popUpAppender = new log4javascript.PopUpAppender(true, true);
+		popUpAppender.setThreshold(log4javascript.Level.INFO)
+		var popUpLayout = new log4javascript.PatternLayout("%d{HH:mm:ss} %-5p - %m #%r%n");
+		popUpAppender.setLayout(popUpLayout);
+		popUpAppender.setUseOldPopUp(true); 
+		popUpAppender.setComplainAboutPopUpBlocking(true);
+		popUpAppender.setReopenWhenClosed(true);
+		// Add the appender to the logger
+		log.addAppender(popUpAppender);
+		
+		// Remote server-based logging
+		var ajaxAppender = new log4javascript.AjaxAppender("logging.php");
+		ajaxAppender.setThreshold(log4javascript.Level.INFO);
+		// var ajaxLayout =  new log4javascript.JsonLayout(true, true);
+		// ajaxAppender.setLayout(ajaxLayout);
+		ajaxAppender.setSendAllOnUnload(true);
+		ajaxAppender.setTimed(true);
+		ajaxAppender.setTimerInterval(15000); // milliseconds
+		log.addAppender(ajaxAppender);
+
+
+		logStart = new Date()
+		log.info("starting-log: "+logStart)
+
+		
+	if (window.WebSocket) {
+	   console.log("WebSocket is supported", log);
+	   log.debug("Entering timeline-4 script tag, WebSocket is supported");
+	} else {
+	   console.log("WebSocket is not supported");
+	   log.debug("Entering timeline-4 script tag, WebSocket is NOT supported");
+	}
+
+	// ------- Define Functions --------
+	
+	function resetCounters(){
+		totalScroll = 0
+		lastTotalScrollReported = 0;
+		numberOfScrolls = 0;
+		numberOfClicks = 0;
+		indexMods = {};
+		indexMods.removes=0
+		indexMods.adds=0
+	}
+	
+	function printCounters(){
+		return '{"tSc":'+totalScroll+', "nSc":'+numberOfScrolls+', "nCl":'+numberOfClicks+' }';
+	}
+		
+	function compareStartTime(a, b){
+		  var aTime = a.date; //comp_start_time;
+		  var bTime = b.date; //comp_start_time; 
+		  //console.log(aTime, bTime);
+		  return ((aTime < bTime) ? -1 : ((aTime > bTime) ? 1 : 0));
+	}
+	
+	// log.debug("---05");
+	
+	var queries = new Array();
+	queries[0] = new String("All compositions");
+	queries[0].aql = 
+	"SELECT " + "\n" +
+	" v/uid/value as composition_id,"+ "\n" +
+	" c/name/value as composition_title, " + "\n" +
+	" c/context/start_time/value as comp_start_time, "+ "\n" +
+	" c/context/end_time/value as comp_end_time, "+	 "\n" +
+	" c/context/health_care_facility/name as comp_facility, "+ "\n" +		
+	" c/context/setting/defining_code/code_string as comp_setting, "+ "\n" +	
+	" c/content as xml__comp_content "+ "\n" +		
+	"FROM Ehr [ehr_id/value=$current_ehr_uid] "+ "\n" +
+	" CONTAINS VERSION v "+ "\n" +
+	" CONTAINS COMPOSITION c "+ "\n" +
+	" ORDER BY c/context/start_time/value DESCENDING";
+	// IMPORTANT: If you change the query above then replace the 'sha' value on line below with "" and reload the page in order to receive a new sha value from the server that you then can place between the quote signs.
+	queries[0].sha="119a15c2c80e35c0b47574f5097df5e9e22d2ed2";
+	queries[0].responseArray = [ ]
+	queries[0].callback = function(q, queryResponse) {
+	    //console.log("q.aql: ",q.aql, "queryResponse: ", queryResponse);
+		//q.responseArray = objectifyAQLXmlResult(queryResponse);
+	    q.responseArray = configurableAQLXmlResultHandler(queryResponse);
+	    //console.log("------> q.responseArray: "+JSON.stringify(q.responseArray));
+	    	
+		console.log("q.responseArray: ",q.responseArray);
+		q.draw(q)
+	}	
+	queries[0].draw = function(q) {
+		log.debug("entering draw for q="+q);
+		
+		// Parse dates and put into standardized variables + do other query specific processing
+		$.each(q.responseArray, function(index, d) {
+		    //console.log("===> "+JSON.stringify(d));
+	
+			// console.log("d.comp_start_time:"+d.comp_start_time+"Z")	  	
+			//d.date = d3.time.format.iso.parse(d.comp_start_time+"Z"); // TODO: Check/fix input format from DB/AQL
+			d.date = d3.time.format.iso.parse(d.comp_start_time);
+			
+			if(d.comp_end_time) {
+				//d.enddate = d3.time.format.iso.parse(d.comp_end_time+"Z");
+				d.enddate = d3.time.format.iso.parse(d.comp_end_time);
+			}
+			// console.log("d.date:"+d.date)
+			d.category = d.composition_title;
+			
+			//var composer = ""
+			if (!(d.composer)){
+				d.composer = "";
+			}
+			
+			// console.log("d.category:"+d.category) 
+	
+		});
+		console.log("Test 2");
+	
+		q.minDate = d3.min(q.responseArray, function(d) { return d.date; })
+		q.maxDate = d3.max(q.responseArray, function(d) { return d.date; }) // TODO: check enddate (if available) not startdate!
+	
+		scale = d3.time.scale();
+		scale.domain([q.minDate, q.maxDate]);
+	//	var ticks = scale.ticks(d3.time.years, 1);
+		var ticks = scale.ticks(d3.time.years, 1);
+		
+	//	console.log("domain",scale.domain());
+	//	console.log("range",scale.range());
+	//	console.log("ticks",ticks,scale.domain());
+		
+		ticks.forEach(function(d){
+			var year = (d+"").substring(11,15); // TODO: do nicer formatting
+			//console.log("tick: ",year);
+			var yearTick = {yearLabel: year, date: d}; 
+			q.responseArray.push(yearTick);
+		});	
+		
+		q.responseArray = q.responseArray.sort(compareStartTime);
+		timelineResponseArray = q.responseArray;
+			
+		refreshLayout();
+		console.log("q.minDate:"+q.minDate+" q.maxDate:"+q.maxDate);
+		
+		q.done = true;
+		//drawIfAllQueriesDone();
+	} 
+	
+	function removePrefixedClasses(objects, prefix){
+		objects.each(function(i, node){
+			$el = $(node);
+			var classes = $el.attr("class").split(" ").map(function(item) {
+			    return item.indexOf(prefix) === -1 ? item : null;
+			});
+			classes = $.grep(classes,function(n){return(n);}); // Clean nulls from array
+			$el.attr("class", classes.join(" "));												
+		})		
+	}
+	
+	//log.debug("---10");
+
+	function refreshLayout(sortCommand) { 
+		log.debug("refreshLayout: - incoming sortCommand:", sortCommand,"   present sortOrder ", sortOrder);
+	
+		if(sortCommand && sortCommand!=sortOrder){
+			sortOrder=sortCommand;
+			log.debug(" >>>>> changing sorting order to ", sortOrder);
+			timelineResponseArray = timelineResponseArray.reverse();		
+		}
+		
+		var compression = $("input[name=compression]:checked").attr("value");
+		
+		var col = $('input[name=columns]:checked').attr("value");
+		doubleColumn = (col == "two_col");
+
+		log.info("refresh: "+ compression +" "+ sortOrder +" "+ col);
+		
+	
+		// TODO: remove and remember warning-detail box before sorting, then add it back on top
+		// TODO: Only remove and add if first time or if sort order changed
+	
+		$('.item').remove();
+			
+		$.each(timelineResponseArray, function(index, d) {
+			
+			// add all item-boxes
+			
+			if(d.yearLabel){
+				var upDown = "&nbsp;&nbsp;&nbsp; &uarr; &nbsp;&nbsp;&nbsp;";
+				if (sortOrder=="old_first") upDown = "&nbsp;&nbsp;&nbsp; &darr; &nbsp;&nbsp;&nbsp;"
+				if (labelYears) $('#container').append("<div class='item yearBox' id='year-"+d.yearLabel+"'><span class='yearLabel left'>"+d.yearLabel+upDown+"</span><span class='yearLabel right'>"+upDown+d.yearLabel+"</span></div>\r\n");
+			} else {
+			
+			var mainTextContent = "..."		
+				if (d.xml__comp_content){
+					mainTextContent = d.xml__comp_content
+					//console.log("d.xml__comp_content", d.xml__comp_content)
+				}
+			
+			$('#container').append(
+					'<div class="item frame-setting-'+d.comp_setting+'" id="'+d.composition_id+'">'+
+						  '<div class="itemHeader">'+
+							'<span class="composition_date">'+d.date.toDateString()+' '+d.date.toTimeString().substring(0,5)+'</span>'+
+							'<span class="composer openEHR-setting-'+d.comp_setting+'">'+d.composer+'</span>'+ 
+						    '<span class="composition_title">'+d.composition_title+'</span>'+
+						    '<span class="facility openEHR-setting-'+d.comp_setting+'">'+d.comp_facility+'</span>'+
+						  '</div>'+ 
+						  '<div class="itemBody">'+ mainTextContent+' </div>'+
+					'</div>'); 
+			
+			} // end if(d.yearLabel)
+			
+		});
+		
+		// Highlight all items matching the highlighted index nodes
+		$('.index[presenthighlight!="none"]').each(function (i, node){
+			var hl = $(node).attr("presenthighlight");
+			var hlType = $(node).attr("type");
+			var hlChecked = (($('input[value="'+hl+'"]').attr("checked"))=="checked");
+			console.log("presenthighlight... ", $(node).attr("value"), hl, hlChecked);
+			if (hlChecked) $('.item .'+hlType+'.'+$(node).attr("value")).addClass(hl).addClass("highlighted");
+		});
+		
+		removePrefixedClasses($(".item "), "compress-");
+		// Remove "compress-"-prefixed classes from all .item nodes
+	
+		
+		// Add the selected compression value
+		$(".item").addClass(compression);
+		
+		var testWidth = this.testWidth-20
+		var itemBorderAndMargin = (4+4+10+10)+20;
+		var boxwidth = (testWidth/2 - itemBorderAndMargin) ;
+		var wideboxwidth = (testWidth - itemBorderAndMargin) ;
+		if  (doubleColumn) {
+			console.log("testWidth",testWidth,"itemBorderAndMargin", itemBorderAndMargin, "boxwidth", boxwidth)
+			$('.item').css({"width": boxwidth+"px"}); // 408
+			//$('.timeline').css({"left": testWidth/2-24+"px"}); /* left: 828px;  428px; */
+			$('.timeline').css({"left": boxwidth+20+"px"}); /* left: 828px;  428px; */
+			//$('.yearBox').css({"width":testWidth/2+"px"}); //840	
+			if(wideYears){
+				$('.yearBox').css({"width":testWidth+"px"}).addClass("noArrow"); //840
+			}else {
+				$('.yearBox').css({"width":boxwidth+"px"}); //840			
+			}
+		} else {
+			$('.item').css({"width":wideboxwidth+"px"}); //780
+			$('.timeline').css({"left":wideboxwidth+20+"px"});
+			$('.yearBox').css({"width":testWidth+"px"}).addClass("noArrow"); //840
+		}
+			
+		// Reload masonry
+		//if (!masonryLoaded) {
+		if(true){
+			$('#container').masonry({itemSelector : '.item',});
+			masonryLoaded = true;
+		} else {
+			$('#container').masonry( 'reload' );
+		}
+		
+		$('.rightCorner').hide(); // TODO: Should it be .remove() instead?
+		$('.leftCorner').hide();
+		
+		var s = $('#container').find('.item');
+		
+		$.each(s,function(i,obj){
+			//var posLeft = $(obj).css("left");
+			var posLeft = $(obj).position().left;
+			
+			// console.log("arrow: ", posLeft, $(obj).position().left, $(obj).hasClass('yearBox'));
+			
+			if (!$(obj).hasClass('noArrow')) {		
+				$(obj).addClass('borderclass');
+				if(posLeft == 0)
+				{
+					html = "<span class='rightCorner'></span>";
+					$(obj).prepend(html);			
+				}
+				else
+				{
+					html = "<span class='leftCorner'></span>";
+					$(obj).prepend(html);
+				}
+			}
+		});
+		
+		if  (doubleColumn) {
+			$('.rightCorner').css({"margin-left":boxwidth+"px"}); //"408px"
+		} else {
+			$('.rightCorner').css({"margin-left":wideboxwidth+"px"});
+		}
+	} // End of refreshLayout
+
+
+	function changeEHR(idIn){
+		if (idIn) {
+			log.info("ehr-change: "+ idIn +" ------- Changing EHR to:"+ idIn +" ------- ")
+			//log.debug("--- changeEHR 05");
+			//$("input[value='old_first']").click();
+			$("#oldFirst").click();
+			//var sortOrder = "old_first";
+			//$("#oldFirst").prop("checked","checked");
+			//log.debug("--- changeEHR 10");
+		    $.each(queries,function(index, q){
+		    	
+		    	if (developerMode == 1) {
+		    		//stored_query_results/example-ehr-id/fc01d97b953ac394a981e2d814c94c0ea80b4407.xml
+		    		var shaUrl = "./stored_query_results/"+idIn+"/"+q.sha+".xml";
+		    		console.log("developerMode 1; Fetching canned queryresult from :" + shaUrl);
+	
+		    				// First try get (Let's hope the queries are already parsed and stored) 
+		    				var request = $.ajax(shaUrl,{
+		    					success: function(){
+		    						console.log("!!! (1) Succesful response for "+q+":"+request.responseXML)
+		    						q.callback(q, request.responseXML);
+		    					}, 
+		    					error: function(){
+		    						alert.log("Page "+shaUrl+"not found.");
+		    					}
+		    				});
+		    		
+		    	} else if (developerMode == 2) {
+		    		//stored_query_results/example-ehr-id/fc01d97b953ac394a981e2d814c94c0ea80b4407.xml
+		    		var shaUrl = "./stored_query_results/"+idIn+"/"+q.sha+".xml";
+		    		console.log("developerMode 2; Fetching canned queryresult from local variable, patients."+idIn);
+		    		
+		    		// Clear content
+		    		q.responseArray.length=0;
+		    		
+		    		// Copy, dont just refer to source!  
+		    		//var clone = myArray.slice(0); // See: http://davidwalsh.name/javascript-clone-array
+		    		q.responseArray = patients[idIn].data.slice(0); 
+		    		
+		    		/* $('div.second').replaceWith('<h2>New heading</h2>');Anna&nbsp;Exempelsson</span */
+		    		$('#patientName').replaceWith('<span id="patientName">'+patients[idIn].name+'</span>');
+		    		$('#patientId').replaceWith('<span id="patientId">'+patients[idIn].id+'</span>');
+		    		console.log("patients[idIn].name",patients);
+		    		
+		    		//q.responseArray = patient_B;
+		    			    		
+		    		q.draw(q);	    		
+		    	} else {
+		    		// Call the usual function in EEE-utils.js
+		    		executeQuery(q, idIn, q.callback);
+		    	}
+			});	
+		} else {
+			alert( 'An ehr id must be provided in the url-fragment, for example:\n\n '+
+				   '/experiments/timeline4/timeline4.html#ehr=Patient_TEST\n\n'+
+				   '(and reload the page)');
+		}
+		log.debug("exiting changeEHR")
+	}
+
+
+    /////// Setting up event listeners /////////	
+
+	$(window).scroll(function(event){
+	   var st = $(this).scrollTop();
+	   numberOfScrolls = numberOfScrolls + 1;
+	   if (st > lastScrollTop){	   
+	       // downscroll code
+		   var down = (st-lastScrollTop)
+		   totalScroll = totalScroll+down;
+		   //console.log("Scroll-down: "+(st-lastScrollTop));
+		   //log.info("Scroll-down: "+(st-lastScrollTop));
+	   } else {
+	      // upscroll code
+		  var up = (lastScrollTop-st)
+		  totalScroll = totalScroll+up;
+		  //console.log("Scroll-up: "+(lastScrollTop-st));
+		  //log.info("Scroll-up: "+(lastScrollTop-st));
+	   }
+	   lastScrollTop = st;
+	   if ((totalScroll - lastTotalScrollReported) > 5000) {
+		  log.info("Incrementing totals: "+printCounters());
+		  lastTotalScrollReported = totalScroll;
+	   }
+	   
+	});
+	
+	
+	$(window).click(function(event){
+		numberOfClicks++
+	});
+	
+	//log.debug("--- 200");
+
+    $("input[name=sorting]").live('click', function(e)  // was 'change'
+			{			
+    			log.debug('--- $("input[name=sorting]").live...');
+    			sortCommand = $(this).attr("value");
+				log.info("clicked-sort: ", sortCommand);
+			    refreshLayout(sortCommand);	
+			});
+    
+	$("input[name=compression]").live('change', function(e)
+			{
+				log.info("clicked-compression");
+				refreshLayout();				
+			});
+		
+	
+	$('input[name=columns]').live('change', function(e)
+		{
+			log.info("clicked-columns");
+			refreshLayout();		
+		});
+    
+    
+	$(".colorBox").live('click', function(e)
+			{
+				var val = $(this).attr("value");
+				//console.log("Highlight: ", e, this);
+				log.info("clicked-highlight-colorBox:  ", val);
+				//console.log("Highlight checked: ", $(this).attr("checked"));				
+				$(".colorBox").removeClass("selectedPaletteBox");								
+				$(this).addClass("selectedPaletteBox");
+				currentHighlight = val;
+			});
+	
+	$("input[name=highlightOnOff]").live('change', function(e)
+			{
+				var val = $(this).attr("value");
+				var chk = $(this).prop("checked");
+				log.info("clicked-highlightOnOff: ", val, chk);
+				refreshLayout();
+			});
+	
+//	$("#logOnOff").live('change', function(e)
+//	  {
+//		var chk = $(this).prop("checked");
+//		log.info("logOnOff: ", chk);
+//		if (chk) {
+//			popUpAppender.show()
+//		} else {
+//			popUpAppender.hide()
+//		}
+//	  });
+	
+	function setAllhighlightsOnOff(check){
+		if (!check) check = false;
+		$("input[name=highlightOnOff]").attr('checked', check);
+		$("#highlightAllOnOff").attr('checked', check);
+	}
+	
+	$("#highlightAllOnOff").live('change', function(e)
+		{
+			log.info("highlightAllOnOff clicked ", $(this).attr("checked"));
+			setAllhighlightsOnOff($(this).attr("checked"))
+			refreshLayout();
+		});
+	
+
+	$("#legendContainer .index").live('dblclick', function(e)
+			{
+				var val = $(this).attr("value");
+				console.log("index : ", e, this, val);
+				
+				var presentHighlight = $(this).attr("presentHighlight");
+				
+				// Remove all highlight classes
+				removePrefixedClasses($(this), "highlight")
+				
+				//$(this).attr("class", ""); // Remove all classes
+				//$(this).addClass("index");
+
+				if (presentHighlight == currentHighlight) {
+					$(this).attr("presentHighlight", "none");
+					log.info("clicked-index: "+val+" removed: "+presentHighlight)
+					indexMods.removes=indexMods.removes+1					
+				} else {
+					$(this).addClass(currentHighlight);
+					$(this).attr("presentHighlight", currentHighlight)
+					log.info("doubleclicked-index: "+val+" added: "+currentHighlight);					
+					indexMods.adds=indexMods.adds+1;
+					indexMods[currentHighlight]=indexMods[currentHighlight]+" "+val;
+				}
+				console.log("indexMods", indexMods);
+				refreshLayout();
+				return false; // Stop event from bubbling up to containing header
+			});
+	
+	$("#container .subsection1, #container .subsection2, #container .subsection3").live('dblclick', function(e)
+			{
+				// Figure out section name
+				
+				var val = $(this).attr("value");
+				console.log("index: ", e, this, val);
+				log.info("doubleclicked-EHR-text: "+val);
+				$("#legendContainer span[value="+val+"]").dblclick();
+				
+				return false; // Stop event from bubbling up to containing header
+			});
+	 
+
+	$("input[name=controlOn]").live('change', function(e)
+			{
+				var val = $(this).attr("value");
+				console.log("Show: ", e, this);
+				console.log("Show val: ", val);
+				console.log("Show checked: ", $(this).attr("checked"));
+				if($(this).attr("checked")){
+					$(".item ."+val).addClass("show");
+					$(".item ."+val).removeClass("hide")
+				} else {
+					$(".item ."+val).addClass("hide");
+					$(".item ."+val).removeClass("show");
+				}
+				refreshLayout();
+			});
+
+	$(".subsection1, .subsection2, .subsection3").live({
+        mouseenter:
+			function(e) 
+			{ 
+				// handlerIn(eventObject) 
+				//console.log("hoverTarget in: ", e, this);
+				$(this).addClass("hoverTarget");
+				return false; // Stop event from bubbling up to containing header 
+			},
+        mouseleave:
+			function(e)  
+			{ 
+				// handlerOut(eventObject)
+				//console.log("hoverTarget out: ", e, this);
+				$(".subsection1, .subsection2, .subsection3").removeClass("hoverTarget") // Avoid stray leftover highlights
+				return false; // Stop event from bubbling up to containing header
+			}
+        }
+	);
+	
+	$("#admLabel").dblclick(function(e){ 
+		$("#admControls").toggle() 		
+	});
+	
+	$("#admControls").slideToggle(false)
+	
+	function winSize() {
+		var windimensions = "h:"+$(window).height()+" w:"+$(window).width()+"";
+		$("#admSize").html(windimensions);
+		log.info("window: "+windimensions);
+	};
+	
+	$(window).resize(function(e){
+		winSize();
+	});
+	
+	function setConfigIII(){
+		  //log.debug("entering setConfigIII - "+$("input[value='compress-shrink']"));
+		  $("input[value='compress-shrink']").attr("checked","checked"); //click(); 
+		  //log.debug("100 setConfigIII");
+		  $("input[value='two_col']").attr("checked","checked"); //click(); 
+		  setAllhighlightsOnOff(true);
+		  //log.debug("200 setConfigIII");
+		  //$("#highlightAllOnOff").prop("checked", false); // Set opposite...
+		  //$("#highlightAllOnOff").click(); //...then click
+		  $(".hide_II, .hide_I").fadeIn();
+		  //log.debug("exiting setConfigIII");
+	}
+	
+	$("#testConfig").change(function(e){ 
+		var val = $(this).select("option:selected").prop("value");
+		log.info("config-change: "+val+" ------- Changing TestConfig to: "+val+" -------");
+		switch(val)
+		{
+		case "I": // Set start for configuration I
+		  //$("#highlightAllOnOff").prop("checked", "checked"); // Set opposite...
+		  setAllhighlightsOnOff(false);
+		  $("input[value='one_col']").prop("checked", "checked");
+		  $("input[value='compress-none']").prop("checked", "checked");//
+		  $(".hide_I, .hide_II").fadeOut();
+		  break;
+		case "II":  // Set start for configuration II
+		  //$("#highlightAllOnOff").prop("checked", false); // Set opposite...
+		  //$("#highlightAllOnOff").click(); //...then click
+		  setAllhighlightsOnOff(true);
+		  $("input[value='one_col']").prop("checked", "checked");//.click();
+		  $("input[value='compress-none']").prop("checked", "checked");//.click();
+		  $(".hide_II").fadeOut();
+		  $(".hide_I").fadeIn();
+		  break;
+		default: // Set start for configuration III
+		  setConfigIII();
+		}
+		refreshLayout();
+	});
+	
+	$("#patientConfig").change(function(e){ 
+		var val = $(this).select("option:selected").prop("value");
+		console.log("patientConfig: ",val);
+		changeEHR(val);
+		refreshLayout(); 
+	});
+
+	$("#responseButton").click(function(e){ 
+		var testConfig = $("#testConfig").select("option:selected").prop("value");
+		var patientConfig = $("#patientConfig").select("option:selected").prop("value");
+		console.log("responseButton clicked - testConfig:",testConfig,"patientConfig: ",patientConfig, "");
+		log.info(printCounters());
+		if (patientConfig=="Patient_TEST") {
+			var formurl = 'https://docs.google.com/spreadsheet/viewform?formkey=dDVUWm5mal9wS3RQOGxwUFZpNnRTd3c6MQ&entry_5='+user;
+			log.info("open-url: "+formurl);
+			window.open(formurl); //,'_blank',testConfig+','+patientConfig)			
+		} else {
+			//alert("form for "+user+":"+testConfig+":"+patientConfig+" not ready yet");
+			var formurl = 'https://docs.google.com/spreadsheet/viewform?formkey=dDdQR3VBTmxwWm9wbTRqVk9kU3ZvdkE6MQ&entry_1='
+				+testConfig+'&entry_2='+patientConfig+"&entry_24="+user+"&entry_25="+encodeURIComponent(printCounters()); 
+			log.info("open-url: "+formurl);
+			window.open(formurl); //,'_blank',testConfig+','+patientConfig)			
+		}
+	});
+	
+	$("#startButton").click(function(e){ 
+		var testConfig = $("#testConfig").select("option:selected").prop("value");
+		var patientConfig = $("#patientConfig").select("option:selected").prop("value");
+		log.info("reset-before: "+printCounters());
+		start = new Date().getTime() / 1000;
+		timeout = start + 7*60*1000; //add 7 minutes;
+		log.info("clicked-startButton: ",testConfig,patientConfig, " ------- resetting counters ------ timestamp: ", start);
+		resetCounters();		
+		log.info("reset-after: "+printCounters());
+	});
+
+
+
+	//var rdata = randomData()
+	// TODO: ENABLE AGAIN: initSwimlane(rdata.lanes, rdata.items, '#horizontalTimeline', '#horizontalMiniTimeline', function(theEvent){console.log(theEvent)}); // (inLanes, inItems, targetCanvasSelector, itemClickFunction)
+	
+	var incomingFrag = window.location.hash;
+	console.log("incoming window.location.hash: "+incomingFrag);
+	var parsedFragmentData;
+	if (incomingFrag){
+		parsedFragmentData = queryStringToHash(incomingFrag.split("#")[1]); // Remove # TODO: look for simpler version later	
+		console.log("parsedFragmentData:", parsedFragmentData);	
+	}
+		
+	if(incomingFrag && parsedFragmentData.ehr){
+		console.log("parsedFragmentData.ehr: "+parsedFragmentData.ehr);
+		ehrId = parsedFragmentData.ehr	
+	} else {
+		console.log("parsedFragmentData did not contain an ehr id");
+		ehrId = "Patient_TEST";
+	}
+	
+	if(incomingFrag && parsedFragmentData.user){
+		console.log("parsedFragmentData.user: "+parsedFragmentData.user);
+		user = parsedFragmentData.user;	
+	} else {
+		console.log("parsedFragmentData did not contain a user");
+		user = "unidentified-testuser";
+	}
+	
+	log.info("start-parameters: "+user+" "+ehrId)
+	
+	$('#user').html(user); 
+	$('#legendContainer').html(patients.Patient_B.legend); 
+
+	
+/*
+	$('.timeline_container').mousemove(
+			function(e) {
+				var topdiv=$("#containertop").height();
+				var pag= e.pageY - topdiv-26;
+				$('.plus').css({"top":pag +"px", "background":"url('/static/images/timeline/plus.png')","margin-left":"1px"});}).
+				mouseout(function(){
+					$('.plus').css({"background":"url('')"}
+				);
+			}
+	);
+*/
+
+
+/*
+	// Mouseup textarea false
+	$("#popup").mouseup(function() {return false});
+
+	$(".timeline_container").click(function(e) {
+		var topdiv=$("#containertop").height();
+		$("#popup").css({'top':(e.pageY-topdiv-33)+'px'});
+		$("#popup").fadeIn();
+		$("#update").focus();
+	});  
+
+
+	$(".deletebox").live('click',function()
+	{
+		if(confirm("Are your sure you want to close this box?"))
+		{
+			$(this).parent().fadeOut('slow');  
+			// Remove item
+			$('#container').masonry( 'remove', $(this).parent() );
+			
+			refreshLayout();
+		}
+		return false;
+	}); 
+
+	$(".item").live('click',function() 
+		{
+			console.log(" - - - Click: "+this.id); 
+			console.log(this);
+			var fetchTarget = $(this).find(".itemBody")		
+			if (this.alreadyOpen) {
+				fetchTarget.empty();
+				fetchTarget.text("...");
+				refreshLayout();
+				this.alreadyOpen=false;
+			} else {
+				var fetchUrl = '/ehr:'+ehrId+'/'+this.id+'?media=text/html'
+				console.log("fetchUrl:", fetchUrl);
+				$.get(fetchUrl, 
+						function(resp, code){
+							console.log(" Click callback resulting HTTP code:",code,"  Response length:",resp.length);
+							fetchTarget.html($(resp).find('#versionWrap')); //.children().slice(1));
+							refreshLayout();
+						});
+				this.alreadyOpen=true;
+			} // End if (this.alreadyOpen) ... else
+			
+		}
+	); */
+
+	// Avoid event bubbeling if links or checkboxes klicked within .sidebox
+	$(".sideBox a, .sideBox input").live('click', function(e)
+	{
+		e.target.href.click();
+		return false;
+	});
+	
+	$(".sideBox").live('click', function(e)
+	{
+		console.log("sideBox click event: ", e);
+		$(this).toggleClass('collapsed');
+	});
+	
+	// Textarea without editing.
+/*
+	$(document).mouseup(function() {
+		$('#popup').hide();
+	});
+*/
+
+	
+
+	// Set start state
+	console.log("will change EHR");
+	log.debug("will change EHR to "+ehrId);
+	changeEHR(ehrId); // From URI fragment
+	log.debug("changed EHR to "+ehrId);
+	winSize();
+	//$("#admSize").html(" h:"+$(window).height()+",   w:"+$(window).width()+"");
+	//log.debug("--- x200");
+	setConfigIII();
+	//log.debug("--- x300");
+	$("input[value='new_first']").prop("checked", true);
+	refreshLayout('new_first')
+	//log.debug("--- x400");
+
+	//refreshLayout("recent_first");
+    
+    
+}); // End $(document).ready
+</script>
+</body>
+</html>

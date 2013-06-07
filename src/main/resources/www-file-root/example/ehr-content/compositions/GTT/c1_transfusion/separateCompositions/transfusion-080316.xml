@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composition xmlns="http://schemas.openehr.org/v1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1">
+	<name>
+		<value>Transfusion</value>
+	</name>
+	<archetype_details>
+		<archetype_id>
+			<value>openEHR-EHR-COMPOSITION.encounter.v1</value>
+		</archetype_id>
+		<rm_version>1.0.2</rm_version>
+	</archetype_details>
+	<language>
+		<terminology_id>
+			<value>ISO_639-1</value>
+		</terminology_id>
+		<code_string>en</code_string>
+	</language>
+	<territory>
+		<terminology_id>
+			<value>ISO_3166-1</value>
+		</terminology_id>
+		<code_string>US</code_string>
+	</territory>
+	<category>
+		<value>event</value>
+		<defining_code>
+			<terminology_id>
+				<value>openehr</value>
+			</terminology_id>
+			<code_string>433</code_string>
+		</defining_code>
+	</category>
+	<composer xsi:type="PARTY_IDENTIFIED">
+		<name>physician Mark Hammings</name>
+	</composer>
+
+	<context>
+		<start_time>
+			<value>2008-03-16T06:23:00</value>
+		</start_time>
+		<setting>
+			<value>Orthopaedics clinic</value>
+			<defining_code>
+				<terminology_id>
+					<value>openehr</value>
+				</terminology_id>
+				<code_string>232</code_string>
+			</defining_code>
+		</setting>
+		<health_care_facility>
+			<name>University Hospital Gold</name>
+		</health_care_facility>
+	</context>
+
+
+	<content xsi:type="ACTION" archetype_node_id="openEHR-EHR-ACTION.transfusion.v1">
+			<name>
+				<value>Transfusion</value>
+			</name>
+			<archetype_details>
+				<archetype_id>
+					<value>openEHR-EHR-ACTION.transfusion.v1</value>
+				</archetype_id>
+				<rm_version>1.0.2</rm_version>
+			</archetype_details>
+			<language>
+				<terminology_id>
+					<value>ISO_639-1</value>
+				</terminology_id>
+				<code_string>en</code_string>
+			</language>
+			<encoding>
+				<terminology_id>
+					<value>IANA_character-sets</value>
+				</terminology_id>
+				<code_string>UTF-8</code_string>
+			</encoding>
+			<subject xsi:type="PARTY_SELF" />
+			
+			<time>
+				<value>2008-03-16T06:23:00</value>
+			</time>
+			
+			<description xsi:type="ITEM_TREE" archetype_node_id="at0001">
+				<name>
+					<value>Transfusion details</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0014">
+					<name>
+						<value>Type of blood unit</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>Plasma</value>
+					</value>
+				</items>					
+			</description>
+			
+			<ism_transition>
+				<current_state>
+					<value>initial</value>
+					<defining_code>
+						<terminology_id>
+							<value>openehr</value>
+						</terminology_id>
+						<code_string>524</code_string> <!--  See page 15 in openEHR Terminology -->
+					</defining_code>
+				</current_state>
+			</ism_transition>
+
+		</content>
+</composition>

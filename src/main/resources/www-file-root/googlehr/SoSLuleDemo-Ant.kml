@@ -1,0 +1,1772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:v1="http://schemas.openehr.org/v1" xmlns:eee="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd">
+<Document>
+	<name>SoS LuleDemo Ant.</name>
+	<open>1</open>
+	<LookAt>
+		<longitude>22.38061526428687</longitude>
+		<latitude>65.01114916295018</latitude>
+		<altitude>0</altitude>
+		<range>32966.59350431455</range>
+		<tilt>0</tilt>
+		<heading>0.2321711896371305</heading>
+		<altitudeMode>relativeToGround</altitudeMode>
+		<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+	</LookAt>
+	<StyleMap id="msn_ylw-pushpin7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin3</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin1</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_homegardenbusiness">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_homegardenbusiness2">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin4">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_phone">
+		<IconStyle>
+			<color>ff00ffff</color>
+			<scale>1.05</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin8">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_phone">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_phone</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_phone</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_homegardenbusiness">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_homegardenbusiness0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_homegardenbusiness3</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_homegardenbusiness3">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin3">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_hospitals">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/hospitals.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin2</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_hospitals">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_hospitals</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_hospitals</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin2">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_homegardenbusiness0">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_homegardenbusiness3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_homegardenbusiness1</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_homegardenbusiness0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_homegardenbusiness0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_homegardenbusiness</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_homegardenbusiness2</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_homegardenbusiness0">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_B">
+		<IconStyle>
+			<color>b3ffffff</color>
+			<scale>0.8</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin4</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_homegardenbusiness2">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin8">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin2</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin7">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_homegardenbusiness1">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin1">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin3">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_homegardenbusiness">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_B">
+		<IconStyle>
+			<color>b3ffffff</color>
+			<scale>0.945455</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin4">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin5">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin8</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin8</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin00</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin5</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin7</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin2">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin7</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin6</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_homegardenbusiness3">
+		<IconStyle>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin5">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_phone">
+		<IconStyle>
+			<color>ff00ffff</color>
+			<scale>0.9</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_homegardenbusiness1">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin5</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_B">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_B</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_B</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin7">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin10">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin1">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_homegardenbusiness2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_homegardenbusiness3</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_homegardenbusiness1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_homegardenbusiness1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_homegardenbusiness2</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_homegardenbusiness</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_hospitals">
+		<IconStyle>
+			<scale>1.06364</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/hospitals.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin00">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin10">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin3</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder>
+		<name>Anteckningar</name>
+		<open>1</open>
+		<LookAt>
+			<longitude>22.38061526428687</longitude>
+			<latitude>65.01114916295018</latitude>
+			<altitude>0</altitude>
+			<range>32966.59350431455</range>
+			<tilt>0</tilt>
+			<heading>0.2321711896371305</heading>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<Placemark id="b0aa17e9-b18e-4efd-b35d-8208d5bae392::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: leg. läk. David Alvar</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 23/10/2007  09:05 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 23/10/2007 09:11 AM<br/>any event 
+    09:11 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systoliskt: <span title="">200 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastoliskt: <span title="">110 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Fynd som rör ökat blodtryck</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Anna söker pga att hon ofta har huvudvärk och känner sig trött. Mätning av blodtrycket visar 200/110 vilket är högt.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+
+<p class="entry-header">
+<b>Mål</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Måltillstånd: Målet är att blodtryck 140/85 inom 6 månader.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-INSTRUCTION">
+<p class="entry-header">
+<b>Enalapril</b>
+</p>
+<br/>Förskrivning av blodtryckssänkande läkemedel<br/>
+<b>Activities</b>
+
+<blockquote style="border-bottom:solid 1px #ddd;padding:4px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Name of medication: Enalapril</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Styrka per dosenhet: <span title="">5 mg</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Form: Tablett</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dos: 1</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosenhet: mg</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosduration: <span title="">2 months</span>
+</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration: läkemedelsadministrering, peroral</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Indikationer<blockquote style="margin-top:0px;margin-bottom:0px;">Indikation: Fynd som rör ökat blodtryck</blockquote>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration information<blockquote style="margin-top:0px;margin-bottom:0px;">Date of first administration: <span style="font-size:80%">UNSUPPORTED DATA TYPE ENCOUNTERED: v1:DV_DATE</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Sequence number: 1</blockquote>
+</blockquote>
+</blockquote>
+<br/> 
+    </div>
+
+<div class="openEHR-EHR-INSTRUCTION">
+<p class="entry-header">
+<b>Enalapril</b>
+</p>
+<br/>Förskrivning av blodtryckssänkande läkemedel<br/>
+<b>Activities</b>
+<blockquote style="border-bottom:solid 1px #ddd;padding:4px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Name of medication: Enalapril</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration instructions: 20 mg x 1ggr/dag, Börja med 5mg, därefter ökning till 10 mg och 20 mg med 2 månader mellan ökningarna</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Styrka per dosenhet: <span title="">10 mg</span>
+
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Form: Tablett</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dos: 1</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosenhet: mg</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosduration: <span title="">2 months</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration: läkemedelsadministrering, peroral</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Indikationer<blockquote style="margin-top:0px;margin-bottom:0px;">Indikation: Fynd som rör ökat blodtryck</blockquote>
+</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration information<blockquote style="margin-top:0px;margin-bottom:0px;">Date of first administration: <span style="font-size:80%">UNSUPPORTED DATA TYPE ENCOUNTERED: v1:DV_DATE</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Sequence number: 2</blockquote>
+</blockquote>
+</blockquote>
+<br/> 
+    </div>
+<div class="openEHR-EHR-INSTRUCTION">
+<p class="entry-header">
+<b>Enalapril</b>
+</p>
+<br/>Förskrivning av blodtryckssänkande läkemedel<br/>
+
+<b>Activities</b>
+<blockquote style="border-bottom:solid 1px #ddd;padding:4px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Name of medication: Enalapril</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration instructions: 20 mg x 1ggr/dag, Börja med 5mg, därefter ökning till 10 mg och 20 mg med 2 månader mellan ökningarna</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Styrka per dosenhet: <span title="">20 mg</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Form: Tablett</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dos: 1</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosenhet: mg</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosduration: <span title="">2 months</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration: läkemedelsadministrering, peroral</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Indikationer<blockquote style="margin-top:0px;margin-bottom:0px;">Indikation: Fynd som rör ökat blodtryck</blockquote>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration information<blockquote style="margin-top:0px;margin-bottom:0px;">Date of first administration: <span style="font-size:80%">UNSUPPORTED DATA TYPE ENCOUNTERED: v1:DV_DATE</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Sequence number: 3</blockquote>
+
+</blockquote>
+</blockquote>
+<br/> 
+    </div>
+<div class="openEHR-EHR-INSTRUCTION">
+<p class="entry-header">
+<b>Plendil</b>
+</p>
+<br/>Förskrivning av blodtryckssänkande läkemedel<br/>
+<b>Activities</b>
+<blockquote style="border-bottom:solid 1px #ddd;padding:4px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Name of medication: Plendil</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration instructions: 10mg x 1 ggr/dag insättes efter 3 mån med 5mg i 2 mån, sedan ökning till 10 mg efter 2 mån</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Styrka per dosenhet: <span title="">5 mg</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Form: Tablett</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dos: 1</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosenhet: mg</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosduration: <span title="">2 months</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration: läkemedelsadministrering, peroral</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Indikationer<blockquote style="margin-top:0px;margin-bottom:0px;">Indikation: Fynd som rör ökat blodtryck</blockquote>
+
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration information<blockquote style="margin-top:0px;margin-bottom:0px;">Date of first administration: <span style="font-size:80%">UNSUPPORTED DATA TYPE ENCOUNTERED: v1:DV_DATE</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Sequence number: 1</blockquote>
+</blockquote>
+</blockquote>
+<br/> 
+    </div>
+<div class="openEHR-EHR-INSTRUCTION">
+<p class="entry-header">
+<b>Plendil</b>
+</p>
+
+<br/>Förskrivning av blodtryckssänkande läkemedel<br/>
+<b>Activities</b>
+<blockquote style="border-bottom:solid 1px #ddd;padding:4px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Name of medication: Plendil</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration instructions: 10mg x 1 ggr/dag insättes efter 3 mån med 5mg i 2 mån, sedan ökning till 10 mg efter 2 mån</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Styrka per dosenhet: <span title="">10 mg</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Form: Tablett</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dos: 1</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosenhet: mg</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Dosduration: <span title="">12 months</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration: läkemedelsadministrering, peroral</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Indikationer<blockquote style="margin-top:0px;margin-bottom:0px;">Indikation: Fynd som rör ökat blodtryck</blockquote>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Administration information<blockquote style="margin-top:0px;margin-bottom:0px;">Date of first administration: <span style="font-size:80%">UNSUPPORTED DATA TYPE ENCOUNTERED: v1:DV_DATE</span>
+</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Sequence number: 2</blockquote>
+</blockquote>
+</blockquote>
+<br/> 
+    </div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin8</styleUrl>
+			<Point>
+				<coordinates>22.01473554033485,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="f2637a83-d47e-4e8b-9678-1854f7c44834::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 07/11/2007  2:20 PM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 07/11/2007 2:29 PM<br/>any event 
+    2:29 PM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">190 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">105 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin7</styleUrl>
+			<Point>
+				<coordinates>22.05643074581431,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="061da19e-7bd3-43c0-b3b7-c9bef1ad99e4::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 21/11/2007  11:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 21/11/2007 11:18 AM<br/>any event 
+    11:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">185 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">105 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin4</styleUrl>
+			<Point>
+				<coordinates>22.09443493150685,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="b8b501f1-bef6-4682-8073-159c764115d7::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: leg. läk. David Alvar</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 07/12/2007  09:45 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 07/12/2007 09:47 AM<br/>any event 
+    09:47 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">180 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">100 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Diagnos</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Diagnos: Hypertoni</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Status: working</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Bedömer att patienten har hypertoni ( I10.-)</blockquote>
+</p>
+
+</div>
+</div>
+</div>
+    
+]]></description>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Point>
+				<coordinates>22.13809931506849,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="2cc45d80-ca1a-46bb-b399-882e2393b4a0::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 21/12/2007  09:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 21/12/2007 09:18 AM<br/>any event 
+    09:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">190 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">100 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin6</styleUrl>
+			<Point>
+				<coordinates>22.17639840182649,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="e3ede807-28c4-403f-9d74-d73e697b19b4::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 04/01/2008  09:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 04/01/2008 09:18 AM<br/>any event 
+    09:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">180 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">100 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin2</styleUrl>
+			<Point>
+				<coordinates>22.21475456621005,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="54b8a65d-c2c0-4d9c-a3ff-6c01826d6e8e::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 01/02/2008  09:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 01/02/2008 09:18 AM<br/>any event 
+    09:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">160 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">90 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin1</styleUrl>
+			<Point>
+				<coordinates>22.29146689497717,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="323ede1c-3285-4ee3-986a-295d691220d4::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: d.sk. Emma Skog</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 01/03/2008  09:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 01/03/2008 09:18 AM<br/>any event 
+    09:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">145 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">90 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin3</styleUrl>
+			<Point>
+				<coordinates>22.37091894977169,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="37b399df-137c-4281-a1da-9babaa9f99d8::test1.eee.mi.imt.liu.se::1">
+			<name>Inskrivning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Inskrivning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Sjukhuset i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: leg. läk. Lena Svensson</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 15/03/2008  9:15 PM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-ADMIN_ENTRY">
+<p class="entry-header">
+<b>Inskrivning</b>
+</p>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Patientklass: Inneliggande patient</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Remittent<blockquote style="margin-top:0px;margin-bottom:0px;">Namn: leg. läk. Per Älg</blockquote>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Instrivningstidpunkt: 15/03/2008 9:15 PM</blockquote>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin10</styleUrl>
+			<Point>
+				<coordinates>22.41064497716895,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="c70f0a76-7b8c-4349-a87b-a91348f00cb1::test1.eee.mi.imt.liu.se::1">
+			<name>Hembesök</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Hembesök</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Hemrehab i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: at Karin Rehn</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 28/03/2008  11:00 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av gångförmåga</b>
+<br/>
+<br/>Origin: 28/03/2008 11:11 AM<br/>any event 
+    11:11 AM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Gångförmåga: går med rollator i hemmet, klarar att gå på släta ytor med viss svårigheter. Hon har stora svårigheter att ta sig över trösklarna.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: har svårt att förflytta sig inomhus</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: måttliga begränsningar i gångförmåga, med rollator</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Mål</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Måltillstånd: lätt begränsning i att gå i hemmet om 3 månader</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+
+<br/>
+<br/>Origin: 28/03/2008 11:11 AM<br/>any event 
+    11:11 AM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Bedömning av förmågan att klä sig genom observation. Anna har svårt att ta på byxor, trosor, eftersom hon har svårt att nå ner till höger fot och har svårt att även stödja på den. Hon har fått en griptång och en strumpådragare på sjukhuset men kan inte använda dem. Klä av sig klarar hon själv med vissa små problem.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Har svårt att klä på sig</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Bedömning av förmågan att klä sig genom observation. Anna har svårt att ta på byxor, trosor, eftersom hon har svårt att nå ner till höger fot och har svårt att även stödja på den. Hon har fått en griptång och en strumpådragare på sjukhuset men kan inte använda dem. Klä av sig klarar hon själv med vissa små problem.</blockquote>
+</p>
+
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Mål</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Måltillstånd: Mål att Anna ska kunna klä på sig själv med hjälp av griptång och strumpådragare inom en månad.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_homegardenbusiness2</styleUrl>
+			<Point>
+				<coordinates>22.44509132420091,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="993d13aa-0716-4f54-8fcc-5319b058004d::test1.eee.mi.imt.liu.se::1">
+			<name>Hembesök</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Hembesök</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Hemrehab i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: at Karin Rehn</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 30/03/2008  10:25 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+<br/>
+<br/>Origin: 30/06/2008 1:25 PM<br/>any event 
+    1:25 PM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Har stora svårigheter att använda hjälpmedlen, och därmed kvarstår hennes svårigheter att klä på sig själv.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Har svårt att klä på sig</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Har stora svårigheter att använda hjälpmedlen, och därmed kvarstår hennes svårigheter att klä på sig själv.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_homegardenbusiness</styleUrl>
+			<Point>
+				<coordinates>22.45050418569254,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="ede33cc1-c453-4c0d-8c63-1fed711d13ea::test1.eee.mi.imt.liu.se::1">
+			<name>Besöksanteckning</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Besöksanteckning</h1>
+</td>
+<td align="right" valign="bottom"> Facility: VC Lyckan</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: leg. läk. David Alvar</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 01/04/2008  11:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Blodtryck</b>
+<br/>
+<br/>Origin: 01/04/2008 11:18 AM<br/>any event 
+    11:18 AM<blockquote style="margin-top:0px;margin-bottom:0px;">systolic: <span title="">140 mm[Hg]</span>
+</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">diastolic: <span title="">85 mm[Hg]</span>
+</blockquote>
+</p>
+<br/>
+
+<div style="color:#aaa;margin-left:-30px;">
+<blockquote style="margin-top:0px;margin-bottom:0px;">Mätställe: Höger arm</blockquote>
+</div>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Diagnos</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Diagnos: Hypertoni</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Status: working</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Patienten har hypertoni ( I10.-) sedan hösten 2007.</blockquote>
+</p>
+
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_ylw-pushpin0</styleUrl>
+			<Point>
+				<coordinates>22.45607876712329,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="404b27f9-bf33-4e3f-954d-03f21fc3fb7a::test1.eee.mi.imt.liu.se::1">
+			<name>Telefonkontakt</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Telefonkontakt</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Socialtjänsten i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: biståndshandläggare Åsa Gök</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 01/04/2008  3:25 PM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+<br/>
+<br/>Origin: 01/04/2008 3:25 PM<br/>any event 
+    3:25 PM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Den enskilde ringer om att hon har svårt att klä sig.  Hon vill ansöka om hjälp.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_phone</styleUrl>
+			<Point>
+				<coordinates>22.45655441400304,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="64bc325a-4b76-4fdc-a9a1-b74e52ea1cc3::test1.eee.mi.imt.liu.se::1">
+			<name>Hembesök</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Hembesök</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Socialtjänsten i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: biståndshandläggare Åsa Gök</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 03/04/2008  11:45 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+<br/>
+<br/>Origin: 03/04/2008 11:45 AM<br/>any event 
+    11:45 AM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Anna använder inte strumpor och har tofflor som hon kan ta på sig själv. Trosorna och byxorna har hon svårt att få över foten. Hon kan inte använda griptången.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Har svårt att klä på sig</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: måttlig begränsning i att klä på sig</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Mål</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Måltillstånd: lätt begränsning i att klä på sig inom 2 månader.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_homegardenbusiness3</styleUrl>
+			<Point>
+				<coordinates>22.46161529680365,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="f3250ad4-d44d-4d1c-abd9-aec60eaadb4d::test1.eee.mi.imt.liu.se::1">
+			<name>Hembesök</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Hembesök</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Socialtjänsten i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: biståndshandläggare Åsa Gök</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 02/06/2008  09:15 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+<br/>
+<br/>Origin: 03/04/2008 11:45 AM<br/>any event 
+    11:45 AM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Anna har fortfarande svårt att klä på sig då hon har svårigheter att nå ner till höger fot och inte kan använda hjälpmedlen.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Har svårt att klä på sig</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: måttliga svårigheter att klä på sig. Målet är ej nått.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Mål</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Måltillstånd: lätt begränsning i att klä på sig inom 2 månader.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_homegardenbusiness0</styleUrl>
+			<Point>
+				<coordinates>22.62571347031963,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="bdf5625e-23ad-48d4-baae-b814ae2fdea9::test1.eee.mi.imt.liu.se::1">
+			<name>Hembesök</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Hembesök</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Hemrehab i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: at Karin Rehn</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 30/06/2008  1:25 PM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-OBSERVATION">
+<p class="entry-header">
+<b>Undersökning av påklädningsförmåga</b>
+<br/>
+<br/>Origin: 30/06/2008 1:25 PM<br/>any event 
+    1:25 PM<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Har stora svårigheter att använda hjälpmedlen, och därmed kvarstår hennes svårigheter att klä på sig själv.</blockquote>
+</p>
+</div>
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Problem</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Problem: Har svårt att klä på sig</blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: Har stora svårigheter att använda hjälpmedlen, och därmed kvarstår hennes svårigheter att klä på sig själv.</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_homegardenbusiness1</styleUrl>
+			<Point>
+				<coordinates>22.70290144596651,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark id="50c55906-b03a-4bce-a467-d4a334bfeb4c::test1.eee.mi.imt.liu.se::1">
+			<name>Epikris</name>
+			<description><![CDATA[<div class="composition" id="composition-wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:v1="http://schemas.openehr.org/v1">
+<div class="openEHR-EHR-COMPOSITION">
+<div class="composition-header">
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="middle" rowspan="2">
+<h1 class="composition-title">Epikris</h1>
+</td>
+<td align="right" valign="bottom"> Facility: Sjukhuset i Smaragdstaden</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"> Reported
+                by: leg. läk. Gun Erixsson</td>
+</tr>
+</table>
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td align="left" valign="top" class="composition-context">   </td>
+<td align="right" valign="top"> On: 09/09/2009  11:03 AM</td>
+</tr>
+</table>
+</div>
+
+<div class="openEHR-EHR-EVALUATION">
+<p class="entry-header">
+<b>Diagnos</b>
+<br/>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Diagnos: Cerebral infarkt orsakad av trombos i cerebrala artärer</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Status: working</blockquote>
+<blockquote style="margin-top:0px;margin-bottom:0px;">Klinisk beskrivning: text</blockquote>
+</p>
+</div>
+</div>
+</div>]]></description>
+			<styleUrl>#msn_hospitals</styleUrl>
+			<Point>
+				<coordinates>23.89715182648402,65.01000000000001,0</coordinates>
+			</Point>
+		</Placemark>
+		<kml:Name xmlns="http://schemas.openehr.org/v1">Anteckningar</kml:Name>
+	</Folder>
+</Document>
+</kml>

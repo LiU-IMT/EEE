@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <NetworkLinkControl>
+    <Update>
+      <targetHref>http://localhost:8182/googlehr/SoSLuleDemo-Ant.kmz</targetHref>
+      <Change>
+        <Placemark targetId="c70f0a76-7b8c-4349-a87b-a91348f00cb1::test1.eee.mi.imt.liu.se::1">
+          <name>Name changed by Update Change</name>
+          <!-- coordinates remain the same -->
+        </Placemark>
+      </Change>
+    </Update>
+  </NetworkLinkControl>
+</kml>

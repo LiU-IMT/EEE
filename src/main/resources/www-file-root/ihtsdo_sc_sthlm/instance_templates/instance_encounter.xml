@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<v1:composition archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1"
+	xmlns:v1="http://schemas.openehr.org/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<v1:name>
+		<v1:value>Encounter</v1:value>
+	</v1:name>
+	<v1:archetype_details>
+		<v1:archetype_id>
+			<v1:value>openEHR-EHR-COMPOSITION.encounter.v1</v1:value>
+		</v1:archetype_id>
+		<v1:rm_version>1.0.1</v1:rm_version>
+	</v1:archetype_details>
+	<v1:language>
+		<v1:terminology_id>
+			<v1:value>ISO_639-1</v1:value>
+		</v1:terminology_id>
+		<v1:code_string>en</v1:code_string>
+	</v1:language>
+	<v1:territory>
+		<v1:terminology_id>
+			<v1:value>ISO_3166-1</v1:value>
+		</v1:terminology_id>
+		<v1:code_string>SE</v1:code_string>
+	</v1:territory>
+	<v1:category>
+		<v1:value>event</v1:value>
+		<v1:defining_code>
+			<v1:terminology_id>
+				<v1:value>openehr</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>433</v1:code_string>
+		</v1:defining_code>
+	</v1:category>
+	<v1:composer xsi:type="v1:PARTY_IDENTIFIED">
+		<v1:name>Doctor</v1:name>
+	</v1:composer>
+	<v1:context>
+		<v1:start_time>
+			<v1:value>2010-03-11</v1:value>
+		</v1:start_time>
+		<v1:end_time>
+			<v1:value>2010-03-14</v1:value>
+		</v1:end_time>
+		<v1:setting>
+			<v1:value>Medicinkliniken</v1:value>
+		</v1:setting>
+	</v1:context>
+	<v1:content archetype_node_id="openEHR-EHR-OBSERVATION.ecg.v1"
+		xsi:type="v1:OBSERVATION">
+		<v1:name>
+			<v1:value>ECG recording</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-OBSERVATION.ecg.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:protocol archetype_node_id="at0003" xsi:type="v1:ITEM_TREE">
+			<v1:name>
+				<v1:value>Tree</v1:value>
+			</v1:name>
+			<v1:items archetype_node_id="at0025" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>QTc calculation method</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+		</v1:protocol>
+		<v1:data archetype_node_id="at0001">
+			<v1:name>
+				<v1:value>Event Series</v1:value>
+			</v1:name>
+			<v1:origin>
+				<v1:value>2012-10-08T13:53:04,730</v1:value>
+			</v1:origin>
+			<v1:events archetype_node_id="at0002" xsi:type="v1:POINT_EVENT">
+				<v1:name>
+					<v1:value>Any event</v1:value>
+				</v1:name>
+				<v1:time>
+					<v1:value>2012-10-08T13:53:04,625</v1:value>
+				</v1:time>
+				<v1:data archetype_node_id="at0005" xsi:type="v1:ITEM_TREE">
+					<v1:name>
+						<v1:value>Tree</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0006" xsi:type="v1:CLUSTER">
+						<v1:name>
+							<v1:value>Global ECG Parameters</v1:value>
+						</v1:name>
+						<v1:items archetype_node_id="at0013" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>RR Rate</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>0.0</v1:magnitude>
+								<v1:units>/min</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0012" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>PR interval</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>0.0</v1:magnitude>
+								<v1:units>millisec</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0014" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>QRS duration</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>0.0</v1:magnitude>
+								<v1:units>millisec</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0007" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>QT interval</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>0.0</v1:magnitude>
+								<v1:units>millisec</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0008" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>QTc interval</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>0.0</v1:magnitude>
+								<v1:units>millisec</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0023" xsi:type="v1:CLUSTER">
+							<v1:name>
+								<v1:value>Axis</v1:value>
+							</v1:name>
+							<v1:items archetype_node_id="at0020" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>P axis</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_QUANTITY">
+									<v1:accuracy>0.0</v1:accuracy>
+									<v1:magnitude>0.0</v1:magnitude>
+									<v1:units>°</v1:units>
+									<v1:precision>0</v1:precision>
+								</v1:value>
+							</v1:items>
+							<v1:items archetype_node_id="at0021" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>QRS axis</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_QUANTITY">
+									<v1:accuracy>0.0</v1:accuracy>
+									<v1:magnitude>0.0</v1:magnitude>
+									<v1:units>°</v1:units>
+									<v1:precision>0</v1:precision>
+								</v1:value>
+							</v1:items>
+							<v1:items archetype_node_id="at0022" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>T axis</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_QUANTITY">
+									<v1:accuracy>0.0</v1:accuracy>
+									<v1:magnitude>0.0</v1:magnitude>
+									<v1:units>°</v1:units>
+									<v1:precision>0</v1:precision>
+								</v1:value>
+							</v1:items>
+						</v1:items>
+					</v1:items>
+					<v1:items archetype_node_id="at0081" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Overall interpretation</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+				</v1:data>
+				<v1:state archetype_node_id="at0077" xsi:type="v1:ITEM_TREE">
+					<v1:name>
+						<v1:value>Tree</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0079" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Confounding factors</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="at0078" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Tilt</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+				</v1:state>
+			</v1:events>
+		</v1:data>
+	</v1:content>
+	<v1:content archetype_node_id="openEHR-EHR-OBSERVATION.lab_test.v1"
+		xsi:type="v1:OBSERVATION">
+		<v1:name>
+			<v1:value>Laboratory test</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-OBSERVATION.lab_test.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:protocol archetype_node_id="at0004" xsi:type="v1:ITEM_TREE">
+			<v1:name>
+				<v1:value>Tree</v1:value>
+			</v1:name>
+			<v1:items archetype_node_id="at0062" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Requestor order identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0063" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Receiver order Identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0068" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Laboratory test result identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0075" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Datetime result issued</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_DATE_TIME">
+					<v1:value>2010-01-01T10:00:00</v1:value>
+				</v1:value>
+			</v1:items>
+		</v1:protocol>
+		<v1:data archetype_node_id="at0001">
+			<v1:name>
+				<v1:value>Event Series</v1:value>
+			</v1:name>
+			<v1:origin>
+				<v1:value>2012-10-08T13:53:04,848</v1:value>
+			</v1:origin>
+			<v1:events archetype_node_id="at0002" xsi:type="v1:POINT_EVENT">
+				<v1:name>
+					<v1:value>Any event</v1:value>
+				</v1:name>
+				<v1:time>
+					<v1:value>2012-10-08T13:53:04,844</v1:value>
+				</v1:time>
+				<v1:data archetype_node_id="at0003" xsi:type="v1:ITEM_TREE">
+					<v1:name>
+						<v1:value>Tree</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0005" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Test name</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="at0077" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Diagnostic service</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="at0073" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Test status</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_CODED_TEXT">
+							<v1:value>Interim</v1:value>
+							<v1:defining_code>
+								<v1:terminology_id>
+									<v1:value>local</v1:value>
+								</v1:terminology_id>
+								<v1:code_string>at0037</v1:code_string>
+							</v1:defining_code>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="at0078" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Result</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="at0057" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Overall interpretation</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+					<v1:items archetype_node_id="openEHR-EHR-CLUSTER.specimen.v1"
+						xsi:type="v1:CLUSTER">
+						<v1:name>
+							<v1:value>Specimen</v1:value>
+						</v1:name>
+						<v1:items archetype_node_id="at0029" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>Specimen tissue type</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_TEXT">
+								<v1:value>text value</v1:value>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0007" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>Collection procedure</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_TEXT">
+								<v1:value>text value</v1:value>
+							</v1:value>
+						</v1:items>
+						<v1:items archetype_node_id="at0046" xsi:type="v1:CLUSTER">
+							<v1:name>
+								<v1:value>Handling and processing</v1:value>
+							</v1:name>
+							<v1:items archetype_node_id="at0015" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>Date and time of collection</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_DATE_TIME">
+									<v1:value>2010-01-01T10:00:00</v1:value>
+								</v1:value>
+							</v1:items>
+							<v1:items archetype_node_id="at0067" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>Collection setting</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_TEXT">
+									<v1:value>text value</v1:value>
+								</v1:value>
+							</v1:items>
+							<v1:items archetype_node_id="at0034" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>Date and time of receipt</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_DATE_TIME">
+									<v1:value>2010-01-01T10:00:00</v1:value>
+								</v1:value>
+							</v1:items>
+							<v1:items archetype_node_id="at0035" xsi:type="v1:ELEMENT">
+								<v1:name>
+									<v1:value>Date and time processed</v1:value>
+								</v1:name>
+								<v1:value xsi:type="v1:DV_DATE_TIME">
+									<v1:value>2010-01-01T10:00:00</v1:value>
+								</v1:value>
+							</v1:items>
+						</v1:items>
+					</v1:items>
+				</v1:data>
+			</v1:events>
+		</v1:data>
+	</v1:content>
+	<v1:content archetype_node_id="openEHR-EHR-OBSERVATION.exam.v1"
+		xsi:type="v1:OBSERVATION">
+		<v1:name>
+			<v1:value>Examination findings</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-OBSERVATION.exam.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:data archetype_node_id="at0001">
+			<v1:name>
+				<v1:value>Event Series</v1:value>
+			</v1:name>
+			<v1:origin>
+				<v1:value>2012-10-08T13:53:04,900</v1:value>
+			</v1:origin>
+			<v1:events archetype_node_id="at0002" xsi:type="v1:POINT_EVENT">
+				<v1:name>
+					<v1:value>Any event</v1:value>
+				</v1:name>
+				<v1:time>
+					<v1:value>2012-10-08T13:53:04,896</v1:value>
+				</v1:time>
+				<v1:data archetype_node_id="at0003" xsi:type="v1:ITEM_TREE">
+					<v1:name>
+						<v1:value>Tree</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0004" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Clinical description</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_TEXT">
+							<v1:value>text value</v1:value>
+						</v1:value>
+					</v1:items>
+				</v1:data>
+			</v1:events>
+		</v1:data>
+	</v1:content>
+	<v1:content archetype_node_id="openEHR-EHR-INSTRUCTION.request-procedure.v1"
+		xsi:type="v1:INSTRUCTION">
+		<v1:name>
+			<v1:value>Procedure request</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-INSTRUCTION.request-procedure.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:protocol archetype_node_id="at0008" xsi:type="v1:ITEM_TREE">
+			<v1:name>
+				<v1:value>Tree</v1:value>
+			</v1:name>
+			<v1:items archetype_node_id="at0010" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Requestor Identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0011" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Receiver identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0127" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Request status</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+		</v1:protocol>
+		<v1:narrative>
+			<v1:value>instruction narrative</v1:value>
+		</v1:narrative>
+		<v1:activities archetype_node_id="at0001">
+			<v1:name>
+				<v1:value>Request</v1:value>
+			</v1:name>
+			<v1:description archetype_node_id="at0009" xsi:type="v1:ITEM_TREE">
+				<v1:name>
+					<v1:value>Tree</v1:value>
+				</v1:name>
+				<v1:items archetype_node_id="at0121" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Procedure requested</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0.146" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Type of procedure</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0135" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Description of Procedure</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0062" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Reason for request</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0064" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Reason description</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0.145" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Objective</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0065" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Intent</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0068" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Urgency</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_CODED_TEXT">
+						<v1:value>Emergency</v1:value>
+						<v1:defining_code>
+							<v1:terminology_id>
+								<v1:value>local</v1:value>
+							</v1:terminology_id>
+							<v1:code_string>at0136</v1:code_string>
+						</v1:defining_code>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0040" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Date &amp;/or time service required</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_DATE_TIME">
+						<v1:value>2010-01-01T10:00:00</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0144" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Latest date service required</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_DATE_TIME">
+						<v1:value>2010-01-01T10:00:00</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0076" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Supplementary information to follow</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_BOOLEAN">
+						<v1:value>true</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0078" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Supplementary information expected</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+			</v1:description>
+			<v1:timing>
+				<v1:value>activity timing</v1:value>
+				<v1:formalism>txt</v1:formalism>
+			</v1:timing>
+			<v1:action_archetype_id>string value</v1:action_archetype_id>
+		</v1:activities>
+	</v1:content>
+	<v1:content archetype_node_id="openEHR-EHR-ACTION.procedure.v1"
+		xsi:type="v1:ACTION">
+		<v1:name>
+			<v1:value>Procedure undertaken</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-ACTION.procedure.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:protocol archetype_node_id="at0053" xsi:type="v1:ITEM_TREE">
+			<v1:name>
+				<v1:value>Tree</v1:value>
+			</v1:name>
+			<v1:items archetype_node_id="at0054" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Requestor order identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0056" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Receiver order identifier</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+		</v1:protocol>
+		<v1:time>
+			<v1:value>2012-10-08T13:53:05,098</v1:value>
+		</v1:time>
+		<v1:description archetype_node_id="at0001" xsi:type="v1:ITEM_TREE">
+			<v1:name>
+				<v1:value>Tree</v1:value>
+			</v1:name>
+			<v1:items archetype_node_id="at0002" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Procedure</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0014" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Reason/s for procedure</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0051" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Method/Technique</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0049" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Description</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0030" xsi:type="v1:CLUSTER">
+				<v1:name>
+					<v1:value>Additional tasks</v1:value>
+				</v1:name>
+				<v1:items archetype_node_id="at0052" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Task</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0031" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Task description</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>text value</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0032" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Record of additional task</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_EHR_URI">
+						<v1:value>http://www.google.com/</v1:value>
+					</v1:value>
+				</v1:items>
+			</v1:items>
+			<v1:items archetype_node_id="at0048" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Outcome</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0004" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Procedure unsuccessful</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_BOOLEAN">
+					<v1:value>true</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0006" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Complication</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0058" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Emergency?</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_BOOLEAN">
+					<v1:value>true</v1:value>
+				</v1:value>
+			</v1:items>
+			<v1:items archetype_node_id="at0005" xsi:type="v1:ELEMENT">
+				<v1:name>
+					<v1:value>Comments</v1:value>
+				</v1:name>
+				<v1:value xsi:type="v1:DV_TEXT">
+					<v1:value>text value</v1:value>
+				</v1:value>
+			</v1:items>
+		</v1:description>
+		<v1:ism_transition>
+			<v1:current_state>
+				<v1:value>initial</v1:value>
+				<v1:defining_code>
+					<v1:terminology_id>
+						<v1:value>openehr</v1:value>
+					</v1:terminology_id>
+					<v1:code_string>524</v1:code_string>
+				</v1:defining_code>
+			</v1:current_state>
+			<v1:careflow_step>
+				<v1:value>Request initiated</v1:value>
+				<v1:defining_code>
+					<v1:terminology_id>
+						<v1:value>local</v1:value>
+					</v1:terminology_id>
+					<v1:code_string>at0034</v1:code_string>
+				</v1:defining_code>
+			</v1:careflow_step>
+		</v1:ism_transition>
+	</v1:content>
+</v1:composition>

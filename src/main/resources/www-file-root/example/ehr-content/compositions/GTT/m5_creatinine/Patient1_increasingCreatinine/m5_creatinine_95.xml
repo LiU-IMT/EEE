@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<v1:composition archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1" xmlns:v1="http://schemas.openehr.org/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <v1:name>
+    <v1:value>Encounter</v1:value>
+  </v1:name>
+  <v1:archetype_details>
+    <v1:archetype_id>
+      <v1:value>openEHR-EHR-COMPOSITION.encounter.v1</v1:value>
+    </v1:archetype_id>
+    <v1:rm_version>1.0.1</v1:rm_version>
+  </v1:archetype_details>
+  <v1:language>
+    <v1:terminology_id>
+      <v1:value>ISO_639-1</v1:value>
+    </v1:terminology_id>
+    <v1:code_string>en</v1:code_string>
+  </v1:language>
+  <v1:territory>
+    <v1:terminology_id>
+      <v1:value>ISO_3166-1</v1:value>
+    </v1:terminology_id>
+    <v1:code_string>SE</v1:code_string>
+  </v1:territory>
+  <v1:category>
+    <v1:value>event</v1:value>
+    <v1:defining_code>
+      <v1:terminology_id>
+        <v1:value>openehr</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>433</v1:code_string>
+    </v1:defining_code>
+  </v1:category>
+  <v1:composer xsi:type="v1:PARTY_IDENTIFIED">
+    <v1:name>Doctor</v1:name>
+  </v1:composer>
+  <v1:content archetype_node_id="openEHR-EHR-OBSERVATION.lab_test.v1" xsi:type="v1:OBSERVATION">
+    <v1:name>
+      <v1:value>Laboratory test</v1:value>
+    </v1:name>
+    <v1:archetype_details>
+      <v1:archetype_id>
+        <v1:value>openEHR-EHR-OBSERVATION.lab_test.v1</v1:value>
+      </v1:archetype_id>
+      <v1:rm_version>1.0.1</v1:rm_version>
+    </v1:archetype_details>
+    <v1:language>
+      <v1:terminology_id>
+        <v1:value>ISO_639-1</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>en</v1:code_string>
+    </v1:language>
+    <v1:encoding>
+      <v1:terminology_id>
+        <v1:value>IANA_character-sets</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>UTF-8</v1:code_string>
+    </v1:encoding>
+    <v1:subject xsi:type="v1:PARTY_SELF">
+      <v1:external_ref>
+        <v1:id xsi:type="v1:HIER_OBJECT_ID">
+          <v1:value>1.2.4.5.6.12.1</v1:value>
+        </v1:id>
+        <v1:type>PARTY</v1:type>
+      </v1:external_ref>
+    </v1:subject>
+    <v1:protocol archetype_node_id="at0004" xsi:type="v1:ITEM_TREE">
+      <v1:name>
+        <v1:value>Tree</v1:value>
+      </v1:name>
+      <v1:items archetype_node_id="at0075" xsi:type="v1:ELEMENT">
+        <v1:name>
+          <v1:value>Datetime result issued</v1:value>
+        </v1:name>
+        <v1:value xsi:type="v1:DV_DATE_TIME">
+          <v1:value>2010-01-01T10:00:00</v1:value>
+        </v1:value>
+      </v1:items>
+    </v1:protocol>
+    <v1:data archetype_node_id="at0001">
+      <v1:name>
+        <v1:value>Event Series</v1:value>
+      </v1:name>
+      <v1:origin>
+        <v1:value>2010-12-07T15:43:08,851</v1:value>
+      </v1:origin>
+      <v1:events archetype_node_id="at0002" xsi:type="v1:POINT_EVENT">
+        <v1:name>
+          <v1:value>Any event</v1:value>
+        </v1:name>
+        <v1:time>
+          <v1:value>2010-12-07T15:43:08,805</v1:value>
+        </v1:time>
+        <v1:data archetype_node_id="at0003" xsi:type="v1:ITEM_TREE">
+          <v1:name>
+            <v1:value>Tree</v1:value>
+          </v1:name>
+          <v1:items archetype_node_id="at0005" xsi:type="v1:ELEMENT">
+            <v1:name>
+              <v1:value>Test name</v1:value>
+            </v1:name>
+	        <v1:value xsi:type="v1:DV_CODED_TEXT">
+	          <v1:value>Creatinine measurement, serum</v1:value>
+	          <v1:defining_code>
+    	        <v1:terminology_id>
+        	      <v1:value>SNOMED CT</v1:value>
+           	 	</v1:terminology_id>
+           	 	<v1:code_string>113075003</v1:code_string>
+          	</v1:defining_code>
+        	</v1:value>
+          </v1:items>
+          <v1:items archetype_node_id="at0078" xsi:type="v1:ELEMENT">
+            <v1:name>
+              <v1:value>Result</v1:value>
+            </v1:name>
+            <v1:value xsi:type="v1:DV_QUANTITY">
+              <v1:accuracy>0.0</v1:accuracy>
+              <v1:magnitude>95</v1:magnitude>
+              <v1:units>mikromol/L</v1:units>
+              <v1:precision>0</v1:precision>
+            </v1:value>
+          </v1:items>
+        </v1:data>
+      </v1:events>
+    </v1:data>
+  </v1:content>
+</v1:composition>

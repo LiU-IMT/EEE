@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>c8070599-5d0e-49e2-abac-efefabdf5b8e</id>
+  <name>GTT_s3_procedureAndAdmission</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose />
+      <use />
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.encounter.v1">
+    <Content xsi:type="ACTION" archetype_id="openEHR-EHR-ACTION.procedure.v1" path="/content">
+      <Rule path="/description[at0001]/items[at0014]" max="0" />
+      <Rule path="/description[at0001]/items[at0051]" max="0" />
+      <Rule path="/description[at0001]/items[at0049]" max="0" />
+      <Rule path="/description[at0001]/items[at0030]" max="0" />
+      <Rule path="/description[at0001]/items[at0048]" max="0" />
+      <Rule path="/description[at0001]/items[at0004]" max="0" />
+      <Rule path="/description[at0001]/items[at0018]" max="0" />
+      <Rule path="/description[at0001]/items[at0015]" max="0" />
+      <Rule path="/description[at0001]/items[at0006]" max="0" />
+      <Rule path="/description[at0001]/items[at0058]" max="0" />
+      <Rule path="/description[at0001]/items[at0005]" max="0" />
+      <Rule path="/description[at0001]/items[at0013]" max="0" />
+      <Rule path="/protocol[at0053]/items[at0054]" max="0" />
+      <Rule path="/protocol[at0053]/items[at0056]" max="0" />
+    </Content>
+    <Content xsi:type="ADMIN_ENTRY" archetype_id="openEHR-EHR-ADMIN_ENTRY.admission.v1" path="/content">
+      <Rule path="/data[at0001]/items[at0073]/items[at0077]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0078]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0079]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0104]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0101]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0102]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0103]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0084]" max="0" />
+      <Rule path="/data[at0001]/items[at0073]/items[at0081]" max="0" />
+      <Rule path="/data[at0001]/items[at0023]" max="0" />
+      <Rule path="/data[at0001]/items[at0094]" max="0" />
+      <Rule path="/data[at0001]/items[at0098]" max="0" />
+      <Rule path="/data[at0001]/items[at0025]" max="0" />
+      <Rule path="/data[at0001]/items[at0121]" max="0" />
+      <Rule path="/data[at0001]/items[at0041]" max="0" />
+      <Rule path="/data[at0001]/items[at0049]" max="0" />
+      <Rule path="/data[at0001]/items[at0051]" max="0" />
+      <Rule path="/data[at0001]/items[at0061]" max="0" />
+      <Rule path="/data[at0001]/items[at0066]" max="0" />
+    </Content>
+    <Context />
+  </definition>
+</template>

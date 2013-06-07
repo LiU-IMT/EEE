@@ -1,0 +1,15 @@
+11833005|Dry cough|:
+	42752001|Due to|=
+	(
+		71388002|Procedure|:
+			363703001|Has intent|=262202000|Therapeutic|
+		{
+			363701004|Direct substance|=372733002|Angiotensin-converting enzyme inhibitor agent|,
+			260686004|Method|=129445006|Administration - action|
+		}
+	)
+	
+	
+11833005|Dry cough|+281647001|Adverse reaction|:
+	246075003|Causative agent|=372733002|Angiotensin-converting enzyme inhibitor agent|
+	

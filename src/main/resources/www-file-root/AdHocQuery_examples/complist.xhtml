@@ -1,0 +1,14 @@
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:eee="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns="http://schemas.openehr.org/v1">
+<h:head><h:title>Composition list</h:title></h:head>
+<h:body>
+<h:table>
+  <h:tr><h:th>Date</h:th><h:th>Label</h:th></h:tr>
+{ 
+let $aqlFiltered :=  <eee:AQL>SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+  for $version in $aqlFiltered/.. 
+  let $comp := $version/data
+  order by $comp/context/start_time/value/text()
+  return <h:tr><h:td>{$comp/context/start_time/value/text()}</h:td><h:td><h:a href="/ehr/AnnaTest-v3/{$version/uid/value}">{$comp/name/value/text()}</h:a> : {$comp/context/setting/value/text()} : {$comp/composer/name/text()}</h:td></h:tr>
+}
+</h:table>
+</h:body></h:html>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<v1:composition archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1" xmlns:v1="http://schemas.openehr.org/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <v1:name>
+    <v1:value>Encounter</v1:value>
+  </v1:name>
+  <v1:archetype_details>
+    <v1:archetype_id>
+      <v1:value>openEHR-EHR-COMPOSITION.encounter.v1</v1:value>
+    </v1:archetype_id>
+    <v1:rm_version>1.0.1</v1:rm_version>
+  </v1:archetype_details>
+  <v1:language>
+    <v1:terminology_id>
+      <v1:value>ISO_639-1</v1:value>
+    </v1:terminology_id>
+    <v1:code_string>en</v1:code_string>
+  </v1:language>
+  <v1:territory>
+    <v1:terminology_id>
+      <v1:value>ISO_3166-1</v1:value>
+    </v1:terminology_id>
+    <v1:code_string>SE</v1:code_string>
+  </v1:territory>
+  <v1:category>
+    <v1:value>event</v1:value>
+    <v1:defining_code>
+      <v1:terminology_id>
+        <v1:value>openehr</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>433</v1:code_string>
+    </v1:defining_code>
+  </v1:category>
+  <v1:composer xsi:type="v1:PARTY_IDENTIFIED">
+    <v1:name>Doctor</v1:name>
+  </v1:composer>
+  <v1:content archetype_node_id="openEHR-EHR-ACTION.procedure.v1" xsi:type="v1:ACTION">
+    <v1:name>
+      <v1:value>Procedure undertaken</v1:value>
+    </v1:name>
+    <v1:archetype_details>
+      <v1:archetype_id>
+        <v1:value>openEHR-EHR-ACTION.procedure.v1</v1:value>
+      </v1:archetype_id>
+      <v1:rm_version>1.0.1</v1:rm_version>
+    </v1:archetype_details>
+    <v1:language>
+      <v1:terminology_id>
+        <v1:value>ISO_639-1</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>en</v1:code_string>
+    </v1:language>
+    <v1:encoding>
+      <v1:terminology_id>
+        <v1:value>IANA_character-sets</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>UTF-8</v1:code_string>
+    </v1:encoding>
+    <v1:subject xsi:type="v1:PARTY_SELF">
+      <v1:external_ref>
+        <v1:id xsi:type="v1:HIER_OBJECT_ID">
+          <v1:value>1.2.4.5.6.12.1</v1:value>
+        </v1:id>
+        <v1:type>PARTY</v1:type>
+      </v1:external_ref>
+    </v1:subject>
+    <v1:protocol archetype_node_id="at0053" xsi:type="v1:ITEM_TREE">
+      <v1:name>
+        <v1:value>Tree</v1:value>
+      </v1:name>
+    </v1:protocol>
+    <v1:time>
+      <v1:value>2010-12-08T09:43:15,026</v1:value>
+    </v1:time>
+    <v1:description archetype_node_id="at0001" xsi:type="v1:ITEM_TREE">
+      <v1:name>
+        <v1:value>Tree</v1:value>
+      </v1:name>
+      <v1:items archetype_node_id="at0002" xsi:type="v1:ELEMENT">
+        <v1:name>
+          <v1:value>Procedure</v1:value>
+        </v1:name>
+        <v1:value xsi:type="v1:DV_TEXT">
+          <v1:value>text value</v1:value>
+        </v1:value>
+      </v1:items>
+    </v1:description>
+    <v1:ism_transition>
+      <v1:current_state>
+        <v1:value>initial</v1:value>
+        <v1:defining_code>
+          <v1:terminology_id>
+            <v1:value>openehr</v1:value>
+          </v1:terminology_id>
+          <v1:code_string>524</v1:code_string>
+        </v1:defining_code>
+      </v1:current_state>
+      <v1:careflow_step>
+        <v1:value>Request initiated</v1:value>
+        <v1:defining_code>
+          <v1:terminology_id>
+            <v1:value>local</v1:value>
+          </v1:terminology_id>
+          <v1:code_string>at0034</v1:code_string>
+        </v1:defining_code>
+      </v1:careflow_step>
+    </v1:ism_transition>
+  </v1:content>
+  <v1:content archetype_node_id="openEHR-EHR-ADMIN_ENTRY.admission.v1" xsi:type="v1:ADMIN_ENTRY">
+    <v1:name>
+      <v1:value>Patient admission</v1:value>
+    </v1:name>
+    <v1:archetype_details>
+      <v1:archetype_id>
+        <v1:value>openEHR-EHR-ADMIN_ENTRY.admission.v1</v1:value>
+      </v1:archetype_id>
+      <v1:rm_version>1.0.1</v1:rm_version>
+    </v1:archetype_details>
+    <v1:language>
+      <v1:terminology_id>
+        <v1:value>ISO_639-1</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>en</v1:code_string>
+    </v1:language>
+    <v1:encoding>
+      <v1:terminology_id>
+        <v1:value>IANA_character-sets</v1:value>
+      </v1:terminology_id>
+      <v1:code_string>UTF-8</v1:code_string>
+    </v1:encoding>
+    <v1:subject xsi:type="v1:PARTY_SELF">
+      <v1:external_ref>
+        <v1:id xsi:type="v1:HIER_OBJECT_ID">
+          <v1:value>1.2.4.5.6.12.1</v1:value>
+        </v1:id>
+        <v1:type>PARTY</v1:type>
+      </v1:external_ref>
+    </v1:subject>
+    <v1:data archetype_node_id="at0001" xsi:type="v1:ITEM_TREE">
+      <v1:name>
+        <v1:value>Tree</v1:value>
+      </v1:name>
+      <v1:items archetype_node_id="at0002" xsi:type="v1:ELEMENT">
+        <v1:name>
+          <v1:value>Patient class</v1:value>
+        </v1:name>
+        <v1:value xsi:type="v1:DV_CODED_TEXT">
+          <v1:value>Inpatient/overnight patient</v1:value>
+          <v1:defining_code>
+            <v1:terminology_id>
+              <v1:value>local</v1:value>
+            </v1:terminology_id>
+            <v1:code_string>at0003</v1:code_string>
+          </v1:defining_code>
+        </v1:value>
+      </v1:items>
+      <v1:items archetype_node_id="at0073" xsi:type="v1:CLUSTER">
+        <v1:name>
+          <v1:value>Assigned patient location</v1:value>
+        </v1:name>
+        <v1:items archetype_node_id="at0074" xsi:type="v1:ELEMENT">
+          <v1:name>
+            <v1:value>Point of care/Unit</v1:value>
+          </v1:name>
+          <v1:value xsi:type="v1:DV_TEXT">
+            <v1:value>text value</v1:value>
+          </v1:value>
+        </v1:items>
+      </v1:items>
+      <v1:items archetype_node_id="at0013" xsi:type="v1:ELEMENT">
+        <v1:name>
+          <v1:value>Admission type</v1:value>
+        </v1:name>
+        <v1:value xsi:type="v1:DV_CODED_TEXT">
+          <v1:value>Accident</v1:value>
+          <v1:defining_code>
+            <v1:terminology_id>
+              <v1:value>local</v1:value>
+            </v1:terminology_id>
+            <v1:code_string>at0014</v1:code_string>
+          </v1:defining_code>
+        </v1:value>
+      </v1:items>
+      <v1:items archetype_node_id="at0071" xsi:type="v1:ELEMENT">
+        <v1:name>
+          <v1:value>Admit date/time</v1:value>
+        </v1:name>
+        <v1:value xsi:type="v1:DV_DATE_TIME">
+          <v1:value>2010-01-01T10:00:00</v1:value>
+        </v1:value>
+      </v1:items>
+    </v1:data>
+  </v1:content>
+</v1:composition>

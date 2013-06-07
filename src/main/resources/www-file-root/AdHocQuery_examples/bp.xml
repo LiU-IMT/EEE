@@ -1,0 +1,62 @@
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:eee="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns:v1="http://schemas.openehr.org/v1">
+<Document>
+	<name>KmlFile</name>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark>
+		<name>Test-platsmärke</name>
+		<kml:description xmlns="http://schemas.openehr.org/v1">Beskrivning som hamnar i bubblan?
+			{<eee:AQL>SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>}	
+		</kml:description>
+		<LookAt>
+			<longitude>22.46715241144779</longitude>
+			<latitude>65.17814441570388</latitude>
+			<altitude>0</altitude>
+			<range>44408.03320234025</range>
+			<tilt>0</tilt>
+			<heading>0.09746611860954747</heading>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#msn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>22.46715241144779,65.17814441570388,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>
+

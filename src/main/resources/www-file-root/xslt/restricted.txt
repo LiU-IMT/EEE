@@ -1,0 +1,17 @@
+The URI pointing to this file is sent as the HTTP-header field 
+named "Referer" for some outgoing calls from this server that might
+otherwise have disclosed data not intended for external systems.
+
+Excerpt from the LiU EEE paper/documentation regarding the path
+/cb/{committer_id}/{ehr_id}/{cb-id}/new/{command}/
+
+POST is used to create new VERSION objects with the data field based on different sources determined by the command. Valid commands are:
+•	update-version: creates a new version based on an object that already exists in the EHR, it will be stored as an updated version of the original.
+•	copy-version: creates a new object based on a copy of an object that already exists in the EHR, it will be stored in a new VERSIONED_OBJECT and not be related to the original. 
+•	from-form: bases data completely from the form variable named ‘data’
+•	from-url: the data field will be a copy of the content of a resource identified by the ‘url’ field in the POSTed form with the request. This command is useful for debugging and testing purposes.
+•	from-instance-template: like ‘from-url’ but the file at the url will be interpreted as a FreeMarker  template and that will execute in a context populated with all variables sent in the POST request. This command allows a simple way of combining data in ordinary html forms with a skeleton structure provided by an instance example where target values have been replaced by variable names. (This makes form field names flexible.) (The FreeMarker template engine is only available in Java, thus some other templating language or mechanism for variable substitution should be investigated if this approach is used in an openEHR service specification.)
+•	from-ehr-path: like ‘from-instance-template’ but the form fields must be named as EHR paths corresponding to nodes that will be replaced in the file identified by the ‘url’ field. 
+•	from-xpath: like above but XPath syntax used instead 
+
+Note that the last four commands pose an information disclosure risk if URLs to external sites are allowed. Many HTTP clients in the header include a “Referer” field that in this case may include both committer_id and ehr_id that would be transmitted to the external system. In the LiU EEE implementation the “Referer” field is set to the hostname of the server followed by the path /static/restricted.txt where an explaining file is placed.

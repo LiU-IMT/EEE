@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>f3339503-a7fe-4312-8532-7e69fe1b95bb</id>
+  <name>besöks_daganteckning1</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose />
+      <use />
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.encounter.v1" concept_name="Encounter">
+    <Content xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.ecg.v1" concept_name="ECG recording" path="/content">
+      <Rule path="/data[at0001]/events[at0002]/data[at0005]/items[at0027]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0005]/items[at0009]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0005]/items[at0010]" max="0" />
+    </Content>
+    <Content xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.lab_test.v1" concept_name="Laboratory test result" path="/content">
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0078]">
+        <constraint xsi:type="multipleConstraint">
+          <includedTypes>Text</includedTypes>
+          <includedTypes>Quantity</includedTypes>
+          <includedTypes>Count</includedTypes>
+          <includedTypes>Ordinal</includedTypes>
+          <includedTypes>Date_Time</includedTypes>
+          <includedTypes>Boolean</includedTypes>
+          <includedTypes>URI</includedTypes>
+          <includedTypes>Proportion</includedTypes>
+          <includedTypes>Coded_text</includedTypes>
+        </constraint>
+      </Rule>
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0010]" max="0" />
+      <Items xsi:type="CLUSTER" archetype_id="openEHR-EHR-CLUSTER.specimen.v1" concept_name="Specimen" path="/data[at0001]/events[at0002]/data[at0003]/items[at0065]">
+        <Rule path="/items[at0073]" max="0" />
+        <Rule path="/items[at0050]" max="0" />
+        <Rule path="/items[at0039]" max="0" />
+        <Rule path="/items[at0002]" max="0" />
+      </Items>
+    </Content>
+    <Content xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.exam.v1" concept_name="Examination findings" path="/content" />
+    <Content xsi:type="INSTRUCTION" archetype_id="openEHR-EHR-INSTRUCTION.request-procedure.v1" concept_name="Procedure request" path="/content" />
+    <Content xsi:type="ACTION" archetype_id="openEHR-EHR-ACTION.procedure.v1" concept_name="Procedure undertaken" path="/content">
+      <Rule path="/description[at0001]/items[at0018]" max="0" />
+      <Rule path="/description[at0001]/items[at0015]" max="0" />
+      <Rule path="/description[at0001]/items[at0013]" max="0" />
+    </Content>
+    <Context />
+  </definition>
+</template>

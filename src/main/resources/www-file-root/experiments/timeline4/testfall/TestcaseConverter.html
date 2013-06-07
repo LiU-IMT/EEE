@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Testcase Converter</title>
+        <!-- <script src="http://d3js.org/d3.v2.js"></script> -->
+    	<script src="../d3.v2.min.js"></script>
+        <style type="text/css">
+textarea
+{
+    width:100%;
+}
+		</style>
+    </head>
+    <body>
+        <h1>Testcase Converter</h1>
+        <p>Input:<br/>
+<textarea id="inputTextarea" rows="15">
+</textarea>
+Pick Data source:
+ 		 	 <input type="radio" name="csvSource" value="textarea" >Textarea above,
+ 		  	 <input disabled="true" type="radio" name="csvSource" value="templateUri" >CSV from URI: <input type="text" id="templateUriTextBox" name="templateUriTextBox" value="http://..." size="35"/>
+ 		  	 <input type="radio" name="csvSource" value="URI" checked="checked">Fresh from Google Spreadsheets listed below: 
+
+ 		     <div id="gDocs">	
+ 		  	  <div class="dDocRow"><input type="checkbox" checked="checked"/> <input type="text" name="pnr" value="550604-5557" size="12"/> <input class="id" type="text" name="id" value="Patient_A" size="12"/> <input type="text" name="name" value="Svante Lindström" size="20"/><input type="text" name="uri" value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=5&output=csv" size="120"/></div>
+ 		  	  <div class="dDocRow"><input type="checkbox" checked="checked"/> <input type="text" name="pnr" value="550505-0582" size="12"/> <input class="id" type="text" name="id" value="Patient_B" size="12"/> <input type="text" name="name" value="Smilla Zachrisson" size="20"/><input type="text" name="uri" value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=6&output=csv" size="120"/></div>
+ 		  	  <div class="dDocRow"><input type="checkbox" checked="checked"/> <input type="text" name="pnr" value="481009-6711" size="12"/> <input class="id" type="text" name="id" value="Patient_C" size="12"/> <input type="text" name="name" value="Melker Lindmark" size="20"/><input type="text" name="uri" value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=7&output=csv" size="120"/></div>
+ 		  	  <div class="dDocRow"><input type="checkbox" checked="checked"/> <input type="text" name="pnr" value="121212+1212" size="12"/> <input class="id" type="text" name="id" value="Patient_TEST" size="12"/> <input type="text" name="name" value="Tolvan Tolvansson" size="20"/><input type="text" name="uri" value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=10&output=csv" size="120"/></div>
+		  	  <div class="dDocRow"><input type="checkbox"/> <input type="text" name="pnr" value="000000-0000" size="12"/> <input class="id" type="text" name="id" value="Patient_" size="12"/> <input type="text" name="name" value="Unknown" size="20"/><input type="text" name="uri" value="https://" size="120"/></div>		  	 
+ 		  	  </div>	 		
+ 	 		
+		  	  <!--select id="templateUriDropdown" name="templateUriDropdown" >
+	  			<option value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=5&output=csv">Svante Lindström</option>
+	  			<option value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=6&output=csv">Smilla Zachrisson</option>
+	  			<option value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=7&output=csv">Melker Lindmark</option> 			 	
+	  			<option value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=10&output=csv">Tech Test Smilla</option> 	
+	  		</select-->  
+ 			
+ 	<button id="conversionButton" type="button"  onclick="parseAndConvert()">Convert CSV to a JSON structure</button>
+ 	
+    <p>Paste the output below to a file (e.g. testfall/ehrdata.js)<br/>
+    <textarea id="outputTextarea" rows="15"></textarea></p>
+ 		
+ 	<script type="text/javascript">
+ 	
+ 	var compactYMDformat = d3.time.format("%Y%m%d%H");
+ 	//console.log(compactYMDformat.parse("2000112212"));
+ 	
+ 	// PLANERADE 1=Öppenvård läkare, 2=Öppenvård diabetessköterska, 3=Öppenvård distriktssköterska, 
+ 	// 4=Diabetesteam (fotmottagning mm), 5=Fotvård, 6=Sjukgymnast, 7=Ögonläkare, 10=Laboratorium. 
+ 	// AKUTA 11=Öppenvård läkare, 12=Öppenvård diabetessköterska, 13=Öppenvård distriktssköterska, 
+ 	// 14=Jourcentral, 15=Akutmottagning  	
+ 	
+ 	/* PRIMARY: rubric="primary medical " id="228"; rubric="primary nursing " id="229; rubric="primary allied " id="230" */
+ 	/* EMERGENCY: <concept rubric="emergency care" id="227"/> */
+ 	/* SECONDARY: <concept rubric="secondary medical " id="232"/> <concept rubric="secondary nursing " id="233"/> <concept rubric="secondary allied " id="234"/>
+ 	/* OTHER: <concept rubric="other care" id="238"/> */
+ 	var openEHRSettingMapping = d3.map();
+ 	openEHRSettingMapping.set(1,228);
+ 	openEHRSettingMapping.set(2,229);
+ 	openEHRSettingMapping.set(3,229);
+ 	openEHRSettingMapping.set(4,230);
+ 	openEHRSettingMapping.set(5,230);
+ 	openEHRSettingMapping.set(6,230);
+ 	openEHRSettingMapping.set(7,232);
+ 	openEHRSettingMapping.set(10,238);
+ 	openEHRSettingMapping.set(11,1228); // a hack: adding 1000 to get emergency/unplanned primary care visits (missing in openEHR care settings terminology)
+ 	openEHRSettingMapping.set(12,1229);
+ 	openEHRSettingMapping.set(13,1229);
+ 	openEHRSettingMapping.set(14,1228);
+ 	openEHRSettingMapping.set(15,227);
+ 	openEHRSettingMapping.set("","??? - uppgift saknas");
+ 	openEHRSettingMapping.set(null,"??? - uppgift saknas");
+
+ 	
+ 	// 1=Gryckebo VC, 2=Tinas Fotvård, 3=Centrallaboratoriet By sjukhus, 4=Ögonkliniken By sjukhus, 5=Stinas sjukgymnastik,  6=Akutmottagningen By sjukhus
+ 	var facilityMapping = d3.map();
+ 	facilityMapping.set(1,"Gryckebo VC");
+ 	facilityMapping.set(2,"Tinas Fotvård");
+ 	facilityMapping.set(3,"Centrallaboratoriet By sjukhus");
+ 	facilityMapping.set(4,"Ögonkliniken By sjukhus");
+ 	facilityMapping.set(5,"Stinas sjukgymnastik");
+  	facilityMapping.set(6,"Akutmottagningen By sjukhus");
+  	facilityMapping.set("","??? - uppgift saknas"); 
+  	facilityMapping.set(null,"??? - uppgift saknas");
+
+ 
+  	// 1. Nybesök 2. Återbesök 3. Årskontroll 4.Brevkontakt 5. Telefonkontakt 6. Provtagning  7.Patientregistrering 8. Patientadministration
+  	var visitTypeMapping = d3.map();
+  	visitTypeMapping.set(1,"Nybesök");
+  	visitTypeMapping.set(2,"Återbesök");
+  	visitTypeMapping.set(3,"Årskontroll");
+  	visitTypeMapping.set(4,"Brevkontakt");
+  	visitTypeMapping.set(5,"Telefonkontakt");
+  	visitTypeMapping.set(6,"Provtagning");
+  	visitTypeMapping.set(7,"Patientregistrering");
+  	visitTypeMapping.set(8,"Patientadministration");
+  	visitTypeMapping.set("","??? - uppgift saknas");
+  	visitTypeMapping.set(null,"??? - uppgift saknas");
+
+  	// RL Rick Lövbäck DL , JG Jenny Granberg DL,  UH Ulla Holgersson DSK, AH Arvid Holmer sjukgymn, PH Petra Hansson Sjks, 
+  	// JI Johannna Isaksson Biomed anal. V-initilaer = vikarie för person
+  	
+  	var clinicianMapping = d3.map();
+  	clinicianMapping.set("RL","Rick Lövbäck, DL");
+  	clinicianMapping.set("JG","Jenny Granberg, DL");
+  	clinicianMapping.set("UH","Ulla Holgersson, DSK");
+  	clinicianMapping.set("AH","Arvid Holmer, sjukgymn");
+  	clinicianMapping.set("PH","Petra Hansson, Sjks"); // Sjks, ssk?
+  	clinicianMapping.set("JI","Johannna Isaksson, Biomed. analyt.");
+  	clinicianMapping.set("V-RL","Margit Bergbo, Vik. DL");
+  	clinicianMapping.set("","??? - uppgift saknas");
+  	
+	var headerWords = ["SUBJECTIVE", "OBJECTIVE", "ASSESSMENT", "PLAN", "LAB", "END"]; 
+	var skipWords = ["Datum","Vårdkontakttyp","Kontakttyp innehåll","Plats","Vårdgivare","PATIENT REPORTED","CARE GIVER REPORTED",
+			                 "Uppmärksamhets signal", "-överkänslighet", "-läkemedel", "-smitta", "-vårdrutinavvikelse", "-vårdrutin" ];
+
+	// 1=Typ1,  2=Typ2, 3=Mody, 4=LADA
+	var diabetesTypeMapping = d3.map();
+	diabetesTypeMapping.set(1,"Typ1");
+	diabetesTypeMapping.set(2,"Typ2");
+	diabetesTypeMapping.set(3,"Mody");
+	diabetesTypeMapping.set(4,"LADA");
+
+  	var totalResult;
+  	
+ 	function parseAndConvert() {
+ 		
+ 		totalResult=""
+ 		
+ 		var sel = d3.selectAll("input[name=csvSource]:checked").attr("value");
+ 		console.log("Selected: ",sel);//.select("[checked=true]"));
+ 				
+ 		if(sel=="textarea"){
+ 			var inString = d3.select("#inputTextarea").node().value;
+ 	 		parseResult = d3.csv.parseRows(inString)
+ 	 		d3.select("#outputTextarea").node().value = doConvert(parseResult);
+ 		} else if(sel=="URI"){
+ 			totalResult="var patients = {};\r\n"
+ 			
+ 			var divList = d3.selectAll(".dDocRow");
+ 			console.log("divList",divList)
+ 			divList.each(function(item, idx){
+ 				
+ 				var check =  d3.select(this).select("[type='checkbox']").attr("checked");
+
+ 				//console.log("ooo0!",idx, item, this);
+ 				var id =  d3.select(this).select("[name='id']").attr("value");
+ 				var uri =  d3.select(this).select("[name='uri']").attr("value");
+ 				var pnr =  d3.select(this).select("[name='pnr']").attr("value");
+ 				var name =  d3.select(this).select("[name='name']").attr("value");
+ 				console.log("id: ", id, "uri: ", uri, "pnr", pnr, "name", name, "check", check);
+ 				
+ 				if(check){
+ 	 				totalResult=totalResult+ 'patients.'+id+'={};\r\n';
+ 	 				totalResult=totalResult+ 'patients.'+id+'.id="'+pnr+'";\r\n';
+ 	 				totalResult=totalResult+ 'patients.'+id+'.name="'+name+'";\r\n';
+ 	 				d3.xhr(uri, null, function(a,b){handleResponse(a,b,id)}); 					
+ 				}
+ 				
+ 			});
+ 				
+ 			//var droplist = d3.select("#templateUriDropdown")
+ 			//var selectedUrl=d3.selectAll("#templateUriDropdown option:selected").attr("value");
+ 			//var selectedUrl=droplist.node().options[droplist.node().selectedIndex].value;
+ 			//console.log("selectedUrl: ",selectedUrl);
+ 			//d3.csv(selectedUrl, doConvert)
+ 			//d3.xhr(selectedUrl, null, function(a,b){handleResponse(a,b,"foo")});
+ 		}
+ 	}
+ 	
+	 // <div class="dDocRow"><input type="checkbox" checked="checked"/> <input type="text" name="pnr" value="550604-5557" size="12"/> <input type="text" name="id" value="Patient_A" size="12"/> <input type="text" name="name" value="Svante Lindström" size="20"/><input type="text" name="uri" value="https://docs.google.com/spreadsheet/pub?key=0AgdHmPbK5e3SdF9ZNFJ0MEs0NDlYdVJlTHlfR3BXZVE&single=true&gid=5&output=csv" size="120"/></div>
+	  
+ 	function handleResponse(a, b, id) {
+ 		console.log("handleResponse ,a,b,id,this:",a,b,id,this);
+ 		parseResult = d3.csv.parseRows(a.response);
+ 		var conversionResult = doConvert(parseResult);
+ 		totalResult=totalResult+ 'patients.'+id+'.data='+conversionResult+';\r\n';
+ 		totalResult=totalResult+ 'patients.'+id+'.legend="'+createLegend(d3.csv.parseRows(a.response))+'";\r\n';
+ 		
+ 		d3.select("#outputTextarea").node().value = totalResult;
+ 	}
+ 	
+ 	function escapeKey(key) {
+//			replace(text, "[éèëêÉÈËÊ]", "e");
+//			replace(text, "[úùüûÚÙÜÛ]", "u");
+//			replace(text, "[íìïîÍÌÏÎ]", "i");
+		//Change special characters. 
+		var escapedKey = "X-"+key; 
+		escapedKey = escapedKey.replace(/[áàäâãå]/g,"a");
+		escapedKey = escapedKey.replace(/[ÁÀÄÂÃÅ]/g,"A");
+		escapedKey = escapedKey.replace(/[óòöôõ]/g,"o");
+		escapedKey = escapedKey.replace(/[ÓÒÖÔÕ]/g,"O");
+		//Replace other characters with "_". 
+		escapedKey = escapedKey.replace(/[^a-zA-Z0-9]/g,"_");
+			
+		return escapedKey;
+ 	}
+ 	
+ 	function doConvert(parseResult) {
+ 		console.log("doConvert parseResult:", parseResult); 
+ 		
+ 		var totalMap = d3.map(); // All node objects in associative array based on node ID
+ 		var numberOfNotes = 0;
+ 		 		
+ 		// iterate over nodes
+ 		parseResult.forEach(function(row,rowNumber){
+ 		    slicedStart = row.splice(0 , 2); // removes first two elements from row (and puts them in slicedStart).		
+			totalMap.set(slicedStart[0], row);
+			numberOfNotes = row.length+1;
+ 		})
+ 		
+ 		var allConvertedNotes = [];
+ 		
+ 		for (var i = 0; i < numberOfNotes; i++) {
+// 			console.log(i, totalMap.get("Datum")[i]);
+// 			console.log(i, totalMap.get("Vårdkontakttyp")[i]);
+// 			console.log(i, totalMap.get("Vårdgivare")[i]);
+
+			contactType = totalMap.get("Vårdkontakttyp")[i];
+
+ 			var convertedNote = d3.map();
+ 			
+ 			var startTime = compactYMDformat.parse(totalMap.get("Datum")[i]+"15");
+ 			
+ 			convertedNote.set("comp_start_time", d3.time.format.iso(startTime));
+ 			convertedNote.set("comp_facility", facilityMapping.get(totalMap.get("Plats")[i]));
+ 			convertedNote.set("comp_setting", openEHRSettingMapping.get(contactType));
+ 			convertedNote.set("composition_title", visitTypeMapping.get(totalMap.get("Kontakttyp innehåll")[i]));
+ 			convertedNote.set("composer", clinicianMapping.get(totalMap.get("Vårdgivare")[i]));
+ 			
+ 			var fakeCompositionId = +startTime + "-" +contactType; 
+ 			convertedNote.set("composition_id",fakeCompositionId);
+ 					
+// 			"xml__comp_content":"[object Element]",
+// 			"comp_end_time":"",
+ 			
+ 			
+ 			var textContent = "";
+ 			
+ 			var closiningTags = [];
+ 			
+ 			var labelMap = d3.map();	
+ 			
+ 			var level = 1;
+ 			var previousLevel = 1;
+ 			
+ 			//console.log(i+" )))))))))))>>>> totalMap",totalMap)
+ 						
+ 			totalMap.forEach(function(key, row){
+ 				
+ 				//console.log(i+" )))>>>> ",key, row)
+
+ 				var isHeader = !(headerWords.indexOf(key) == -1);
+ 				var skipWord = !(skipWords.indexOf(key) == -1); 				
+ 				var rowValue = row[i];
+
+ 				//console.log("skipWord, rowValue, isHeader: ", skipWord, rowValue, isHeader, " ::::: ", (!skipWord && (rowValue || isHeader)));
+ 				
+ 				escapedKey = escapeKey(key);
+ 				
+ 				if (!skipWord && (rowValue || isHeader)) {
+ 					previousLevel = level;
+ 					if (isHeader) {
+ 						level = 1;
+// 					} else if(rowValue=="*") {
+// 						level = 2;
+ 					} else if(key.lastIndexOf('-', 0) === 0) {
+ 						level = 3;
+ 					} else if(key == "END") {
+ 						level = 0;
+ 					} else {
+ 						level = 2;
+ 					} 
+
+ 					
+ 					// End any leftover SECTION levels from deeper levels:
+ 					var numToPop = closiningTags.length-level+1
+ 					if (numToPop < 0) numToPop = 0;
+ 					//console.log("closiningTags.length", closiningTags.length, "level", level, "numToPop", numToPop, closiningTags)
+					for (var j = 0; j < numToPop ; j++) {
+						var endTag1 = closiningTags.pop();
+ 						if (endTag1) {
+ 							textContent = textContent+ endTag1;
+ 							//console.log("Popped: "+endTag1);
+ 						}
+ 						
+					}
+
+					// Start a section
+					textContent = textContent+ "<span class='subsection"+level+" "+escapedKey+"' value='"+escapedKey+"'>\r\n";  
+					closiningTags.push("</span><!-- closing level "+level+" section "+escapedKey+"-->\r\n");
+						
+ 					// Add content
+ 					if(rowValue=="*" || level===1) {
+ 						//console.log(level+ ":  ",key,rowValue);
+  	 					textContent = textContent+ "  <span class='subheading"+level+" "+escapedKey+"'>" + key +"</span> \r\n"; // No
+																																	// val
+ 	 				} else if(rowValue) {
+ 						//console.log(level+ ":: ",key,rowValue);
+ 	 					if (key == "-diabetestyp") {
+ 	 						rowValue = diabetesTypeMapping.get(rowValue);
+ 	 						console.log('-diabetestyp rowValue',rowValue)
+ 	 					}
+ 	 					textContent = textContent+ "  <span class='subheading"+level+" "+escapedKey+"'>" + key +"</span> <span class='val'>" + rowValue + "</span>";
+ 	 				} else {
+ 	 					//console.log("Skipping --------- ", key, rowValue)
+ 	 				}	
+
+ 			/*    // Close normal (same-level) spans
+ 					if (previousLevel <= level) { 
+ 						// textContent = textContent+ "</span>\r\n";
+ 						var endTag = closiningTags.pop(); 
+ 						if (endTag) textContent = textContent+ endTag; 
+ 					}  
+ 			*/
+ 					
+ 				} else {
+ 					//console.log("-SKIPPING-");
+ 				} // end if (!skipWord)	
+ 				
+ 				
+ 			}); // end forEach
+ 			
+ 			convertedNote.set("xml__comp_content", textContent);
+ 					
+			//console.log(textContent);
+			allConvertedNotes.push(convertedNote);
+ 			
+		} // for (var i = 0; i < numberOfNotes; i++)
+ 		
+	//	console.log("numberOfNotes", numberOfNotes, "allConvertedNotes:", allConvertedNotes);
+		 
+		var resultString = JSON.stringify(allConvertedNotes, null, "\t");
+		var resultString = resultString.replace(/\\u0000/g,""); // Replace a bunch of nulls (where did they come from?)
+		//console.log("resultString",resultString)	
+		
+ 		return resultString;
+ 	};
+ 	
+ 	function createLegend(parseResult){
+ 		console.log("createLegend - parseResult:", parseResult);
+ 		var totalMap = d3.map(); // All node objects in associative array based on node ID
+ 		var textContent = "";
+		var level = 1;
+ 		var previousLevel = 1;
+ 		var closiningTags = [];
+		passedEnd = false;
+		
+ 		// iterate over nodes
+ 		parseResult.forEach(function(row){
+ 		    slicedStart = row.splice(0 , 2); // removes first two elements from row (and puts them in slicedStart).		
+
+			key = slicedStart[0];
+			unit = slicedStart[1];
+			console.log("createLegend k,u:",key," :: ",unit)
+			if (key == "END") passedEnd = true;
+			
+			var isHeader = !(headerWords.indexOf(key) == -1);
+ 			var skipWord = !(skipWords.indexOf(key) == -1); 				
+  			escapedKey = escapeKey(key);
+  			
+ 				if (!skipWord && (key !="") && !passedEnd) {
+ 					previousLevel = level;
+ 					if (isHeader) {
+ 						level = 1;
+ 					} else if(key.lastIndexOf('-', 0) === 0) {
+ 						level = 3;
+ 					} else if(key == "END") {
+ 						level = 0;
+ 					} else {
+ 						level = 2;
+ 					} 
+ 					
+ 					// End any leftover SECTION levels from deeper levels:
+ 					var numToPop = closiningTags.length-level+1
+ 					if (numToPop < 0) numToPop = 0;
+ 					//console.log("closiningTags.length", closiningTags.length, "level", level, "numToPop", numToPop, closiningTags)
+					for (var j = 0; j < numToPop ; j++) {
+						var endTag1 = closiningTags.pop();
+ 						if (endTag1) {
+ 							textContent = textContent+ endTag1;
+ 						}
+					}
+
+					// Start a section
+					// <span class="subsection3 index X__rokning" value="X__rokning" type="subsection3" presenthighlight="none">
+					textContent = textContent+ "<span class='index subsection"+level+" "+escapedKey+"' value='"+escapedKey+"' type='subsection"+level+"' title='"+unit+"' presenthighlight='none'>";  
+					closiningTags.push("</span>");
+						
+ 					// Add header
+					textContent = textContent+ "  <span class='subheading"+level+" "+escapedKey+"'>" + key +"</span>"; 
+ 				} // end if (!skipWord)	
+ 			}); // end forEach
+ 		return textContent;		
+ 	};
+ 		
+ 	
+ 	</script>	
+
+    <p>Created by Erik Sundvall, December 2012, License: CC-BY or MIT whichever you happen to prefer</p>
+
+    </body>
+</html>

@@ -1,0 +1,307 @@
+body {
+	background-color: #E7EBF2;
+	font-family: arial;
+	font-size: 13px
+}
+
+#topHeaderWrapper {
+    position: fixed; /*--Fix the header to stay in one spot--*/
+	top: 0;
+	left: 0;
+	display: table;	
+	border: 3px red;
+	background-color: white;
+	opacity:0.9;
+	z-index: 2;
+	width: 100%;
+}	
+
+#topHeaderUser {
+	display: table-cell;
+	min-width: 230px;
+}
+
+#topHeaderQueries {
+	display: table-cell;
+	text-align: center;
+	width: 100%;
+}
+
+#topHeaderPatient {
+	display: table-cell;
+	text-align: right;
+	min-width: 230px;
+}
+
+#horizontalTimeline {
+	width: 100%;
+	min-width: 250px;
+	min-height: 300px;	 
+}
+
+#verticalTimeline {
+	width: 100%;
+	margin: 0 auto;
+	display: table;
+}
+
+#container  {
+	width: 860px;
+	margin: 0 auto;
+	display: table-cell;
+}
+
+#sidebar {
+	display: table-cell;
+	margin-top: 10;
+}
+
+.borderclass {
+	border: 1px solid #A9B6D2;
+}
+
+.item, .sideBox {
+	margin-top: 10px;
+	background-color: #ffffff;
+	border: solid 1px #B4BBCD;	
+}
+
+.sideBox {
+	background-color: white;
+	opacity:0.7;	
+	border: solid 1px #B4BBCD;
+	padding: 10px;	
+}
+
+#alertBox img {
+	float: left;
+	margin: 2px;
+}
+
+#alertBox p {
+	clear: right;
+}
+
+.collapsed{
+	/* background-color: red;	*/
+	opacity: 0.5;
+}
+
+.collapsed .collapsible{
+	background-color: red;	
+	display : none; 
+}
+
+
+
+.item {
+	margin: 10px;
+	width: 408px; 
+	float: left;
+	min-height: 25px;
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+.topbox {
+	margin: 10px;
+	margin-top: 10px;
+	background-color: white;
+	border: solid 1px #B4BBCD;
+}
+
+.item div,.topbox div {
+	padding: 8px;
+}
+
+.rightCorner {
+	background-image: url("/static/images/timeline/right.png");
+	display: block;
+	height: 15px;
+	margin-left: 408px;
+	margin-top: 8px;
+	padding: 0;
+	vertical-align: top;
+	width: 13px;
+	z-index: 2;
+	position: absolute;
+}
+
+.leftCorner {
+	background-image: url("/static/images/timeline/left.png");
+	display: block;
+	height: 15px;
+	width: 13px;
+	margin-left: -13px;
+	margin-top: 8px;
+	position: absolute;
+	z-index: 2;
+}
+
+#popup {
+	display: block;
+	width: 408px;
+	float: left;
+	margin-top: 10px;
+	background-color: #ffffff;
+	border: solid 1px #A9B6D2;
+	min-height: 60px;
+	display: none;
+	position: absolute;
+	margin: 10px;
+}
+
+.Popup_rightCorner {
+	background-image: url("/static/images/timeline/right.png");
+	display: block;
+	height: 15px;
+	margin-left: 408px;
+	margin-top: 8px;
+	padding: 0;
+	vertical-align: top;
+	width: 13px;
+	z-index: 2;
+	position: absolute;
+}
+
+#box {
+	padding: 8px;
+}
+
+#update {
+	width: 100%;
+}
+
+.timeline_container {
+	width: 16px;
+	text-align: center;
+	margin: 0 auto;
+	cursor: pointer;
+	display: block;
+}
+
+.timeline {
+	margin: 0 auto;
+	background-color: #e08989;
+	display: block;
+	float: left;
+	height: 100%;
+	left: 428px;
+	margin-top: 10px;
+	position: absolute;
+	width: 4px;
+}
+
+.timeline:hover {
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.timeline div.plus {
+	width: 14px;
+	height: 14px;
+	position: relative;
+	left: -6px;
+}
+
+#update_button {
+	background-color: #cc0000;
+	color: white;
+	font-weight: bold;
+	padding: 5px;
+	border: solid 1px #333;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.shade {
+	box-shadow: 0px 0px 18px #000;
+	-moz-box-shadow: 0px 0px 18px #000;
+	-webkit-box-shadow: 0px 0px 18px #000
+}
+
+h1 {
+	font-family: 'Georgia', Times New Roman;
+}
+
+.facility {
+	float: right;
+	text-decoration: none;
+		/* margin: 8px 10px 8px 10px; */
+	padding: 1px 3px 1px 3px;
+}
+
+.timeline:hover {
+	cursor: none;
+}
+
+.deletebox {
+	font-weight: bold;
+	float: right;
+	text-decoration: none;
+	margin: 8px 10px 8px 10px;
+	color: #cc0000
+}
+
+/* ********** EEE-specific things below ********** */
+.systolic {
+	fill: BlueViolet;
+	font-weight: bold;
+}
+
+.diastolic {
+	fill: DarkOrchid;
+	font-weight: bold;	
+}
+
+/* PRIMARY: rubric="primary medical " id="228"; rubric="primary nursing " id="229; rubric="primary allied " id="230" */
+.openEHR-setting-228,.openEHR-setting-229,.openEHR-setting-230 {
+	fill: darkgreen;
+	color: darkgreen;
+}
+.openEHR-setting-228{
+	font-weight: bold;
+}
+.openEHR-setting-230{
+	font-style: italic;
+}
+
+
+/* EMERGENCY: <concept rubric="emergency care" id="227"/> */
+.openEHR-setting-227 {
+	fill: red;
+	color: darkblue;
+	background-color: #fcc;
+	font-weight: bold;
+}
+
+/* SECONDARY: <concept rubric="secondary medical " id="232"/> <concept rubric="secondary nursing " id="233"/> <concept rubric="secondary allied " id="234"/> */
+.openEHR-setting-232,.openEHR-setting-233,.openEHR-setting-234 {
+	fill: darkblue;
+	color: darkblue;
+}
+.openEHR-setting-232{
+	font-weight: bold;
+}
+.openEHR-setting-234{
+	font-style: italic;
+}
+
+/* HOME : <concept rubric="home" id="225"/> */
+.openEHR-setting-225 {
+	fill: purple;
+	color: purple;
+	font-weight: bold;
+}
+
+/* OTHER: <concept rubric="other care" id="238"/> */
+.openEHR-setting-238 {
+	fill: gray;
+	color: gray;
+	font-weight: bold;
+}
+
+/* Not yet used */
+/*  <concept rubric="midwifery care" id="231"/>  <concept rubric="complementary " id="235"/> */
+/*  <concept rubric="dental care" id="236"/> <concept rubric="nursing home care" id="237"/> */
+

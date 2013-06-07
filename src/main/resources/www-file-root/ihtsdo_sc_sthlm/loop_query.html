@@ -1,0 +1,20 @@
+<form>
+<p>AQL statement <a onclick="explain('1')">*</a> 
+</p>
+<textarea id="aql" rows="18" cols="100">
+SELECT   
+ m/activities/timing as timing,
+ m/activities/description/items[at0018] as adm,
+ m/activities/description/items[at0010] as ind,
+ m/activities/description/items[at0008] as route,
+ m/activities/description/items[at0033] as dose,
+ m/activities/description/items[at0003] as strength,
+ m/activities/description/items[at0012] as generic
+FROM 
+ Ehr e[ehr_id/value=$current_ehr_uid] 
+ CONTAINS INSTRUCTION m[openEHR-EHR-INSTRUCTION.medication.v1]
+WHERE
+( m/activities/description/items[at0012]/value/defining_code/terminology_id/value = "SNOMED-CT" AND
+  m/activities/description/items[at0012]/value/defining_code/code_string matches { http://localhost:8183/query?q=Descendants(372691009) } )
+</textarea>
+</form>

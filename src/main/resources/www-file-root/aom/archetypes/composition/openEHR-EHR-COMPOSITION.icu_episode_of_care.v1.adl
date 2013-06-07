@@ -1,0 +1,87 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-COMPOSITION.icu_episode_of_care.v1
+
+concept
+	[at0000]	-- ICU episode of care
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Some purpose">
+			use = <"Some use">
+			misuse = <"Some misuse">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+		["MD5-CAM-1.0.1"] = <"65A99E55209009DE8367226AE8E43CC1">
+	>
+
+definition
+	COMPOSITION[at0000] matches {	-- ICU episode of care
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {[openehr::433]}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT matches {
+				other_context matches {
+					ITEM_TREE[at0001] matches {	-- Tree
+						items cardinality matches {0..*; unordered} matches {
+							ELEMENT[at0002] occurrences matches {0..1} matches {	-- episode_of_care_id
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0003] occurrences matches {0..1} matches {	-- admitted_from
+								value matches {
+									DV_URI matches {*}
+								}
+							}
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- discharge_status
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ICU episode of care">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"episode_of_care_id">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"admitted_from">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"discharge_status">
+					description = <"*">
+				>
+			>
+		>
+	>

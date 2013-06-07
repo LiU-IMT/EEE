@@ -1,0 +1,15 @@
+<form>
+<p>AQL statement <a onclick="explain('1')">*</a> 
+</p>
+<textarea id="aql" rows="12">
+SELECT
+ d
+FROM 
+ Ehr e[ehr_id/value=$current_ehr_uid] 
+ CONTAINS EVALUATION d[openEHR-EHR-EVALUATION.problem-diagnosis.v1]
+WHERE
+ ( d/data/items[at0002.1]/value/defining_code/terminology_id/value = "SNOMED-CT" AND
+  d/data/items[at0002.1]/value/defining_code/code_string matches { http://localhost:8183/query?q=Descendants(64572001|Disease|:\{363698007|Finding site|=113257007|Structure of cardiovascular system|\}) } )
+
+</textarea>
+</form>

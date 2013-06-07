@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<eee:selfdestruct></eee:selfdestruct>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>LiU EEE AdHocQuery example</title>
+</head>
+<body>
+<h1>LiU EEE AdHocQuery example</h1>
+<h2>Query input</h2>
+<p>
+	SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c CONTAINS INSTRUCTION i[openEHR-EHR-INSTRUCTION.medication.v1] CONTAINS ITEM_TREE it[openEHR-EHR-ITEM_TREE.medication.v1] WHERE (it/items[at0012]/value/defining_code/terminology_id = "SNOMED" AND it/items[at0012]/value/defining_code/code_string matches {'350162003', '000000000'})
+</p>
+
+<h2>Query output</h2>
+<p>
+<EEE:AQL>
+	SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c CONTAINS INSTRUCTION i[openEHR-EHR-INSTRUCTION.medication.v1] CONTAINS ITEM_TREE it[openEHR-EHR-ITEM_TREE.medication.v1] WHERE (it/items[at0012]/value/defining_code/terminology_id = "SNOMED" AND it/items[at0012]/value/defining_code/code_string matches {'350162003', '000000000'})
+</EEE:AQL>
+</p>

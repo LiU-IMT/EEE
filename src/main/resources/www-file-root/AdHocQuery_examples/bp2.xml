@@ -1,0 +1,71 @@
+<kml:kml xmlns:kml="http://www.opengis.net/kml/2.2" 
+	xmlns:gx="http://www.google.com/kml/ext/2.2" 
+	xmlns:atom="http://www.w3.org/2005/Atom" 
+	xmlns:eee="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" 
+	xmlns:v1="http://schemas.openehr.org/v1" 
+	xmlns="http://schemas.openehr.org/v1">
+<kml:Document>
+	<kml:name>Anna</kml:name>
+	<kml:Style xmlns="http://www.opengis.net/kml/2.2"  id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</kml:Style>
+	<kml:Style xmlns="http://www.opengis.net/kml/2.2"  id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ffcccccc</color>
+			<scale>0.9</scale>
+		</LabelStyle>
+	</kml:Style>
+	<kml:StyleMap xmlns="http://www.opengis.net/kml/2.2" id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</kml:StyleMap>
+{ let $aqlFiltered := <eee:AQL>SELECT o FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.blood_pressure.v1]</eee:AQL>  for $version in $aqlFiltered/.. 
+  let $comp := $version/data
+  order by $comp/context/start_time/value/text()
+  return
+	<kml:Placemark>
+		<kml:name>{$comp/name/value/text()}</kml:name>
+		<kml:description>Beskrivning som hamnar i bubblan?	
+		</kml:description>
+		<kml:LookAt>
+			<kml:longitude>22.46715241144779</kml:longitude>
+			<kml:latitude>65.17814441570388</kml:latitude>
+			<kml:altitude>0</kml:altitude>
+			<kml:range>44408.03320234025</kml:range>
+			<kml:tilt>0</kml:tilt>
+			<kml:heading>0.09746611860954747</kml:heading>
+			<kml:altitudeMode>relativeToGround</kml:altitudeMode>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</kml:LookAt>
+		<kml:styleUrl>#msn_ylw-pushpin</kml:styleUrl>
+		<kml:Point>
+			<kml:coordinates>22.46715241144779,65.17814441570388,0</kml:coordinates>
+		</kml:Point>
+	</kml:Placemark>
+}	
+</kml:Document>
+</kml:kml>
+

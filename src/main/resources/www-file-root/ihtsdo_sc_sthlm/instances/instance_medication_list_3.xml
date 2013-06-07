@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<v1:composition archetype_node_id="openEHR-EHR-COMPOSITION.medication_list.v1"
+	xmlns:v1="http://schemas.openehr.org/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<v1:name>
+		<v1:value>Medication list</v1:value>
+	</v1:name>
+	<v1:archetype_details>
+		<v1:archetype_id>
+			<v1:value>openEHR-EHR-COMPOSITION.medication_list.v1</v1:value>
+		</v1:archetype_id>
+		<v1:rm_version>1.0.1</v1:rm_version>
+	</v1:archetype_details>
+	<v1:language>
+		<v1:terminology_id>
+			<v1:value>ISO_639-1</v1:value>
+		</v1:terminology_id>
+		<v1:code_string>en</v1:code_string>
+	</v1:language>
+	<v1:territory>
+		<v1:terminology_id>
+			<v1:value>ISO_3166-1</v1:value>
+		</v1:terminology_id>
+		<v1:code_string>SE</v1:code_string>
+	</v1:territory>
+	<v1:category>
+		<v1:value>persistent</v1:value>
+		<v1:defining_code>
+			<v1:terminology_id>
+				<v1:value>openehr</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>431</v1:code_string>
+		</v1:defining_code>
+	</v1:category>
+	<v1:composer xsi:type="v1:PARTY_IDENTIFIED">
+		<v1:name>Doctor</v1:name>
+	</v1:composer>
+	<v1:content archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1"
+		xsi:type="v1:INSTRUCTION">
+		<v1:name>
+			<v1:value>Medication order</v1:value>
+		</v1:name>
+		<v1:archetype_details>
+			<v1:archetype_id>
+				<v1:value>openEHR-EHR-INSTRUCTION.medication.v1</v1:value>
+			</v1:archetype_id>
+			<v1:rm_version>1.0.1</v1:rm_version>
+		</v1:archetype_details>
+		<v1:language>
+			<v1:terminology_id>
+				<v1:value>ISO_639-1</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>en</v1:code_string>
+		</v1:language>
+		<v1:encoding>
+			<v1:terminology_id>
+				<v1:value>IANA_character-sets</v1:value>
+			</v1:terminology_id>
+			<v1:code_string>UTF-8</v1:code_string>
+		</v1:encoding>
+		<v1:subject xsi:type="v1:PARTY_SELF">
+			<v1:external_ref>
+				<v1:id xsi:type="v1:HIER_OBJECT_ID">
+					<v1:value>1.2.4.5.6.12.1</v1:value>
+				</v1:id>
+				<v1:type>PARTY</v1:type>
+			</v1:external_ref>
+		</v1:subject>
+		<v1:narrative>
+			<v1:value>instruction narrative</v1:value>
+		</v1:narrative>
+		<v1:activities archetype_node_id="at0001">
+			<v1:name>
+				<v1:value>Medication activity</v1:value>
+			</v1:name>
+			<v1:description archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1"
+				xsi:type="v1:ITEM_TREE">
+				<v1:name>
+					<v1:value>Medication description</v1:value>
+				</v1:name>
+				<v1:items archetype_node_id="at0001" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Name of medication</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>Captopril Actavis</v1:value>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0012" xsi:type="v1:ELEMENT">
+					<v1:name xsi:type="v1:DV_TEXT">
+						<v1:value>Generic name</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_CODED_TEXT">
+						<v1:value>Captopril</v1:value>
+						<v1:defining_code>
+							<v1:terminology_id>
+								<v1:value>SNOMED-CT</v1:value>
+							</v1:terminology_id>
+							<v1:code_string>387160004</v1:code_string>
+						</v1:defining_code>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0003" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Strength per dose unit</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_QUANTITY">
+						<v1:magnitude>25.0</v1:magnitude>
+						<v1:units>mg</v1:units> <!-- mg/ml???? -->
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0004" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Form</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_TEXT">
+						<v1:value>Tablet - unit of product usage</v1:value>
+						<v1:defining_code>
+							<v1:terminology_id>
+								<v1:value>SNOMED-CT</v1:value>
+							</v1:terminology_id>
+							<v1:code_string>2688980019</v1:code_string>
+						</v1:defining_code>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0033" xsi:type="v1:CLUSTER">
+					<v1:name>
+						<v1:value>Dose</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0035" xsi:type="v1:CLUSTER">
+						<v1:name>
+							<v1:value>By absolute quantity</v1:value>
+						</v1:name>
+						<v1:items archetype_node_id="at0037" xsi:type="v1:ELEMENT">
+							<v1:name>
+								<v1:value>Quantity by mass</v1:value>
+							</v1:name>
+							<v1:value xsi:type="v1:DV_QUANTITY">
+								<v1:accuracy>0.0</v1:accuracy>
+								<v1:magnitude>40.0</v1:magnitude>
+								<v1:units>mg</v1:units>
+								<v1:precision>0</v1:precision>
+							</v1:value>
+						</v1:items>
+					</v1:items>
+				</v1:items>
+				<v1:items archetype_node_id="at0008" xsi:type="v1:ELEMENT">
+					<v1:name>
+						<v1:value>Route</v1:value>
+					</v1:name>
+					<v1:value xsi:type="v1:DV_CODED_TEXT">
+						<v1:value>Oral route</v1:value>
+						<v1:defining_code>
+							<v1:terminology_id>
+								<v1:value>SNOMED-CT</v1:value>
+							</v1:terminology_id>
+							<v1:code_string>44611018</v1:code_string>
+						</v1:defining_code>
+					</v1:value>
+				</v1:items>
+				<v1:items archetype_node_id="at0010" xsi:type="v1:CLUSTER">
+					<v1:name>
+						<v1:value>Indications</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0011" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Indication</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_CODED_TEXT">
+							<v1:value>Acute cardiac pulmonary edema</v1:value>
+							<v1:defining_code>
+								<v1:terminology_id>
+									<v1:value>SNOMED-CT</v1:value>
+								</v1:terminology_id>
+								<v1:code_string>360371003</v1:code_string>
+							</v1:defining_code>
+						</v1:value>
+					</v1:items>
+				</v1:items>
+				<v1:items archetype_node_id="at0018" xsi:type="v1:CLUSTER">
+					<v1:name>
+						<v1:value>Administration information</v1:value>
+					</v1:name>
+					<v1:items archetype_node_id="at0019" xsi:type="v1:ELEMENT">
+						<v1:name>
+							<v1:value>Date (time) of first administration</v1:value>
+						</v1:name>
+						<v1:value xsi:type="v1:DV_DATE_TIME">
+							<v1:value>2010-03-12</v1:value>
+						</v1:value>
+					</v1:items>
+				</v1:items>
+			</v1:description>
+			<v1:timing>
+				<v1:value><v1:value xsi:type="QSC_TS" code="AM"/></v1:value>
+				<v1:formalism>HL7GTS</v1:formalism>
+			</v1:timing>
+			<v1:action_archetype_id>string value</v1:action_archetype_id>
+		</v1:activities>
+	</v1:content>
+</v1:composition>

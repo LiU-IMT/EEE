@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>RiksSjuk</title>
+<style type="text/css">
+body{padding: 20px;background-color: #FFF;
+    font: 100.01% "Trebuchet MS",Verdana,Arial,sans-serif}
+div.fraga{margin: 0 10px; font-size: 130%;color: #000}
+div.container{ margin: 0 10%;background: #9BD1FA; margin-bottom: 20px;}
+div.ruta{margin: 0 10%; border-style:solid;border-color:#FFF; }
+div.knapp{}
+b.rtop, b.rbottom{display:block;background: #FFF}
+b.rtop b, b.rbottom b{display:block;height: 1px;
+    overflow: hidden; background: #9BD1FA}
+b.r1{margin: 0 5px}
+b.r2{margin: 0 3px}
+b.r3{margin: 0 2px}
+b.rtop b.r4, b.rbottom b.r4{margin: 0 1px;height: 2px}
+</style>
+<script type="text/javascript">
+function query_lak(_id)
+{
+	url = "http://localhost:8182/ehr/AnnaTest/adHocQuery";
+	content = "let $code_strings :=<eee:AQL>SELECT i/activities[at0001]/description/items[at0001]/value/defining_code/code_string FROM EHR [ehr_id = 12] CONTAINS COMPOSITION c [openEHR-EHR-COMPOSITION.encounter.v1] CONTAINS INSTRUCTION i [openEHR-EHR-INSTRUCTION.medication.v1] WHERE  i/activities[at0001]/description/items[at0001]/value/defining_code/terminology_id/value = 'SNOMED CT'</eee:AQL>\
+		   for $cs in $code_strings\
+		   where $cs = (15222008)\
+		   return <hej> {$cs} </hej>";
+
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.open("POST",url,false);
+	xmlhttp.setRequestHeader("Content-type", "text/xml");
+	xmlhttp.setRequestHeader("Content-length", content.length);
+	xmlhttp.setRequestHeader("Connection", "close");
+	xmlhttp.send(content);
+
+	if(xmlhttp.responseText != "")
+		document.getElementById(_id).innerHTML="Ja (" + xmlhttp.responseText + ")"
+	else
+		document.getElementById(_id).innerHTML="Nej";
+	//document.getElementById(_id).innerHTML='Information från DB';
+}
+
+function query_diag(_id)
+{
+	url = "http://localhost:8182/ehr/AnnaTest/adHocQuery";
+	content = "for $ a in <eee:AQL> \
+		SELECT e/data[at0001]/items[at0002.1]/value/defining_code/code_string \
+		FROM EHR [ehr_id = 12] \
+		CONTAINS COMPOSITION c [openEHR-EHR-COMPOSITION.epicrisis.v1] \
+		CONTAINS EVALUATION e [openEHR-EHR-EVALUATION.problem-diagnosis.v1]	</eee:AQL> \
+		return  $a/text() ";
+		
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.open("POST",url,false);
+	xmlhttp.setRequestHeader("Content-type", "text/xml");
+	xmlhttp.setRequestHeader("Content-length", content.length);
+	xmlhttp.setRequestHeader("Connection", "close");
+	xmlhttp.send(content);
+
+	// mappning!
+	if(xmlhttp.responseText == "195189003")
+		document.getElementById(_id).innerHTML="I63.3 Cerebral infarkt orsakad av trombos i cerebrala artärer"
+	else
+		document.getElementById(_id).innerHTML="Ingen diagnos";
+	//document.getElementById(_id).innerHTML='Information från DB';
+}
+</script>
+</head>
+<body>
+<div class="container" bgcolor=grey;>
+<b class="rtop">
+  <b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b>
+</b>
+<div class="fraga">Kvalitetsregistret RiksStroke: Anna (19410909-9000)</div>
+<b class="rbottom">
+  <b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b>
+</b>
+</div>
+<div class="container">
+<b class="rtop">
+  <b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b>
+</b>
+<div class="fraga">
+Diagnos
+</div>
+<div id="diagnos" class="ruta" >
+...
+</div>
+<div class="knapp" align="right">
+<button type="button" onclick="query_diag('diagnos')">Hämta information</button>
+</div>
+<b class="rbottom">
+  <b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b>
+</b>
+</div> 
+<div class="container">
+<b class="rtop">
+  <b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b>
+</b>
+<div class="fraga">
+Högt blodtryck behandlat med blodtryckssänkande läkemedel?
+</div>
+<div id="bt_lakemedel" class="ruta" >
+...
+</div>
+<div class="knapp" align="right">
+<button type="button" onclick="query_lak('bt_lakemedel')">Hämta information</button>
+</div>
+<b class="rbottom">
+  <b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b>
+</b>
+</div> 
+</body>
+</html>

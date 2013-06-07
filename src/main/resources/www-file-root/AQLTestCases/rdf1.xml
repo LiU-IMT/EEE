@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<eeeq:query xmlns:eeeq="http://www.imt.liu.se/mi/ehr/2010/EEEQuery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="EEEQuery.xsd">
+<eeeq:parameter name="method" value="xml"/>
+<eeeq:parameter name="omit-xml-declaration" value="no"/>
+<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:ddoliu="https://lincoln.imt.liu.se:8443/vocab/resource/liu_ddo#">
+{
+for $comp in <eeeq:aql>SELECT c FROM Ehr test CONTAINS COMPOSITION c</eeeq:aql>
+return 
+	<rdf:Description rdf:about="{base-uri($comp)}">
+		<rdf:type resource="ddoliu:EpisodeOfCare"/>
+		<ddoliu:hasStartDateTime rdf:datatype="xs:datetime">{data($comp/value/eee:versioned_objects/eee:versions/data/context/start_time/value)}</ddoliu:hasStartDateTime>
+	</rdf:Description>
+}
+</rdf:RDF>
+</eeeq:query>

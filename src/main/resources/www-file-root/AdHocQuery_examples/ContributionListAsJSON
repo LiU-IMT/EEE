@@ -1,0 +1,9 @@
+declare default element namespace "http://schemas.openehr.org/v1";
+declare namespace eee = "http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd";
+declare namespace v1 = "http://schemas.openehr.org/v1";
+for $contrib in //eee:CONTRIBUTION
+let $uid := $contrib/eee:uid/v1:value/text()
+let $time := $contrib/eee:audit/v1:time_committed/v1:value/text()
+let $modtime := xs:dateTime($time)
+order by $modtime descending
+return concat('{"time_committed": "', $modtime, '", "uid": "', $uid,'"}')

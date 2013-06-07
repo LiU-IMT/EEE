@@ -1,0 +1,70 @@
+<rdf:RDF xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ddoliu="https://lincoln.imt.liu.se:8443/vocab/resource/liu_ddo#">
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__e5dccc78-fc7b-4eb3-9d4d-a2275afee6c6__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2007-11-21T11:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__58ef9e12-629c-4e66-a7e3-0ef2b13d51df__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-03-01T09:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__83fed7d8-6990-4c39-81cf-1bc14d8de833__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2007-12-21T09:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__0e8f642b-1486-4b13-b7e8-2a64a9845fe7__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-02-01T09:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__c90c2700-238f-4b1f-909d-cddc7331c5fd__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-03-30T10:25:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__25e7b22a-28a5-4b70-bcf3-33b14edf282b__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-06-02T09:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__fcc23b91-2f8a-40a3-bd4b-9a3e3042af20__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2009-09-09T11:03:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__402baebc-9fb2-4906-a7d1-5bef1f3f52ca__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-04-03T11:45:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__eadf3f24-5304-4c83-b592-0054eb10331b__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2007-12-07T09:45:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__8a090626-7ba3-40ec-9de0-7307f8ce3440__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-03-28T11:00:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__7e721172-cb30-482b-98f1-31003a704e9d__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-06-30T13:25:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__b2f34c89-9ff8-43cb-9866-83c113a99cbd__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2007-10-23T09:05:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__127ecb6e-8dc1-4bf9-bfde-ea1e4ab91177__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-01-04T09:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__bacce915-9419-4007-93fd-31d7b30f318c__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-04-01T11:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__a5c31bd0-1cdb-421c-a867-50817c36a240__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-04-01T15:25:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__dfa67b49-e8e3-49dc-99eb-b2de705b3e78__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2007-11-07T14:20:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+    <rdf:Description rdf:about="/db/EHR/AnnaTest/COMPOSITION__409cafd6-18ad-47b8-96e5-1bab78b4ae2f__test1.eee.mi.imt.liu.se__1">
+        <rdf:type resource="ddoliu:EpisodeOfCare"/>
+        <ddoliu:hasStartDateTime rdf:datatype="xs:datetime">2008-03-15T21:15:00</ddoliu:hasStartDateTime>
+    </rdf:Description>
+</rdf:RDF>

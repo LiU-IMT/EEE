@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<eeeq:query xmlns:eeeq="http://www.imt.liu.se/mi/ehr/2010/EEEQuery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="EEEQuery.xsd">
+<eeeq:parameter name="method" value="xml"/>
+<eeeq:parameter name="omit-xml-declaration" value="no"/>
+<resultset>
+<eeeq:aql>
+SELECT  c/name/value 
+FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c 
+</eeeq:aql>
+</resultset>
+</eeeq:query>
+<!-- <html>
+<head>
+</head>
+<body>
+<h1>Patient</h1>
+<h2>Persistent compositions</h2>
+<p>
+<eee:AQL>
+	SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c
+</eee:AQL>
+</p>
+<p>
+<eee:AQL>
+	SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c
+</eee:AQL>
+</p>
+</body>
+</html> -->

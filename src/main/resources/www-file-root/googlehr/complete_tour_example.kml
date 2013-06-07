@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+  xmlns:gx="http://www.google.com/kml/ext/2.2">
+
+<Document>
+  <name>A modified tour and some features</name>
+  <open>1</open>
+
+  <gx:Tour>
+    <name>Play me!</name>
+    <gx:Playlist>
+
+      <gx:AnimatedUpdate>
+        <gx:duration>3.0</gx:duration>
+        <Update>
+          <targetHref>http://localhost:8182/googlehr/SoSLuleDemo-Ant.kmz</targetHref>
+          <Change>
+            <Placemark targetId="c70f0a76-7b8c-4349-a87b-a91348f00cb1::test1.eee.mi.imt.liu.se::1">
+              <gx:balloonVisibility>1</gx:balloonVisibility>
+            </Placemark>
+          </Change>
+        </Update>
+      </gx:AnimatedUpdate>
+
+      <gx:Wait>
+        <gx:duration>6.0</gx:duration>
+      </gx:Wait>
+
+    </gx:Playlist>
+  </gx:Tour>
+</Document>
+</kml>

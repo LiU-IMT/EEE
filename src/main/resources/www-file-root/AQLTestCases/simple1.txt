@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resultset xmlns="http://schemas.openehr.org/v1">
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Hembesök</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Hembesök</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Hembesök</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Hembesök</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Hembesök</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Epikris</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Telefonkontakt</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Besöksanteckning</v1:value>
+    <v1:value xmlns:v1="http://schemas.openehr.org/v1">Inskrivning</v1:value>
+</resultset>

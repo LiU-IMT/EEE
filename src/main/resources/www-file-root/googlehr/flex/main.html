@@ -1,0 +1,216 @@
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="history/history.css" />
+<!--  END Browser History required section -->
+
+<title></title>
+<script src="AC_OETags.js" language="javascript"></script>
+
+<!--  BEGIN Browser History required section -->
+<script src="history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<style>
+body { margin: 0px; overflow:hidden }
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = 9;
+// Minor version of Flash required
+var requiredMinorVersion = 0;
+// Minor version of Flash required
+var requiredRevision = 124;
+// -----------------------------------------------------------------------------
+// -->
+</script>
+<script src="http://www.google.com/jsapi?key=ABQIAAAAnsYROlepbf0IyTHWwFf7nhTJmotsnsUrcr7z1voF5BMzBEK3zxRkX1K4YhEKrOCv1FnKQjONOw7bOw"></script>
+<script type="text/javascript">
+      var ge;
+      google.load("earth", "1");
+
+      function init() {
+         google.earth.createInstance('map3d', initCB, failureCB);
+      }
+
+      function initCB(instance) {
+         ge = instance;
+         ge.getWindow().setVisibility(true);
+         ge.getNavigationControl().setVisibility(ge.VISIBILITY_AUTO);         
+         loadMap('http://localhost:8182/googlehr/SoSLuleDemo-Ant.kml')     
+      }
+
+      function failureCB(errorCode) {
+      	 alert("Failed to load Google Earth plugin properly: "+ errorCode);
+      }
+
+      google.setOnLoadCallback(init);
+      
+      function changeDocumentTitle(a) {
+        if(a == "b420") loadMap('http://localhost:8182/googlehr/SoSLuleDemo-BP.kml')
+        window.document.title=a;
+        //alert(a);
+        return "successful";
+      }
+      
+      function loadMap(a) {
+        var link = ge.createLink('');
+		link.setHref(a);
+		var networkLink = ge.createNetworkLink('');
+		networkLink.set(link, true, true); // Sets the link, refreshVisibility, and flyToView
+		ge.getFeatures().appendChild(networkLink);
+		traverseKml(networkLink);
+        // alert("Map: "+ a);
+        return "successful";
+      }      
+      
+      function traverseKml(node) {
+      if (node.getFeatures().hasChildNodes()) {
+          var subNodes = node.getFeatures().getChildNodes();
+          var length = subNodes.getLength();
+          var eachSubNode;
+          var nodeType;
+          var nodeName;
+          var nodeID;
+          var nodeDescription;
+
+          for (var i = 0; i < length; i++) {
+              eachSubNode = subNodes.item(i);
+              nodeType = eachSubNode.getType();
+              nodeName = eachSubNode.getName();
+              nodeID = eachSubNode.getId();
+              nodeDescription = eachSubNode.getDescription();
+              //var nodeStyle = eachSubNode.getStyleUrl();
+              switch (nodeType) {
+                  case 'KmlPlacemark':
+                      alert(nodeDescription);
+                      google.earth.addEventListener(eachSubNode,'click', function(event) {
+
+                          // prevent the default balloon from popping up
+                          event.preventDefault();
+                          //setProcessingOff(); //for testing, sets the processor off
+                          //showNewColor(eleID); //sets the background color of the grid
+                          var balloon = ge.createHtmlStringBalloon('');
+                          balloon.setFeature(event.getTarget());
+                          balloon.setMaxWidth(300);
+                          
+                          balloon.setContentString("<a href='#' onclick=setProcessingOn();>Get Comps</a><BR><BR><div align='left'>" + event.getTarget().getDescription() + "</div>"); 
+                          // balloon.setContentString("<a href='#' onclick=setProcessingOn();>Get Comps</a><BR><BR><div align='left'>" + nodeDescription + "</div>");
+                          ge.setBalloon(balloon); //set the ballon to ge plugin
+                      });
+                      break;
+                  case 'KmlFolder':
+                      traverseKml(eachSubNode);
+                      break;
+              }
+          }
+      } 
+  } 
+           
+      
+      
+   </script>
+   <SCRIPT LANGUAGE="JavaScript">
+    // Internet Explorer and Mozilla-based browsers refer to the Flash application 
+    // object differently.
+    // This function returns the appropriate reference, depending on the browser.
+    function getMyApp(appName) {
+        if (navigator.appName.indexOf ("Microsoft") !=-1) {
+            return window[appName];
+        } else {
+            return document[appName];
+        }
+    }
+
+    function callApp() {
+        window.document.title = document.getElementById("newTitle").value;
+        getMyApp("main").myFlexFunction(window.document.title);
+    }
+</SCRIPT>
+   
+</head>
+<body scroll="no">
+	<!-- <form id="f1">Enter a new title: <input type="text" size="30" id="newTitle" onchange="callApp()"></form> -->
+	<div id="map3d" style="height: 400; width: 100%;"></div>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+	// DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = window.location;
+    document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+    var MMdoctitle = document.title;
+
+	AC_FL_RunContent(
+		"src", "playerProductInstall",
+		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+		"width", "100%",
+		"height", "300",
+		"align", "middle",
+		"id", "main",
+		"quality", "high",
+		"bgcolor", "#869ca7",
+		"name", "main",
+		"allowScriptAccess","sameDomain",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+	AC_FL_RunContent(
+			"src", "main",
+			"width", "100%",
+			"height", "300",
+			"align", "middle",
+			"id", "main",
+			"quality", "high",
+			"bgcolor", "#869ca7",
+			"name", "main",
+			"allowScriptAccess","sameDomain",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = 'Alternate HTML content should be placed here. '
+  	+ 'This content requires the Adobe Flash Player. '
+   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+    document.write(alternateContent);  // insert non-flash content
+  }
+// -->
+</script>
+<noscript>
+  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="main" width="100%" height="300"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="main.swf" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#869ca7" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<embed src="main.swf" quality="high" bgcolor="#869ca7"
+				width="100%" height="300" name="main" align="middle"
+				play="true"
+				loop="false"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+				pluginspage="http://www.adobe.com/go/getflashplayer">
+			</embed>
+	</object>
+</noscript>
+</body>
+</html>

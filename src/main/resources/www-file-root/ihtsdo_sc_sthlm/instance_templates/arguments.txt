@@ -1,0 +1,5 @@
+resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/problemlista.oet -a "resources/www-file-root/aom/archetypes"  -t "resources/www-file-root/aom/templates" -o resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/instance_problem_list.xml
+
+resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/medicinlista.oet -a "resources/www-file-root/aom/archetypes"  -t "resources/www-file-root/aom/templates" -o resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/instance_medication_list.xml
+
+resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/besöksanteckning1.oet -a "resources/www-file-root/aom/archetypes"  -t "resources/www-file-root/aom/templates" -o resources/www-file-root/ihtsdo_sc_sthlm/instance_templates/instance_encounter.xml

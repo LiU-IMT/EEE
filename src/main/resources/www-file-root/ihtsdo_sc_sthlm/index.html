@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="showcase.css">
+	<title>IHTSDO SNOMED CT Showcase, October 2012, Stockholm,
+		Sweden</title> <script>
+
+function ahah(url, target) {
+  document.getElementById(target).innerHTML = '<p>Fetching data...</p>';
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  if (req != undefined) {
+    req.onreadystatechange = function() {ahahDone(url, target);};
+    req.open("GET", url, true);
+    req.send("");
+  }
+}  
+
+function ahahDone(url, target) {
+  if (req.readyState == 4) { // only if req is "loaded"
+    if (req.status == 200) { // only if "OK"
+      document.getElementById(target).innerHTML = req.responseText;
+    } else {
+      document.getElementById(target).innerHTML=" AHAH Error:\n"+ req.status + "\n" +req.statusText;
+    }
+  }
+}
+
+function selectTestCaseQuestion() {
+	testCase = document.getElementById("testcase").value;
+	ahah(testCase + "_question.html", "question");
+	document.getElementById("continueButton").style.visibility="visible";
+	document.getElementById("runButton").style.visibility="hidden";
+	document.getElementById("query").innerHTML="<p></p>";
+	document.getElementById("result").innerHTML="<p></p>";
+	
+}
+
+function continueQuery() {
+	testCase = document.getElementById("testcase").value;
+	ahah(testCase + "_query.html", "query");
+	document.getElementById("runButton").style.visibility="visible";
+}
+
+function runQuery() {
+	document.getElementById("result").innerHTML = '<p>Running query...</p>';
+  	if (window.XMLHttpRequest) {
+    	req = new XMLHttpRequest();
+  	} else if (window.ActiveXObject) {
+    	req = new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+  	req.onreadystatechange = function(){showResults();};
+  	req.open("POST", "/ehr:IHTSDO_Showcase_EHR_ID/q/AQL/", true);
+  	req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  	req.send("query=" + document.getElementById("aql").value);
+}
+
+function showResults() {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			document.getElementById("result").innerHTML = "";
+			if(document.getElementById("xslt").value == 'y') {
+				xslDoc = loadXMLDoc("openEHR_RMtoHTML-v4.xsl");
+				xmlDoc = req.responseXML;
+				// code for IE
+				if (window.ActiveXObject) {
+		  			document.getElementById("result").innerHTML=xmlDoc.transformNode(xslDoc);
+		  		}
+				// code for Mozilla, Firefox, Opera, etc.
+				else if (document.implementation && document.implementation.createDocument)	{
+					xsltProcessor=new XSLTProcessor();
+					xsltProcessor.importStylesheet(xslDoc);
+					resultDocument = xsltProcessor.transformToFragment(xmlDoc,document);			
+					document.getElementById("result").appendChild(resultDocument);
+				}
+			} else {
+				document.getElementById("result").innerHTML = '<textarea rows="20" >' + req.responseText + "</textarea>";
+			}
+		} else {
+			document.getElementById("result").innerHTML="Error:\n"+ req.status + "\n" +req.statusText;
+		}
+	}
+}
+
+function loadXMLDoc(dname)
+{
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET",dname,false);
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function explain(nr) {
+	testCase = document.getElementById("testcase").value;
+	ahah(testCase + "_explain_" + nr + ".html", "explain");
+	document.getElementById("outerExplain").style.visibility="visible";
+}
+
+</script>
+</head>
+<body>
+	<h1>IHTSDO SNOMED CT Showcase, October 2012, Stockholm, Sweden</h1>
+	<div id="testcaseBox">
+	<select id="xslt">
+	<option value="y">HTML</option>
+	<option value="n">XML</option>
+	</select>
+	<select id="testcase" onclick="selectTestCaseQuestion()">
+		<option value="home">Home</option>
+		<option value="smoker">Smoker 1</option>
+		<option value="smoker2">Smoker 2</option>
+		<option value="diagnosis">Diagnosis 1</option>
+		<option value="diagnosis2">Diagnosis 2</option>
+		<option value="diagnosis3">Diagnosis 3</option>
+		<option value="loop">Loop diuretic 1</option>
+		<option value="loop2">Loop diuretic 2</option>
+		<option value="ace">ACE inhibitor 1</option>
+		<option value="ace2">ACE inhibitor 2</option>
+	</select>
+	</div>
+	<div id="outerExplain">
+		<div id="explain"></div>
+		<button id="closeButton"
+			onclick="document.getElementById('outerExplain').style.visibility='hidden';">Close</button>
+	</div>
+	<div id="outerQuestion" class="box">
+		<div id="question">
+			<p></p>
+		</div>
+		<button id="continueButton" onclick="continueQuery()">Continue</button>
+	</div>
+	<p></p>
+	<div id="outerQuery" class="box">
+		<div id="query">
+			<p></p>
+		</div>
+		<p></p>
+		<button id="runButton" onclick="runQuery()">Run</button>
+	</div>
+	<p></p>
+	<div id="result" class="box">
+		<p></p>
+	</div>
+	<div id="bottom"></div>
+	<div id="footer">
+		<img id="sos" src="images/socialstyrelsen-logo.png" /> <img id="liu"
+			src="images/linkuniv_sv_hori_col.png" />
+	</div>
+</body>
+</html>

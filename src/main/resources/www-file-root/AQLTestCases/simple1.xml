@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<eeeq:query xmlns:eeeq="http://www.imt.liu.se/mi/ehr/2010/EEEQuery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="EEEQuery.xsd">
+<eeeq:parameter name="method" value="xml"/>
+<eeeq:parameter name="omit-xml-declaration" value="no"/>
+<resultset>{
+for $x in <eeeq:aql>
+SELECT  c
+FROM Ehr test CONTAINS COMPOSITION c 
+</eeeq:aql>
+return $x//data}
+</resultset>
+</eeeq:query>

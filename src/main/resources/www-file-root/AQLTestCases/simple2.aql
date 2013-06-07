@@ -1,0 +1,1 @@
+SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c

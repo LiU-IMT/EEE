@@ -1,0 +1,199 @@
+<composition xmlns="http://schemas.openehr.org/v1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1"
+	xsi:type="COMPOSITION">
+	<name>
+		<value>Akutmottagningsbesök</value>
+	</name>
+	<language>
+		<terminology_id>
+			<value>ISO_639-1</value>
+		</terminology_id>
+		<code_string>sv</code_string>
+	</language>
+	<territory>
+		<terminology_id>
+			<value>ISO_3166-1</value>
+		</terminology_id>
+		<code_string>SE</code_string>
+	</territory>
+	<category>
+		<value>event</value>
+		<defining_code>
+			<terminology_id>
+				<value>openehr</value>
+			</terminology_id>
+			<code_string>433</code_string>
+		</defining_code>
+	</category>
+	<composer xsi:type="PARTY_IDENTIFIED">
+		<name>leg. läk. Pär Älg</name>
+	</composer>
+	<context>
+		<start_time>
+			<value>2008-03-15T18:05:00</value>
+		</start_time>
+		<setting>
+			<value>akutmottagning</value>
+			<defining_code>
+				<terminology_id>
+					<value>openehr</value>
+				</terminology_id>
+				<code_string>227</code_string>
+			</defining_code>
+		</setting>
+		<!--
+			<other_context xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name> <value>Tree</value> </name> <items xsi:type="ELEMENT"
+			archetype_node_id="at0002"> <name> <value>Episode identifier</value>
+			</name> <value xsi:type="DV_TEXT">
+			<value>2c4a06c2-e3bd-4cd3-a6bb-1fd83df66107</value> </value> </items>
+			</other_context>
+		-->
+		<health_care_facility>
+			<name>Sjukhuset i Smaragdstaden</name>
+		</health_care_facility>
+	</context>
+	<content xsi:type="EVALUATION" archetype_node_id="openEHR-EHR-EVALUATION.problem-diagnosis.v1">
+		<name>
+			<value>Diagnos</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-EVALUATION.problem-diagnosis.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<data xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name>
+				<value>data</value>
+			</name>
+			<items xsi:type="ELEMENT" archetype_node_id="at0002.1">
+				<name>
+					<value>Diagnos</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>Sluten pertrokantär femurfraktur</value>
+					<defining_code>
+						<terminology_id>
+							<value>SNOMED CT</value>
+						</terminology_id>
+						<code_string>208548007</code_string>
+					</defining_code>
+				</value>
+			</items>
+			<items xsi:type="ELEMENT" archetype_node_id="at0.32">
+				<name>
+					<value>Status</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>working</value>
+					<defining_code>
+						<terminology_id>
+							<value>local</value>
+						</terminology_id>
+						<code_string>at0.34</code_string>
+					</defining_code>
+				</value>
+			</items>
+			<items xsi:type="ELEMENT" archetype_node_id="at0009">
+				<name>
+					<value>Klinisk beskrivning</value>
+				</name>
+				<value xsi:type="DV_TEXT">
+					<value>Patienten har ramlat ner från en pall när hon skulle hänga upp gardinerna idag på förmiddagen. Hon kan inte stödja på höger ben och har svårt att böja i höftleden. Röntgen visar en	pertrochantär femurfraktur.</value>
+				</value>
+			</items>
+		</data>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.referral.v1">
+		<name>
+			<value>Remiss</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.referral.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Patienten har ramlat ner från en pall när hon skulle hänga upp gardinerna idag på förmiddagen. Hon kan inte stödja på höger ben och har svårt att böja i höftleden. Röntgen visar en pertrochantär femurfraktur. Operation planeras att göras direkt.</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Remiss för operation</value>
+			</name>
+			<description xsi:type="ITEM_TREE" archetype_node_id="openEHR-EHR-ITEM_TREE.referral.v1">
+				<name>
+					<value>Remiss</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Klinisk frågeställning</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>Operation av pertrochantär femurfraktur</value>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0014">
+					<name>
+						<value>Remittent</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0015">
+						<name>
+							<value>Namn på remittent</value>
+						</name>
+						<value xsi:type="DV_TEXT">
+							<value>leg. läk. Per Älg</value>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0021">
+					<name>
+						<value>Remissmottagare</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0023">
+						<name>
+							<value>Adress för remissmottagare</value>
+						</name>
+						<value xsi:type="DV_TEXT">
+							<value>Oprtopedkliniken vid Sjukhuset i Smaragdstaden</value>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value />
+				<formalism>xxx</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.referral.v1
+			</action_archetype_id>
+		</activities>
+	</content>
+</composition>

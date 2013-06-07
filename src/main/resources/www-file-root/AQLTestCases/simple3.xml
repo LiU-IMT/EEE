@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<eeeq:query xmlns:eeeq="http://www.imt.liu.se/mi/ehr/2010/EEEQuery" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="EEEQuery.xsd">
+<eeeq:parameter name="method" value="text"/>
+for $a in <eeeq:aql> 
+		SELECT e/data[at0001]/items[at0002.1]/value/defining_code/code_string 
+		FROM EHR [ehr_id = 12] 
+		CONTAINS COMPOSITION c [openEHR-EHR-COMPOSITION.epicrisis.v1] 
+		CONTAINS EVALUATION e [openEHR-EHR-EVALUATION.problem-diagnosis.v1]	</eeeq:aql> 
+		return  $a/text()
+</eeeq:query>

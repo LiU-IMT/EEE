@@ -1,0 +1,41 @@
+declare default element namespace "http://schemas.openehr.org/v1";
+declare namespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+for $x in collection("OngoingContributions/dr_who/19121212-1212/13707ff3-f8f0-454c-93b8-84ec1a4b784b")//*[@archetype_node_id]
+where $x/@xsi:type="COMPOSITION" and $x/@archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1"
+return 
+<res> 
+ <test>{$x/name/value/text()}</test>
+ <text>{$x/@archetype_node_id}</text> 
+ <text>{$x/@xsi:type}</text> 
+</res>
+
+
+
+declare default element namespace "http://schemas.openehr.org/v1";
+declare namespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+for $x in collection("OngoingContributions/dr_who/19121212-1212/13707ff3-f8f0-454c-93b8-84ec1a4b784b")
+let $y := $x//*[@xsi:type="COMPOSITION" and @archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1"]
+let $z := $y//*[@xsi:type="SECTION" and @archetype_node_id="openEHR-EHR-SECTION.vital_signs.v1"]
+where $z//value/text() = "systolic"
+return 
+<res> 
+ <test>{$z/name/value/text()}</test>
+ <text>{$z/@archetype_node_id}</text> 
+ <text>{$z/@xsi:type}</text> 
+</res>
+
+declare default element namespace  "http://schemas.openehr.org/v1";
+let $x := collection("OngoingContributions/dr_who/19121212-1212/13707ff3-f8f0-454c-93b8-84ec1a4b784b")[ //contribution/id[value = 24476]]
+return $x//contribution/id/value
+
+
+declare default element namespace "http://schemas.openehr.org/v1";
+declare namespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+for $x in collection("EHR/007")
+let $c := $x//*[@xsi:type="COMPOSITION"]
+let $i := $c//*[@xsi:type="INSTRUCTION" and  @archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1"]
+let $it := $i//*[@xsi:type="ITEM_TREE" and @archetype_node_id = "openEHR-EHR-ITEM_TREE.medication.v1"]
+where $it/items[@archetype_node_id = "at0012"]/value/defining_code/terminology_id = "SNOMED" 
+and $it/items[@archetype_node_id = "at0012"]/value/defining_code/code_string = "350162003"
+return $it
+

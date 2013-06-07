@@ -1,0 +1,11 @@
+SELECT e/ehr_id
+FROM
+	EHR e 
+		CONTAINS ACTION p [openEHR-EHR-ACTION.procedure.v1] AND
+		CONTAINS ACTION t [openEHR-EHR-ACTION.transfusion.v1]
+WHERE
+	p/ism_transition/current_state/defining_code mathces {[openehr::245]} AND 	-- procedure active
+	p/description/items[at0004]/value/defining_code matches { terminology://Snomed-CT/hierarchy?rootConceptId=387713003 } AND -- 387713003|Surgical procedure|
+	t/ism_transition/current_state/defining_code mathces {[openehr::245]} AND 	-- transfusion active
+	t/time/value > p/time/value AND 						-- transfusion occurs after procedure
+	t/time/magnitude() - p/time/magnitude() < 86400 		-- number of seconds less than 86400 (24*60*60)

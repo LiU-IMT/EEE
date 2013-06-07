@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>64b0cd5a-c84c-45c6-9828-887bb4e084a2</id>
+  <name>GTT_c13_medication</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose />
+      <use />
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.encounter.v1">
+    <Content xsi:type="ACTION" archetype_id="openEHR-EHR-ACTION.medication.v1" path="/content">
+      <description xsi:type="ITEM_TREE" archetype_id="openEHR-EHR-ITEM_TREE.medication.v1" path="/description">
+        <Rule path="/items[at0003]" max="0" />
+        <Rule path="/items[at0006]" max="0" />
+        <Rule path="/items[at0004]" max="0" />
+        <Rule path="/items[at0074]" max="0" />
+        <Rule path="/items[at0033]" max="0" />
+        <Rule path="/items[at0007]" max="0" />
+        <Rule path="/items[at0008]" max="0" />
+        <Rule path="/items[at0060]" max="0" />
+        <Rule path="/items[at0050]" max="0" />
+        <Rule path="/items[at0051]" max="0" />
+        <Rule path="/items[at0009]" max="0" />
+        <Rule path="/items[at0010]" max="0" />
+        <Rule path="/items[at0013]" max="0" />
+        <Rule path="/items[at0018]" max="0" />
+        <Rule path="/items[at0023]" max="0" />
+        <Rule path="/items[at0049]" max="0" />
+      </description>
+    </Content>
+    <Context />
+  </definition>
+</template>

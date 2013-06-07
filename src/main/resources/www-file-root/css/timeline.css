@@ -1,0 +1,119 @@
+#timeline { 
+	/* border: 1px solid green; */
+	font: 9px sans-serif;
+	margin: 0;
+	padding: 0;
+	width: 1500px;
+	background: white;
+	z-index: 14;
+}
+
+/*		.svgChartRoot{
+			border: 1px solid yellow;
+			background: white;
+			color: #00f;
+		}
+*/
+.popAnchor {
+	position: absolute; /* relative; */
+	/* border: 1px solid red; */
+	/* font: 9px sans-serif; */
+	width: 20px;
+	height: 20px;
+}
+
+.openEHR-EHR-COMPOSITION {
+	font: 12px sans-serif;
+	color: #000; /* Text in balloons */
+}
+
+/*		.text_label_foundation{
+			border: 1px solid yellow;
+			background: green;
+		}
+*/
+
+.axis {
+	shape-rendering: crispEdges;
+	z-index: 25;
+	/* fill: #909; */
+}
+
+.x.axis line {
+	stroke: #202;
+	/*fill: #909;*/
+}
+
+.x.axis .minor {
+	stroke-opacity: 0.5;
+	stroke-dasharray: 5, 5;
+}
+
+.x.axis path {
+	display: none; /* important! (otherwise graph may turn black...) */
+	stroke: #090;
+}
+
+.tick {
+	stroke: #900;
+}
+
+.systolic {
+	fill: BlueViolet;
+	font-weight: bold;
+}
+
+.diastolic {
+	fill: DarkOrchid;
+	font-weight: bold;	
+}
+
+/*		.y.axis line, .y.axis path {
+			fill: none;
+		stroke: #000;
+		}
+*/
+
+/* PRIMARY: rubric="primary medical " id="228"; rubric="primary nursing " id="229; rubric="primary allied " id="230" */
+.openEHR-setting-228,.openEHR-setting-229,.openEHR-setting-230 {
+	fill: darkgreen;
+}
+
+/* EMERGENCY: <concept rubric="emergency care" id="227"/> */
+.openEHR-setting-227 {
+	fill: #f00;
+}
+
+/* SECONDARY: <concept rubric="secondary medical " id="232"/> <concept rubric="secondary nursing " id="233"/> <concept rubric="secondary allied " id="234"/> */
+.openEHR-setting-232,.openEHR-setting-233,.openEHR-setting-234 {
+	fill: darkblue;
+}
+
+/* HOME : <concept rubric="home" id="225"/> */
+.openEHR-setting-225 {
+	fill: purple;
+}
+
+/* OTHER: <concept rubric="other care" id="238"/> */
+.openEHR-setting-238 {
+	fill: gray;
+}
+
+/*  <concept rubric="midwifery care" id="231"/>  <concept rubric="complementary " id="235"/> */
+/*  <concept rubric="dental care" id="236"/> <concept rubric="nursing home care" id="237"/> */
+/**
+		 * styling for tooltip content
+		 * mostly for example
+		 * note: canvas (the tip itself) cannot be styled here. use javascript options for that.
+		 */
+.bt-content {
+	font-size: small;
+	color: #f00;
+	line-height: normal;
+}
+
+/* styling for active target elements - usually for background highlighting */
+/* .bt-active { border: 1px solid yellow;
+		     background-color: yellow !important; 
+	
+}*/

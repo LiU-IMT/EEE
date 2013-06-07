@@ -1,0 +1,130 @@
+<composition xsi:type="COMPOSITION" xmlns="http://schemas.openehr.org/v1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	archetype_node_id="openEHR-EHR-COMPOSITION.epicrisis.v1">
+	<name>
+		<value>Epikris</value>
+	</name>
+	<archetype_details>
+		<archetype_id>
+			<value>openEHR-EHR-COMPOSITION.epicrisis.v1</value>
+		</archetype_id>
+		<rm_version>1.0.1</rm_version>
+	</archetype_details>
+	<language>
+		<terminology_id>
+			<value>ISO_639-1</value>
+		</terminology_id>
+		<code_string>sv</code_string>
+	</language>
+	<territory>
+		<terminology_id>
+			<value>ISO_3166-1</value>
+		</terminology_id>
+		<code_string>SE</code_string>
+	</territory>
+	<category>
+		<value>event</value>
+		<defining_code>
+			<terminology_id>
+				<value>openehr</value>
+			</terminology_id>
+			<code_string>433</code_string>
+		</defining_code>
+	</category>
+	<composer xsi:type="PARTY_IDENTIFIED">
+		<name>leg. läk. Gun Erixsson</name>
+	</composer>
+	<context>
+		<start_time>
+			<value>2009-09-09T11:03:00</value>
+		</start_time>
+		<end_time>
+			<value>2009-10-23T14:29:00</value>
+		</end_time>
+		<setting>
+			<value>neurologkliniken</value>
+			<defining_code>
+				<terminology_id>
+					<value>openehr</value>
+				</terminology_id>
+				<code_string>232</code_string>
+			</defining_code>
+		</setting>
+		<!--
+			<other_context xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name> <value>Tree</value> </name> <items xsi:type="ELEMENT"
+			archetype_node_id="at0002"> <name> <value>Episode identifier</value>
+			</name> <value xsi:type="DV_TEXT">
+			<value>2c4a06c2-e3bd-4cd3-a6bb-1fd83df66107</value> </value> </items>
+			</other_context>
+		-->
+		<health_care_facility>
+			<name>Sjukhuset i Smaragdstaden</name>
+		</health_care_facility>
+	</context>
+	<content xsi:type="EVALUATION" archetype_node_id="openEHR-EHR-EVALUATION.problem-diagnosis.v1">
+		<name>
+			<value>Diagnos</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-EVALUATION.problem-diagnosis.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<data xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name>
+				<value>data</value>
+			</name>
+			<items xsi:type="ELEMENT" archetype_node_id="at0002.1">
+				<name>
+					<value>Diagnos</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>Cerebral infarkt orsakad av trombos i cerebrala artärer</value>
+					<defining_code>
+						<terminology_id>
+							<value>SNOMED CT</value>
+						</terminology_id>
+						<code_string>195189003</code_string>
+					</defining_code>
+				</value>
+			</items>
+			<items xsi:type="ELEMENT" archetype_node_id="at0.32">
+				<name>
+					<value>Status</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>working</value>
+					<defining_code>
+						<terminology_id>
+							<value>local</value>
+						</terminology_id>
+						<code_string>at0.34</code_string>
+					</defining_code>
+				</value>
+			</items>
+			<items xsi:type="ELEMENT" archetype_node_id="at0009">
+				<name>
+					<value>Klinisk beskrivning</value>
+				</name>
+				<value xsi:type="DV_TEXT">
+					<value>text</value>
+				</value>
+			</items>
+		</data>
+	</content>
+</composition>

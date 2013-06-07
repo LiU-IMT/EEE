@@ -1,0 +1,71 @@
+<html>
+<eee:selfdestruct><eee:selfdestruct>
+<head>
+</head>
+<body>
+<h1>Patient</h1>
+<h2>Persistent compositions</h2>
+<p>
+<eee:AQL xmlns="http://schemas.openehr.org/v1">
+	SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c
+</eee:AQL>
+</p>
+<p>
+let $comp := <eee:AQL>SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+return $comp/data
+</p>
+</body>
+</html>
+
+
+
+<foo xmlns="http://schemas.openehr.org/v1">
+{let $test := 
+   <eee:AQL>SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+return $test}
+</foo>
+
+
+-------
+
+At http://localhost:8182/ehr/AnnaTest-v3/adHocQuery POSTing the QUERY:
+
+<foo>
+{ let $test :=  <eee:AQL>SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+return <boo>{$test/../uid/value }</boo>}
+</foo>
+
+Returns:
+
+<foo xmlns="http://schemas.openehr.org/v1">
+ <boo>
+  <v1:value xmlns:v1="http://schemas.openehr.org/v1">50d5d147-f350-4e22-9a26-ca661884b33b::test1.eee.mi.imt.liu.se::1</v1:value>
+  <v1:value xmlns:v1="http://schemas.openehr.org/v1">97e39198-d62b-415b-9a13-002deda6ed7c::test1.eee.mi.imt.liu.se::1</v1:value>
+  <v1:value xmlns:v1="http://schemas.openehr.org/v1">1be8a224-ae18-4089-87ed-5315d22d9bda::test1.eee.mi.imt.liu.se::1</v1:value>
+  <v1:value xmlns:v1="http://schemas.openehr.org/v1">34411d13-7178-404a-97f6-29d0cf2f2a45::test1.eee.mi.imt.liu.se::1</v1:value>
+ </boo>
+</foo>
+
+---------
+
+<eee:AQL>SELECT  c/name/value FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+
+Returns:
+<v1:value xmlns:v1="http://schemas.openehr.org/v1">Bes?ksanteckning</v1:value><v1:value xmlns:v1="http://schemas.openehr.org/v1">Bes?ksanteckning</v1:value><v1:value xmlns:v1="http://schemas.openehr.org/v1">Bes?ksanteckning</v1:value><v1:value xmlns:v1="http://schemas.openehr.org/v1">Bes?ksanteckning</v1:value>
+
+---------
+<h:html xmlns:h="http://www.w3.org/1999/xhtml">
+<h:head><h:title>Composition list</h:title></h:head>
+<h:body>
+<h:table>
+  <h:tr><h:th>Date</h:th><h:th>Label</h:th></h:tr>
+{ 
+let $aqlFiltered :=  <eee:AQL>SELECT  c FROM Ehr [uid=$ehrUid] CONTAINS COMPOSITION c</eee:AQL>
+  for $version in $aqlFiltered/.. 
+  let $comp := $version/data
+  return <h:tr><h:td>{$comp/context/start_time/value/text()}</h:td><h:td><h:a href="../{$version/uid/value}">{$comp/name/value/text()}</h:a> : {$comp/context/setting/value/text()} : {$comp/composer/name/text()}</h:td></h:tr>
+}
+</h:table>
+</h:body></h:html>
+
+

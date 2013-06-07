@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+
+div.box {
+	border: 2px solid;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #888888;
+	padding: 10px;
+	font-size: 25px;
+	background: #fefeea
+}
+
+code {
+	font-size: 22px;
+}
+
+#testcaseBox {
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	z-index: 10;
+}
+
+h1 {
+	font-size: 25px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+#footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%
+}
+
+#liu {
+	position: fixed;
+	right: 5px;
+}
+
+#continueButton {
+	visibility: hidden;
+	position: relative;
+	float: right;
+	bottom: 25px;
+}
+
+#runButton {
+	visibility: hidden;
+	position: relative;
+	float: right;
+	bottom: 25px;
+}
+
+#closeButton {
+	position: realtive;
+	float: right;
+	bottom: 25px;
+}
+
+textarea {
+	font-size: 20px;
+	width: 90%;
+	wrap: soft;
+}
+
+#outerExplain {
+	position: fixed;
+	top: 50px;
+	left: 10%;
+	right: 10%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	visibility: hidden;
+	border: 2px solid;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #888888;
+	padding: 10px;
+	font-size: 25px;
+	background: #eafefe;
+	margin-right: auto;
+}
+
+div.cluster {
+	position: relative;
+	left: 20px;
+}
+
+div.element {
+	
+}
+
+.header {
+	font-weight: bold;
+}
+
+div.resultChunk {
+	border: 1px dashed;
+	padding: 10px;
+	margin: 10px;
+	font-family: sans-serif;
+}
+
+#bottom {
+	height: 60px;
+}

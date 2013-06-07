@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>c37ee2dc-eec1-455c-bc23-63bfc6117b35</id>
+  <name>medicinlista</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose />
+      <use />
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.medication_list.v1" concept_name="Medication list">
+    <Content xsi:type="INSTRUCTION" archetype_id="openEHR-EHR-INSTRUCTION.medication.v1" concept_name="Medication order" path="/content">
+      <activityDescription xsi:type="ITEM_TREE" archetype_id="openEHR-EHR-ITEM_TREE.medication.v1" path="/activities[at0001 and name/value='Medication activity']/description">
+        <!-- <Rule path="/items[at0003]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Quantity (Massa)</includedTypes>
+          </constraint>
+        </Rule>
+        <Rule path="/items[at0033]/items[at0035]/items[at0036]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Quantity (Volym)</includedTypes>
+          </constraint>
+        </Rule>
+        <Rule path="/items[at0033]/items[at0035]/items[at0037]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Quantity (Massa)</includedTypes>
+          </constraint>
+        </Rule>
+        <Rule path="/items[at0033]/items[at0034]/items[at0005]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Count</includedTypes>
+            <includedTypes>Proportion</includedTypes>
+          </constraint>
+        </Rule> -->
+        <Rule path="/items[at0003]" max="1" />
+        <Rule path="/items[at0033]" max="1" />
+        <Rule path="/items[at0010]" max="1" />
+        <Rule path="/items[at0013]" max="0" />
+        <Rule path="/items[at0018]" max="1" />
+        <Rule path="/items[at0023]" max="0" />
+        <Rule path="/items[at0049]" max="0" />
+      </activityDescription>
+    </Content>
+  </definition>
+</template>

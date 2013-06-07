@@ -1,0 +1,761 @@
+/* --------- TEMP ----------- */
+
+.no_select * {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+ user-select: none;
+}
+
+
+/* #legendContainer .hoverTarget, .compress-none .hoverTarget,  .compress-nospace .hoverTarget{ */
+.hoverTarget{		
+   /*background-color:rgba(255,0,0,0.5);
+   border-bottom: 3px solid yellow;
+   text-shadow: 0 0 2px red, 0 0 4px white ;
+   text-shadow: -0.5px -0.5px yellow, 1px 1px #777;*/
+   text-decoration: underline;
+}
+
+#container .compress-shrink.item:hover  .itemBody{
+	font-size: 13px;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+
+}
+
+#container .compress-hide.item:hover .itemBody{
+	font-size: 10px;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+#legendContainer {
+	font-size: 11px;
+}
+
+#legendContainer .subsection1{
+	/*font-size: 10px;*/
+	display: table;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+#legendContainer .subsection2{
+	margin-right: 10px;
+}
+
+#legendContainer .subsection3{
+	margin-left: 5px
+}
+/*
+#legendContainer .subsection1:hover{
+
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+	
+}
+
+#legendContainer .subsection1:hover .subsection2{
+	content: "\A"; white-space:after;
+	display: table-row;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease; 
+}
+*/
+	
+
+/* --------- MAIN ----------- */
+
+body {
+	background-color: lightgray;
+	font-family: arial;
+	font-size: 13px;
+}
+
+.itemHeader{
+	font-size: 14px;
+	margin: 1px 4px 1px 4px;
+	padding: 0px;
+	/* background: white;*/
+	display: block;
+	position: relative;
+}
+
+.composition_date,  .composition_title, .composer, .facility {
+	display: block; //box;
+	padding: 1px 3px 1px 3px;
+}
+
+.composition_date,  .composition_title {
+	float: left; 
+	/*float: top;*/
+}
+.composer, .facility {
+	float: right;
+	/*float: top;*/
+}
+/*
+.facility,.composer{
+	float: right;
+	padding: 1px 3px 1px 3px;
+}
+
+<div class="itemHeader">
+<span class="facility openEHR-setting-228">Gryckebo VC</span>
+<span class="composition_title">Nybesök</span>   
+<span class="composer openEHR-setting-228">Rick Lövbäck, DL</span></div>
+composition_date
+*/
+
+.itemBody{
+	margin: 3px;
+	padding: 10px;
+	clear: both;
+	/* background: white;*/	
+}
+
+.item, .sideBox {
+	background-color: white; /* #F8F8FF; */
+	/* border: solid 1px #B4BBCD; */
+	border: solid 4px lightgray;	
+}
+
+
+.sideBox {
+	background-color: white;
+	opacity:0.7;	
+	border: solid 1px #B4BBCD;
+	padding: 10px;
+	display: none; /*UNDO LATER?*/	
+}
+
+.item {
+	margin: 1px 7px 1px 7px; /* 7px side margins make arrow pointers align */
+	/* width: 680px; /*408px; 700px;*/ 
+	float: left;
+	min-height: 25px;
+	/* text-align: left; /*justify;*/
+	/* word-wrap: break-word; */
+}
+
+.item.yearBox{
+	background-color: #e08989;
+	/* padding: 2px; */
+	/* min-height: 25px; */	
+	display: table;
+}
+
+.yearLabel{
+	display: table-cell; /* inline-block; */
+	color: white;
+	font-size: 16px;
+}
+
+.right{
+	text-align: right;		
+}
+
+.container {
+	background-color: yellow;
+}
+
+/* ---------- CONTROL PANEL -------- */
+
+.controlTable{
+	display: table;
+	/* border: 2px white; */
+	border-spacing: 2px;
+}
+
+.controlRow{
+	display: table-row;
+	border: 2px white;
+
+}
+
+.controlCell{
+	display: table-cell;
+	padding: 4px;
+	text-align: center;
+}
+
+.controlCellLeft{
+	display: table-cell;
+	padding: 0px 5px 0px 5px;
+	text-align: left;
+}
+
+.controlLabel{
+	text-align: left;
+}
+
+/* ---------- PALETTE AND HIGHLIGHTING -------- */
+/* 
+   Palette permalink: http://colorbrewer2.org/index.php?type=qualitative&scheme=Paired&n=10
+   The first four colors are colorblind-safe
+    1        2        3        4        5        6        7        8        9        10
+   #A6CEE3; #1F78B4; #B2DF8A; #33A02C; #FB9A99; #E31A1C; #FDBF6F; #FF7F00; #CAB2D6; #6A3D9A; 
+*/
+.colorBox {
+	/*border: 2px solid white; */
+	border: 3px outset; 
+	/*box-shadow: 2px 2px 1px black; */  
+}
+
+.selectedPaletteBox {
+	/*border: 3px solid black; */
+	border: 3px inset; 
+	/*box-shadow: 0px 0px 1px black; */    
+}
+
+.subheading2 {
+	color: darkmagenta;
+	font-weight: bold;
+}
+
+.subheading3 {
+	color: darkmagenta;
+}
+
+.key {
+	color: darkmagenta;
+	margin-right: 5px;
+}
+
+/* .highlight1 :not(.highlighted) span[class*="subheading"]  */
+.highlight1 { background-color: #A6CEE3; color: black; } .highlight1 span[class*="subheading"] { color: darkmagenta; }
+.highlight2 { background-color: #1F78B4; color: white; } .highlight2 span[class*="subheading"] { color: #CAB2D6; }
+.highlight3 { background-color: #B2DF8A; color: black; } .highlight3 span[class*="subheading"] { color: darkmagenta; }
+.highlight4 { background-color: #33A02C; color: white; } .highlight4 span[class*="subheading"] { color: darkmagenta; }
+.highlight5 { background-color: #FB9A99; color: black; } .highlight5 span[class*="subheading"] { color: darkmagenta; }
+.highlight6 { background-color: #E31A1C; color: white; } .highlight6 span[class*="subheading"] { color: #FB9A99; }
+.highlight7 { background-color: #FDBF6F; color: black; } .highlight7 span[class*="subheading"] { color: darkmagenta; }
+.highlight8 { background-color: #FF7F00; color: black; } .highlight8 span[class*="subheading"] { color: darkmagenta; }
+.highlight9 { background-color: #CAB2D6; color: black; } .highlight9 span[class*="subheading"] { color: darkmagenta; }
+/* .highlight10 { background-color: #6A3D9A; } */
+
+.highlight1.subsection2, .highlight1.subsection2 * { background-color: #A6CEE3; color: black; } .highlight1.subsection2 .subheading2, .highlight1.subsection2>.subheading2 { color: darkmagenta; }
+.highlight2.subsection2, .highlight2.subsection2 * { background-color: #1F78B4; color: white; } .highlight2.subsection2 .subheading2, .highlight2.subsection2>.subheading2 { color: #CAB2D6; }
+.highlight3.subsection2, .highlight3.subsection2 * { background-color: #B2DF8A; color: black; } .highlight3.subsection2 .subheading2, .highlight3.subsection2>.subheading2 { color: darkmagenta; }
+.highlight4.subsection2, .highlight4.subsection2 * { background-color: #33A02C; color: white; } .highlight4.subsection2 .subheading2, .highlight4.subsection2>.subheading2 { color: darkmagenta; }
+.highlight5.subsection2, .highlight5.subsection2 * { background-color: #FB9A99; color: black; } .highlight5.subsection2 .subheading2, .highlight5.subsection2>.subheading2 { color: darkmagenta; }
+.highlight6.subsection2, .highlight6.subsection2 * { background-color: #E31A1C; color: white; } .highlight6.subsection2 .subheading2, .highlight6.subsection2>.subheading2 { color: #FB9A99; }
+.highlight7.subsection2, .highlight7.subsection2 * { background-color: #FDBF6F; color: black; } .highlight7.subsection2 .subheading2, .highlight7.subsection2>.subheading2 { color: darkmagenta; }
+.highlight8.subsection2, .highlight8.subsection2 * { background-color: #FF7F00; color: black; } .highlight8.subsection2 .subheading2, .highlight8.subsection2>.subheading2 { color: darkmagenta; }
+.highlight9.subsection2, .highlight9.subsection2 * { background-color: #CAB2D6; color: black; } .highlight9.subsection2 .subheading2, .highlight9.subsection2>.subheading2 { color: darkmagenta; }
+
+
+.highlight1.subsection3, .highlight1.subsection3 * { background-color: #A6CEE3; color: black; } .highlight1.subsection3>.subheading3 { color: darkmagenta; }
+.highlight2.subsection3, .highlight2.subsection3 * { background-color: #1F78B4; color: white; } .highlight2.subsection3>.subheading3 { color: #CAB2D6; }
+.highlight3.subsection3, .highlight3.subsection3 * { background-color: #B2DF8A; color: black; } .highlight3.subsection3>.subheading3 { color: darkmagenta; }
+.highlight4.subsection3, .highlight4.subsection3 * { background-color: #33A02C; color: white; } .highlight4.subsection3>.subheading3 { color: darkmagenta; }
+.highlight5.subsection3, .highlight5.subsection3 * { background-color: #FB9A99; color: black; } .highlight5.subsection3>.subheading3 { color: darkmagenta; }
+.highlight6.subsection3, .highlight6.subsection3 * { background-color: #E31A1C; color: white; } .highlight6.subsection3>.subheading3 { color: #FB9A99; }
+.highlight7.subsection3, .highlight7.subsection3 * { background-color: #FDBF6F; color: black; } .highlight7.subsection3>.subheading3 { color: darkmagenta; }
+.highlight8.subsection3, .highlight8.subsection3 * { background-color: #FF7F00; color: black; } .highlight8.subsection3>.subheading3 { color: darkmagenta; }
+.highlight9.subsection3, .highlight9.subsection3 * { background-color: #CAB2D6; color: black; } .highlight9.subsection3>.subheading3 { color: darkmagenta; }
+
+/*
+.highlight1, .highlight1 *{
+	background-color: #A6CEE3;	
+}
+
+.highlight2, .highlight2 *{	
+	background-color: #1F78B4;	
+}
+
+.highlight3, .highlight3. .subsection1, .highlight3. .subsection2, .highlight3 .subsection3{	
+		background-color: #B2DF8A;
+}
+*/
+/*
+.highlight1, .highlight1 * { background-color: #A6CEE3; }
+.highlight2, .highlight2 * { background-color: #1F78B4; }
+.highlight3, .highlight3 * { background-color: #B2DF8A; }
+*/
+
+/*
+.highlight1.subsection1 { background-color: #A6CEE3; }
+.highlight2.subsection1 { background-color: #1F78B4; }
+.highlight3.subsection1 { background-color: #B2DF8A; }
+*/
+
+/*
+.highlight1 .subheading1 { background-color: #A6CEE3; }
+.highlight2 .subheading1 { background-color: #1F78B4; }
+.highlight3 .subheading1 { background-color: #B2DF8A; }
+
+.highlight1 .subheading2 { background-color: #A6CEE3; }
+.highlight2 .subheading2 { background-color: subsection1ghlight3 .subheading2 { background-color: #B2DF8A; }
+
+.highlight1 .subheading3 { background-color: #A6CEE3; }
+.highlight2 .subheading3 { background-color: #1F78B4; }
+.highlight3 .subheading3 { background-color: #B2DF8A; }
+*/
+
+
+/*
+.highlight1 .val { background-color: #A6CEE3; }
+.highlight2 .val { background-color: #1F78B4; }
+.highlight3 .val { background-color: #B2DF8A; }
+
+/*
+	background-color: #A6CEE3;
+	background-color: #1F78B4;
+	background-color: pink;
+	background-color: #FFD39B;
+	background-color: #FFFFFF;
+*/
+
+.bottom_right {
+	bottom: 10px;
+	right: 3px;
+	/*float: right;
+	display: table-cell; 
+	text-align: right;
+	text-decoration: none;
+	margin: 8px 10px 8px 10px; 
+	padding: 1px 3px 1px 3px;
+	margin-bottom: 8px;*/
+}
+
+#container  {
+	/*width: 768px;*/
+	margin: 0px auto;
+	display: table-cell;
+}
+
+#sidebar {
+	display: table-cell;
+	/* margin-top: 10px; */
+	width: 360px;
+}
+
+.borderclass {
+	/* border: solid #A9B6D2; */
+}
+
+#alertBox img {
+	float: left;
+	margin: 2px;
+}
+
+#alertBox p {
+	clear: right;
+}
+
+.collapsed{
+	opacity: 0.5;
+}
+
+.visible_only_when_collapsed{
+	display : none; 
+}
+
+.collapsed .collapsible{
+	background-color: red;	
+	display : none; 
+}
+
+.collapsed .visible_only_when_collapsed{
+	display : inline; 
+}
+
+
+.topbox {
+	margin: 10px;
+	margin-top: 10px;
+	background-color: white;
+	border: solid 1px #B4BBCD;
+}
+
+.topbox>div {
+	padding: 8px;
+}
+
+.rightCorner {
+	background-image: url("right.png");
+	display: block;
+	height: 15px;
+	margin-left: 408px;
+	margin-top: 8px;
+	padding: 0;
+	vertical-align: top;
+	width: 13px;
+	z-index: 2;
+	position: absolute;
+}
+
+.leftCorner {
+	background-image: url("left.png");
+	display: block;
+	height: 15px;
+	width: 13px;
+	margin-left: -13px;
+	margin-top: 8px;
+	position: absolute;
+	z-index: 2;
+}
+
+#popup {
+	display: block;
+	width: 408px;
+	float: left;
+	margin-top: 10px;
+	background-color: #ffffff;
+	border: solid 1px #A9B6D2;
+	min-height: 60px;
+	display: none;
+	position: absolute;
+	margin: 10px;
+}
+
+.Popup_rightCorner {
+	background-image: url("right.png");
+	display: block;
+	height: 15px;
+	margin-left: 408px;
+	margin-top: 8px;
+	padding: 0;
+	vertical-align: top;
+	width: 13px;
+	z-index: 2;
+	position: absolute;
+}
+
+#box {
+	padding: 8px;
+}
+
+#update {
+	width: 100%;
+}
+
+/* .timeline_container {
+	width: 16px;
+	text-align: center;
+	margin: 0 auto;
+	cursor: pointer;
+	display: block;
+} */
+
+.timeline {
+	margin: 0 auto;
+	background-color: #e08989;
+	display: block;
+	float: left;
+	height: 100%;
+	left: 760px; /* 428px; */
+	margin-top: 10px;
+	position: absolute;
+	width: 4px;
+}
+
+/*.timeline:hover {
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.timeline div.plus {
+	width: 14px;
+	height: 14px;
+	position: relative;
+	left: -6px;
+}*/
+
+#update_button {
+	background-color: #cc0000;
+	color: white;
+	font-weight: bold;
+	padding: 5px;
+	border: solid 1px #333;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.shade {
+	box-shadow: 0px 0px 18px #000;
+	-moz-box-shadow: 0px 0px 18px #000;
+	-webkit-box-shadow: 0px 0px 18px #000
+}
+
+h1 {
+	font-family: 'Georgia', Times New Roman;
+}
+
+.subheading1 {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+/* .item span[class*="subsection"].subsection1{ */
+/* .item .subsection1:after */
+
+/* .item span[class*="subsection"]:before */
+
+
+
+.val {
+	margin-right: 10px;
+}
+
+/*
+.timeline:hover {
+	cursor: none;
+}
+
+.deletebox {
+	font-weight: bold;
+	float: right;
+	text-decoration: none;
+	margin: 8px 10px 8px 10px;
+	color: #cc0000
+}
+*/
+
+/* --------- COMPRESSION SETTINGS ---------- */
+
+.itemBody *{
+	display: inline;
+}
+
+
+.compress-none .subsection1:after, .compress-none .subsection2:before, .compress-none .subsection3:before, #legendContainer .subsection1:after /*,  #legendContainer .subsection2:after */
+{	
+	/* (display: block; was not working with highlighting*/
+	content: "\A"; white-space:pre; /* \r\n white-space:pre; \r\n*/
+}
+
+.compress-nospace .itemBody *{
+}
+
+.compress-shrink .itemBody *{
+}
+
+.compress-shrink .itemBody{
+	font-size: 8px;	
+}
+
+.item.compress-hide .itemHeader *{
+	display: inline;
+	font-size: 9px;		
+}
+
+.item.compress-hide .itemBody *, .item.compress-hide .itemBody{
+}
+
+/*
+.item.compress-hide .itemBody span[class*="subsection"]{
+	display: none;
+}
+*/
+
+.compress-hide .itemBody{
+	font-size: 0px;	
+}
+
+.item.compress-hide .itemBody{
+	padding: 0px;
+}
+
+.item.compress-hide .val, .item.compress-hide .itemBody *  {
+	margin: 0px;
+}
+
+/* -- Override compression for highlighted items - */
+
+.highlighted {
+		font-size: 13px;
+}
+
+/* TODO: fix for block layouts */
+span[class*="subsection"].highlighted {
+	display: inline;
+}
+
+
+.highlighted * {
+		font-size: 13px;
+}
+
+/*
+.itemBody span[class*="highlight"] {
+		font-weight: bold;
+		font-size: 13px;
+}
+
+.itemBody span[class*="highlight"] * {
+		font-weight: bold;
+		font-size: 13px;
+}
+*/
+
+
+/* ********** openEHR / EEE-specific things  ********** */
+.systolic {
+	fill: BlueViolet;
+	font-weight: bold;
+}
+
+.diastolic {
+	fill: DarkOrchid;
+	font-weight: bold;	
+}
+
+/* PRIMARY: rubric="primary medical " id="228"; rubric="primary nursing " id="229; rubric="primary allied " id="230" */
+/* Temporary hack: adding 1000 to get emergency/unplanned versions of primary */
+.openEHR-setting-1228, .openEHR-setting-1229 {
+	fill: lightred;
+	background-color: #fcc;
+}
+
+.openEHR-setting-228,.openEHR-setting-229,.openEHR-setting-230,.openEHR-setting-1228,.openEHR-setting-1229 {
+	fill: green;
+	color: green;
+}
+
+.openEHR-setting-228, .openEHR-setting-1228 {
+	font-weight: bold;	
+}
+
+
+.frame-setting-228>.itemHeader{
+	/* border: green 1px; */
+	/* border-color: green; */
+	/* border-width: 4px; */
+    /*background: #E0FFE0;*/
+}
+
+.frame-setting-228.item{
+    /* border:1px solid red; */
+    border: 4px outset #C1FFC1;    
+    background: white;
+    /* border-style: inset; */
+}
+
+.openEHR-setting-230 {
+	font-style: italic;
+}
+
+
+/* EMERGENCY: <concept rubric="emergency care" id="227"/> */
+.openEHR-setting-227 {
+	fill: red;
+	color: blue;
+	background-color: #fcc;
+	font-weight: bold;
+}
+
+/* SECONDARY: <concept rubric="secondary medical " id="232"/> <concept rubric="secondary nursing " id="233"/> <concept rubric="secondary allied " id="234"/> */
+.openEHR-setting-232,.openEHR-setting-233,.openEHR-setting-234 {
+	fill: blue;
+	color: blue;
+}
+.openEHR-setting-232{
+	font-weight: bold;
+}
+.openEHR-setting-234{
+	font-style: italic;
+}
+
+/* HOME : <concept rubric="home" id="225"/> */
+.openEHR-setting-225 {
+	fill: purple;
+	color: purple;
+	font-weight: bold;
+}
+
+/* OTHER: <concept rubric="other care" id="238"/> */
+.openEHR-setting-238 {
+	fill: gray;
+	color: gray;
+	font-weight: bold;
+}
+
+
+/* Not yet used */
+/*  <concept rubric="midwifery care" id="231"/>  <concept rubric="complementary " id="235"/> */
+/*  <concept rubric="dental care" id="236"/> <concept rubric="nursing home care" id="237"/> */
+
+
+/* --------- ID-BASED SPECIAL SETTINGS ---------- */
+
+/*
+#legendContainer {
+	background: ghostwhite;
+}
+*/
+/* #legendContainer [class*="subheading"] { */
+
+/*
+#legendContainer .subheading2 {
+	margin-right: 10px;
+}
+
+#legendContainer [class*="subheading"] {
+	/*background: white;
+	margin-right: 10px;
+}
+*/
+
+#topHeaderWrapper {
+    position: fixed; /*--Fix the header to stay in one spot--*/
+	top: 0;
+	left: 0;
+	display: table;	
+	border: 3px red;
+	background-color: white;
+	opacity:0.9;
+	z-index: 2;
+	width: 100%;
+}
+
+#controlBox {
+    position: fixed; /*--Fix the header to stay in one spot--*/
+	top: 50px;
+	left: 5px;
+	display: table;	
+	border: 3px red;
+	background-color: white;
+	padding: 15px;
+	z-index: 2;
+	width: 300px;	
+}
+
+#topHeaderUser {
+	display: table-cell;
+	min-width: 200px;
+	float: left;
+}
+
+#horizontalMiniTimeline {
+	display: table-cell;
+	text-align: center;
+	width: 100%;
+}
+
+#topHeaderPatient {
+	display: table-cell;
+	text-align: right;
+	min-width: 200px;
+	float: right;
+}
+
+#horizontalTimeline {
+	width: 100%;
+	min-width: 250px;
+	min-height: 300px;	 
+}
+
+#verticalTimeline {
+	width: 100%;
+	margin: 0 auto;
+	display: table;
+}
+
+/* --------- TEMP ----------- */
+.X_END, .X_END *{display: none}

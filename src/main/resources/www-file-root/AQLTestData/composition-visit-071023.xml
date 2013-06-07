@@ -1,0 +1,1146 @@
+<composition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:type="COMPOSITION" xmlns="http://schemas.openehr.org/v1"
+	archetype_node_id="openEHR-EHR-COMPOSITION.encounter.v1">
+	<name>
+		<value>Besöksanteckning</value>
+	</name>
+	<archetype_details>
+		<archetype_id>
+			<value>openEHR-EHR-COMPOSITION.encounter.v1</value>
+		</archetype_id>
+		<rm_version>1.0.1</rm_version>
+	</archetype_details>
+	<language>
+		<terminology_id>
+			<value>ISO_639-1</value>
+		</terminology_id>
+		<code_string>sv</code_string>
+	</language>
+	<territory>
+		<terminology_id>
+			<value>ISO_3166-1</value>
+		</terminology_id>
+		<code_string>SE</code_string>
+	</territory>
+	<category>
+		<value>event</value>
+		<defining_code>
+			<terminology_id>
+				<value>openehr</value>
+			</terminology_id>
+			<code_string>433</code_string>
+		</defining_code>
+	</category>
+	<composer xsi:type="PARTY_IDENTIFIED">
+		<name>leg. läk. David Alvar</name>
+	</composer>
+	<context>
+		<start_time>
+			<value>2007-10-23T09:05:00</value>
+		</start_time>
+		<setting>
+			<value>vårdcentral</value>
+			<defining_code>
+				<terminology_id>
+					<value>openehr</value>
+				</terminology_id>
+				<code_string>228</code_string>
+			</defining_code>
+		</setting>
+		<!--
+			<other_context xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name> <value>Tree</value> </name> <items xsi:type="ELEMENT"
+			archetype_node_id="at0002"> <name> <value>Episode identifier</value>
+			</name> <value xsi:type="DV_TEXT">
+			<value>2c4a06c2-e3bd-4cd3-a6bb-1fd83df66107</value> </value> </items>
+			</other_context>
+		-->
+		<health_care_facility>
+			<name>VC Lyckan</name>
+		</health_care_facility>
+	</context>
+	<content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.blood_pressure.v1">
+		<name>
+			<value>Blodtryck</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-OBSERVATION.blood_pressure.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<protocol xsi:type="ITEM_LIST" archetype_node_id="at0011">
+			<name>
+				<value>protocol</value>
+			</name>
+			<items archetype_node_id="at0014">
+				<name>
+					<value>Mätställe</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>Höger arm</value>
+					<defining_code>
+						<terminology_id>
+							<value>local</value>
+						</terminology_id>
+						<code_string>at0025</code_string>
+					</defining_code>
+				</value>
+			</items>
+		</protocol>
+		<data archetype_node_id="at0001">
+			<name>
+				<value>data</value>
+			</name>
+			<origin>
+				<value>2007-10-23T09:11:00</value>
+			</origin>
+			<events xsi:type="POINT_EVENT" archetype_node_id="at0006">
+				<name>
+					<value>any event</value>
+				</name>
+				<time>
+					<value>2007-10-23T09:11:00</value>
+				</time>
+				<data xsi:type="ITEM_LIST" archetype_node_id="at0003">
+					<name>
+						<value>data</value>
+					</name>
+					<items archetype_node_id="at0004">
+						<name>
+							<value>systoliskt</value>
+						</name>
+						<value xsi:type="DV_QUANTITY">
+							<magnitude>200</magnitude>
+							<units>mm[Hg]</units>
+						</value>
+					</items>
+					<items archetype_node_id="at0005">
+						<name>
+							<value>diastoliskt</value>
+						</name>
+						<value xsi:type="DV_QUANTITY">
+							<magnitude>110</magnitude>
+							<units>mm[Hg]</units>
+						</value>
+					</items>
+				</data>
+			</events>
+		</data>
+	</content>
+	<content xsi:type="EVALUATION" archetype_node_id="openEHR-EHR-EVALUATION.problem.v1">
+		<name>
+			<value>Problem</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-EVALUATION.problem.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<data xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name>
+				<value>data</value>
+			</name>
+			<items xsi:type="ELEMENT" archetype_node_id="at0002">
+				<name>
+					<value>Problem</value>
+				</name>
+				<value xsi:type="DV_CODED_TEXT">
+					<value>Fynd som rör ökat blodtryck</value>
+					<defining_code>
+						<terminology_id>
+							<value>SNOMED CT</value>
+						</terminology_id>
+						<code_string>24184005</code_string>
+					</defining_code>
+				</value>
+			</items>
+			<items xsi:type="ELEMENT" archetype_node_id="at0009">
+				<name>
+					<value>Klinisk beskrivning</value>
+				</name>
+				<value xsi:type="DV_TEXT">
+					<value>Anna söker pga att hon ofta har huvudvärk och känner sig trött. Mätning av blodtrycket visar 200/110 vilket är högt.	</value>
+				</value>
+			</items>
+		</data>
+	</content>
+	<content xsi:type="EVALUATION" archetype_node_id="openEHR-EHR-EVALUATION.goal.v1">
+		<name>
+			<value>Mål</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-EVALUATION.goal.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<data xsi:type="ITEM_TREE" archetype_node_id="at0001">
+			<name>
+				<value>data</value>
+			</name>
+			<items xsi:type="ELEMENT" archetype_node_id="at0002">
+				<name>
+					<value>Måltillstånd</value>
+				</name>
+				<value xsi:type="DV_TEXT">
+					<value>Målet är att blodtryck 140/85 inom 6 månader.</value>
+				</value>
+			</items>
+		</data>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1">
+		<name>
+			<value>Enalapril</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.medication.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Förskrivning av blodtryckssänkande läkemedel</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Förskrivning av läkemedel</value>
+			</name>
+			<description xsi:type="ITEM_TREE"
+				archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1">
+				<name>
+					<value>Läkemedel</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0001">
+					<name>
+						<value>Name of medication</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Enalapril</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>15222008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				
+				<items xsi:type="ELEMENT" archetype_node_id="at0003">
+					<name>
+						<value>Styrka per dosenhet</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>5</magnitude>
+						<units>mg</units>
+					</value>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Administration instructions</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>20 mg x 1ggr/dag, Börja med 5mg, därefter ökning till 10 mg och 20 mg med 2 månader mellan ökningarna</value>
+					</value>
+				</items></items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0004">
+					<name>
+						<value>Form</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Tablett</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>385055001</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0005">
+					<name>
+						<value>Dos</value>
+					</name>
+					<value xsi:type="DV_COUNT">
+						<magnitude>1</magnitude>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0006">
+					<name>
+						<value>Dosenhet</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>mg</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>258684004</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0007">
+					<name>
+						<value>Dosduration</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>2</magnitude>
+						<units>months</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0008">
+					<name>
+						<value>Administration</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value> läkemedelsadministrering, peroral</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>386359008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0010">
+					<name>
+						<value>Indikationer</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0011">
+						<name>
+							<value>Indikation</value>
+						</name>
+						<value xsi:type="DV_CODED_TEXT">
+							<value>Fynd som rör ökat blodtryck</value>
+							<defining_code>
+								<terminology_id>
+									<value>SNOMED CT</value>
+								</terminology_id>
+								<code_string>24184005</code_string>
+							</defining_code>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0018">
+					<name>
+						<value>Administration information</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0019">
+						<name>
+							<value>Date of first administration</value>
+						</name>
+						<value xsi:type="DV_DATE">
+							<value>2007-10-23</value>
+						</value>
+					</items>
+					<items xsi:type="ELEMENT" archetype_node_id="at0022">
+						<name>
+							<value>Sequence number</value>
+						</name>
+						<value xsi:type="DV_COUNT">
+							<magnitude>1</magnitude>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value>
+					<start>2007-10-23T09:05:00</start>
+					<stop>2007-12-23T09:05:00</stop>
+				</value>
+				<charset>
+					<terminology_id>
+						<value>IANA_character-sets</value>
+					</terminology_id>
+					<code_string>UTF-8</code_string>
+				</charset>
+				<formalism>Custom Demo Hack</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.medication.v1
+			</action_archetype_id>
+		</activities>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1">
+		<name>
+			<value>Enalapril</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.medication.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Förskrivning av blodtryckssänkande läkemedel</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Förskrivning av läkemedel</value>
+			</name>
+			<description xsi:type="ITEM_TREE"
+				archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1">
+				<name>
+					<value>Läkemedel</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0001">
+					<name>
+						<value>Name of medication</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Enalapril</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>15222008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Administration instructions</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>20 mg x 1ggr/dag, Börja med 5mg, därefter ökning till 10 mg och 20 mg med 2 månader mellan ökningarna</value>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0003">
+					<name>
+						<value>Styrka per dosenhet</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>10</magnitude>
+						<units>mg</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0004">
+					<name>
+						<value>Form</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Tablett</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>385055001</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0005">
+					<name>
+						<value>Dos</value>
+					</name>
+					<value xsi:type="DV_COUNT">
+						<magnitude>1</magnitude>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0006">
+					<name>
+						<value>Dosenhet</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>mg</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>258684004</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0007">
+					<name>
+						<value>Dosduration</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>2</magnitude>
+						<units>months</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0008">
+					<name>
+						<value>Administration</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value> läkemedelsadministrering, peroral</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>386359008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0010">
+					<name>
+						<value>Indikationer</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0011">
+						<name>
+							<value>Indikation</value>
+						</name>
+						<value xsi:type="DV_CODED_TEXT">
+							<value>Fynd som rör ökat blodtryck</value>
+							<defining_code>
+								<terminology_id>
+									<value>SNOMED CT</value>
+								</terminology_id>
+								<code_string>24184005</code_string>
+							</defining_code>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0018">
+					<name>
+						<value>Administration information</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0019">
+						<name>
+							<value>Date of first administration</value>
+						</name>
+						<value xsi:type="DV_DATE">
+							<value>2007-12-23</value>
+						</value>
+					</items>
+					<items xsi:type="ELEMENT" archetype_node_id="at0022">
+						<name>
+							<value>Sequence number</value>
+						</name>
+						<value xsi:type="DV_COUNT">
+							<magnitude>2</magnitude>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value>
+					<start>2007-12-23T09:05:00</start>
+					<stop>2008-02-23T09:05:00</stop>
+				</value>
+				<charset>
+					<terminology_id>
+						<value>IANA_character-sets</value>
+					</terminology_id>
+					<code_string>UTF-8</code_string>
+				</charset>
+				<formalism>Custom Demo Hack</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.medication.v1</action_archetype_id>
+		</activities>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1">
+		<name>
+			<value>Enalapril</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.medication.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Förskrivning av blodtryckssänkande läkemedel</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Förskrivning av läkemedel</value>
+			</name>
+			<description xsi:type="ITEM_TREE"
+				archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1">
+				<name>
+					<value>Läkemedel</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0001">
+					<name>
+						<value>Name of medication</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Enalapril</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>15222008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Administration instructions</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>20 mg x 1ggr/dag, Börja med 5mg, därefter ökning till 10 mg och 20 mg med 2 månader mellan ökningarna</value>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0003">
+					<name>
+						<value>Styrka per dosenhet</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>20</magnitude>
+						<units>mg</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0004">
+					<name>
+						<value>Form</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Tablett</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>385055001</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0005">
+					<name>
+						<value>Dos</value>
+					</name>
+					<value xsi:type="DV_COUNT">
+						<magnitude>1</magnitude>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0006">
+					<name>
+						<value>Dosenhet</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>mg</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>258684004</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0007">
+					<name>
+						<value>Dosduration</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>2</magnitude>
+						<units>months</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0008">
+					<name>
+						<value>Administration</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value> läkemedelsadministrering, peroral</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>386359008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0010">
+					<name>
+						<value>Indikationer</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0011">
+						<name>
+							<value>Indikation</value>
+						</name>
+						<value xsi:type="DV_CODED_TEXT">
+							<value>Fynd som rör ökat blodtryck</value>
+							<defining_code>
+								<terminology_id>
+									<value>SNOMED CT</value>
+								</terminology_id>
+								<code_string>24184005</code_string>
+							</defining_code>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0018">
+					<name>
+						<value>Administration information</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0019">
+						<name>
+							<value>Date of first administration</value>
+						</name>
+						<value xsi:type="DV_DATE">
+							<value>2008-02-23</value>
+						</value>
+					</items>
+					<items xsi:type="ELEMENT" archetype_node_id="at0022">
+						<name>
+							<value>Sequence number</value>
+						</name>
+						<value xsi:type="DV_COUNT">
+							<magnitude>3</magnitude>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value>
+					<start>2008-02-23T09:05:00</start>
+					<stop>2008-04-23T09:05:00</stop>
+				</value>
+				<charset>
+					<terminology_id>
+						<value>IANA_character-sets</value>
+					</terminology_id>
+					<code_string>UTF-8</code_string>
+				</charset>
+				<formalism>Custom Demo Hack</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.medication.v1
+			</action_archetype_id>
+		</activities>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1">
+		<name>
+			<value>Plendil</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.medication.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Förskrivning av blodtryckssänkande läkemedel</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Förskrivning av läkemedel</value>
+			</name>
+			<description xsi:type="ITEM_TREE"
+				archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1">
+				<name>
+					<value>Läkemedel</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0001">
+					<name>
+						<value>Name of medication</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Plendil</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>108536005</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Administration instructions</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>10mg x 1 ggr/dag insättes efter 3 mån med 5mg i 2 mån, sedan ökning till 10 mg efter 2 mån</value>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0003">
+					<name>
+						<value>Styrka per dosenhet</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>5</magnitude>
+						<units>mg</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0004">
+					<name>
+						<value>Form</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Tablett</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>385055001</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0005">
+					<name>
+						<value>Dos</value>
+					</name>
+					<value xsi:type="DV_COUNT">
+						<magnitude>1</magnitude>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0006">
+					<name>
+						<value>Dosenhet</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>mg</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>258684004</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0007">
+					<name>
+						<value>Dosduration</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>2</magnitude>
+						<units>months</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0008">
+					<name>
+						<value>Administration</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value> läkemedelsadministrering, peroral</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>386359008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0010">
+					<name>
+						<value>Indikationer</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0011">
+						<name>
+							<value>Indikation</value>
+						</name>
+						<value xsi:type="DV_CODED_TEXT">
+							<value>Fynd som rör ökat blodtryck</value>
+							<defining_code>
+								<terminology_id>
+									<value>SNOMED CT</value>
+								</terminology_id>
+								<code_string>24184005</code_string>
+							</defining_code>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0018">
+					<name>
+						<value>Administration information</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0019">
+						<name>
+							<value>Date of first administration</value>
+						</name>
+						<value xsi:type="DV_DATE">
+							<value>2008-01-23</value>
+						</value>
+					</items>
+					<items xsi:type="ELEMENT" archetype_node_id="at0022">
+						<name>
+							<value>Sequence number</value>
+						</name>
+						<value xsi:type="DV_COUNT">
+							<magnitude>1</magnitude>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value>
+					<start>2008-01-23T09:05:00</start>
+					<stop>2008-03-23T09:05:00</stop>
+				</value>
+				<charset>
+					<terminology_id>
+						<value>IANA_character-sets</value>
+					</terminology_id>
+					<code_string>UTF-8</code_string>
+				</charset>
+				<formalism>Custom Demo Hack</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.medication.v1
+			</action_archetype_id>
+		</activities>
+	</content>
+	<content xsi:type="INSTRUCTION" archetype_node_id="openEHR-EHR-INSTRUCTION.medication.v1">
+		<name>
+			<value>Plendil</value>
+		</name>
+		<archetype_details>
+			<archetype_id>
+				<value>openEHR-EHR-INSTRUCTION.medication.v1</value>
+			</archetype_id>
+			<rm_version>1.0.1</rm_version>
+		</archetype_details>
+		<language>
+			<terminology_id>
+				<value>ISO_639-1</value>
+			</terminology_id>
+			<code_string>sv</code_string>
+		</language>
+		<encoding>
+			<terminology_id>
+				<value>IANA_character-sets</value>
+			</terminology_id>
+			<code_string>UTF-8</code_string>
+		</encoding>
+		<subject xsi:type="PARTY_SELF" />
+		<narrative>
+			<value>Förskrivning av blodtryckssänkande läkemedel</value>
+		</narrative>
+		<activities archetype_node_id="at0001">
+			<name>
+				<value>Förskrivning av läkemedel</value>
+			</name>
+			<description xsi:type="ITEM_TREE"
+				archetype_node_id="openEHR-EHR-ITEM_TREE.medication.v1">
+				<name>
+					<value>Läkemedel</value>
+				</name>
+				<items xsi:type="ELEMENT" archetype_node_id="at0001">
+					<name>
+						<value>Name of medication</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Plendil</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>108536005</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0002">
+					<name>
+						<value>Administration instructions</value>
+					</name>
+					<value xsi:type="DV_TEXT">
+						<value>10mg x 1 ggr/dag insättes efter 3 mån med 5mg i 2 mån, sedan ökning till 10 mg efter 2 mån</value>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0003">
+					<name>
+						<value>Styrka per dosenhet</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>10</magnitude>
+						<units>mg</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0004">
+					<name>
+						<value>Form</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>Tablett</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>385055001</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0005">
+					<name>
+						<value>Dos</value>
+					</name>
+					<value xsi:type="DV_COUNT">
+						<magnitude>1</magnitude>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0006">
+					<name>
+						<value>Dosenhet</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>mg</value>
+						<defining_code>
+							<terminology_id>
+								<value>snomed</value>
+							</terminology_id>
+							<code_string>258684004</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0007">
+					<name>
+						<value>Dosduration</value>
+					</name>
+					<value xsi:type="DV_QUANTITY">
+						<magnitude>12</magnitude>
+						<units>months</units>
+					</value>
+				</items>
+				<items xsi:type="ELEMENT" archetype_node_id="at0008">
+					<name>
+						<value>Administration</value>
+					</name>
+					<value xsi:type="DV_CODED_TEXT">
+						<value>läkemedelsadministrering, peroral</value>
+						<defining_code>
+							<terminology_id>
+								<value>SNOMED CT</value>
+							</terminology_id>
+							<code_string>386359008</code_string>
+						</defining_code>
+					</value>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0010">
+					<name>
+						<value>Indikationer</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0011">
+						<name>
+							<value>Indikation</value>
+						</name>
+						<value xsi:type="DV_CODED_TEXT">
+							<value>Fynd som rör ökat blodtryck</value>
+							<defining_code>
+								<terminology_id>
+									<value>SNOMED CT</value>
+								</terminology_id>
+								<code_string>24184005</code_string>
+							</defining_code>
+						</value>
+					</items>
+				</items>
+				<items xsi:type="CLUSTER" archetype_node_id="at0018">
+					<name>
+						<value>Administration information</value>
+					</name>
+					<items xsi:type="ELEMENT" archetype_node_id="at0019">
+						<name>
+							<value>Date of first administration</value>
+						</name>
+						<value xsi:type="DV_DATE">
+							<value>2008-03-23</value>
+						</value>
+					</items>
+					<items xsi:type="ELEMENT" archetype_node_id="at0022">
+						<name>
+							<value>Sequence number</value>
+						</name>
+						<value xsi:type="DV_COUNT">
+							<magnitude>2</magnitude>
+						</value>
+					</items>
+				</items>
+			</description>
+			<timing>
+				<value>
+					<start>2008-03-23T09:05:00</start>
+					<stop>2009-03-23T09:05:00</stop>
+				</value>
+				<charset>
+					<terminology_id>
+						<value>IANA_character-sets</value>
+					</terminology_id>
+					<code_string>UTF-8</code_string>
+				</charset>
+				<formalism>Custom Demo Hack</formalism>
+			</timing>
+			<action_archetype_id>openEHR-EHR-ACTION.medication.v1
+			</action_archetype_id>
+		</activities>
+	</content>
+</composition>

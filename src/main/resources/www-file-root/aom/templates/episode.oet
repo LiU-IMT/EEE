@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>6077b76e-1f92-4365-a61b-861d8387a654</id>
+  <name>episode</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose />
+      <use />
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.icu_episode_of_care.v1" concept_name="ICU episode of care">
+    <Content xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.lab_test-microbiology.v1" concept_name="Microbiolology" path="/content">
+      <Rule path="/data[at0001]/events[at0002]" max="1" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0005]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0073]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0077]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.25]" max="1" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.25]/items[at0078.3]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.25]/items[at0.15]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.26]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.34]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.24]" max="1" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.32]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0078.7]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0078.8]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.33]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0078.9]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0078.10]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0.21]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0.7]/items[at0.10]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0.7]/items[at0.9]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0.29]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0078]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0057]" max="0" />
+      <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0010]" max="0" />
+      <Rule path="/protocol[at0004]/items[at0062]" max="0" />
+      <Rule path="/protocol[at0004]/items[at0063]" max="0" />
+      <Items xsi:type="CLUSTER" archetype_id="openEHR-EHR-CLUSTER.specimen.v1" concept_name="Specimen" max="1" path="/data[at0001]/events[at0002]/data[at0003]/items[at0065]">
+        <Rule path="/items[at0007]" max="0" />
+        <Rule path="/items[at0073]" max="0" />
+        <Rule path="/items[at0050]" max="0" />
+        <Rule path="/items[at0046]/items[at0067]" max="0" />
+        <Rule path="/items[at0046]/items[at0034]" max="0" />
+        <Rule path="/items[at0046]/items[at0035]" max="0" />
+        <Rule path="/items[at0039]" max="0" />
+        <Rule path="/items[at0002]" max="0" />
+      </Items>
+    </Content>
+    <Context />
+  </definition>
+</template>

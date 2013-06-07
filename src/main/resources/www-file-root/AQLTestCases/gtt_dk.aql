@@ -1,0 +1,81 @@
+-- C1
+
+SELECT e/ehr_id
+FROM
+	EHR e 
+		CONTAINS ACTION p [openEHR-EHR-ACTION.procedure.v1] AND
+		CONTAINS ACTION t [openEHR-EHR-ACTION.transfusion.v1]
+WHERE
+	p/ism_transition/current_state/defining_code mathces {[openehr::245]} AND 	-- procedure active
+	p/description/items[at0004]/value/defining_code matches { terminology://Snomed-CT/hierarchy?rootConceptId=387713003 } AND -- 387713003|Surgical procedure|
+	t/ism_transition/current_state/defining_code mathces {[openehr::245]} AND 	-- transfusion active
+	t/time/value > p/time/value AND 						-- transfusion occurs after procedure
+	t/time/magnitude() - p/time/magnitude() < 86400 		-- number of seconds less than 86400 (24*60*60)
+	
+-- minus saknas i AQL
+	
+-- M1
+
+SELECT
+	e/ehr_id
+FROM 
+	Ehr e
+CONTAINS
+	OBSERVATION o [openEHR-EHR-OBSERVATION.lab_test-microbiology.v1]
+WHERE
+    o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/defining_code/terminology_id/value
+	 	= 'SNOMED CT' AND
+	o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/defining_code/code_string
+	 	=  '167592004' AND
+	o/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0078.1]/value/defining_code/terminology_id/value
+	 	= 'SNOMED CT' AND
+	o/data[at0001]/events[at0002]/data[at0003]/items[at0.27]/items[at0.20]/items[at0078.1]/value/defining_code/code_string 
+		=  '5933001' -- Clostrisium dificile
+	
+	
+
+-- M3
+
+SELECT
+	e/ehr_id
+FROM 
+	Ehr e
+CONTAINS
+	OBSERVATION o [openEHR-EHR-OBSERVATION.lab_test.v1]
+WHERE
+  	o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/defining_code/terminology_id/value
+	 	= 'SNOMED CT' AND
+	o/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value/defining_code/code_string
+	 	=  '440685005' AND
+	o/data[at0001]/events[at0002]/data[at0003]/items[at0078]/value/magnitude > 6
+
+
+-- M8
+
+SELECT
+	e/ehr_id
+FROM 
+	Ehr e
+CONTAINS
+	INSTRUCTION i [openEHR-EHR-INSTRUCTION.medication.v1]
+WHERE
+  	i/activities[at0001]/description/items[at0002]/value/defining_code/terminology_id/value
+	 	= 'SNOMED CT' AND
+	i/activities[at0001]/description/items[at0002]/value/defining_code/code_string
+	 	=  '96247007'
+
+	 	
+-- P1
+
+SELECT
+	e/ehr_id
+FROM 
+	Ehr e
+CONTAINS
+	OBSERVATION o [openEHR-EHR-OBSERVATION.apgar.v1]
+WHERE
+  	o/data[at0002]/events[at0028]/data[at0001]/items[at0025]/value/magnitude < 7
+  	
+-- 
+  	
+

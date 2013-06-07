@@ -1,0 +1,172 @@
+TODO:
+=====
+*- Remote log inst�llning via url-parameter (host+path eller "popup" deafult till IMT-server)
+- Instruktionsvideo
+- Skriv total-highlight-inställning i loggen regelbundet
+- Kolla sorteringsordning vid fall-växling
+*- Testpersonsinställning i url för SUS
+*- Flytta care settings till popup
+
+Formulär
+*- Länka in SUS och bakgrundsformulär, https://docs.google.com/spreadsheet/viewform?formkey=dG1yLUUzNWhBMkJFREJaeE9rX3VYVkE6MQ
+- Ev formulera om bakgrund enl mailet https://mail.google.com/mail/u/0/?ui=2&shva=1#all/13be1a39eef4aa1a
+*- Wow-faktor i formulär
+
+- Timer i header? http://keith-wood.name/countdownRef.html
+
+- Skärminspelning via Skype (Benjamins windows-laptop funkade ej)
+
+- Tvätta/buggfixa ytterligare journaldata i kalkylarket
+-- Flytta konsultationer till ASSESMENT eller PLAN, nu under OBJECTIVE
+
+Konverteringsscript
+- Berätta att det finns på webb
+- Mapping diabetestyp siffra -> namn
+- Visa när hämtning pågår resp är klar
+
+Loggning
+- Logga tidsstämp, spalt, highl, show, ev hur länge varje årsvy/ant syns, scrollmängd/längd.
+*- Logga typ av klick (i tidslinje, index mm)
+- Websock log, node el restlet server? 
+(*)- Även ett kompakt loggsummerings-format som summeras i formulär. Med bokstavs-nyckel för klass och siffra för highlight nr.
+
+Krympa / öka textstorlek ev som skala m hidden small normal big. 
+Öka datumstorlek. 
+
+- Testa även med Safari som webbläsare - kolla att det funkar
+
+Buggfixar att göra:
+*- Få tillbaks tidslinje-streck! Lagernivå?
+*- Visa ej debug i loggen som default
+
+
+SENARE (Efter kappa):
+====================
+- Spara/exportera/importera färgfilter. Personliga defaults i cookie?
+- Mer av soft transitions i GUI
+- Använd http://api.jquery.com/offset/ för att skapa färgmarkeringar bredvid scroll-linje. 
+- (Ev. dubbla linjer vid dubbla kolumner) Även års-markerings-streck.
+- Anv. masonry-plugin till tät vy på stor skärmyta. Inte så tätt koplad till tidslinje-stam.
+- Fler-spalt (3+)
+- Genomstrykning av index-ord som ej finns i denna patients journal / eller som är svtängda med checkbox
+- openEHR protocol i tooltip
+- Minsutecken - för att uteslut RUBRIK motsats till * ?
+- solo-track-funktion?
+- filter på vårdgivartyp (LÄK, SSK etc)
+- tidtagningsinställning till timer i url?
+
+- Tidslinje
+-- Flytta grafisk mini till topp
+-- Koppla till datakällan (istället för nuvarande slumpgenerattor)
+-- Rätt info på etiketter
+-- Koppla scroll vertikalt+horisontellt 
+-- (ev detalj-dropdown som dras ut med pilflik ur topp)
+-- Detalj-graf
+
+DONE:
+=====
+beta 4
+------
+- Checkboxen "all" funkar förhoppningsvis som den ska igen
+- Rubriken "END" dold igen
+- Loggning på server funkar snart. Server-delen är klar klientjusteringar återstår.
+
+Typning av följande besök fixade efter Håkans buggrapport:
+- För pat A är "dagens" besök markerat som en årskontroll men rubricerad som återbesök. Är det tanken?
+-- Åtgärd:  Har ändrat till årskontroll
+- Pat B: Här finns två sjukhusanteckningar som inte är "blåade" 
+-- Åtgärd: Såg snarare ut som akuta VC-besök, så jag ändrade från akutmott till VC
+- Pat C: Rick Lövbäck har en odefinierad anteckningstyp 2010
+-- Åtgärd: Gissade på återbesök - skulle ev. kunna vara akut VC efter patiantens semester. Fixade även vårdkontakttyp
+- Pat C: Rick Lövbäcks brevkontakt 2011 står som "Centrallaboratoriet By sjukhus" -- hur ska man tolka det?
+-- Åtgärd: Verkar vara ett remissvar från sjukhuset, tar bort Rick Lövbäck från anteckningen
+
+
+beta 3
+------
+- Dubbelklick krävs nu genomgående överallt för att ändra highlight (likadant i index och i journaltext).
+- Loggen fortsätter i samma popup-fönster även om sidan laddas om (men räknare etc nollställs vid omladdning)
+- Bug fixad: Flerdubbla årtalsavgränsare efter vissa patientväxlingar
+- Bug fixad: Sorteringsordning efter vissa patientväxlingar
+
+- Loggens meddelanden går nu lättare att maskinläsa och därmed dra statistik ur
+- Loggar id för testperson 
+- Loggar fönsterstorlek
+
+
+beta 1 & 2
+-----------
+- EHR-id val i URI-fragment
+- Spalter 1-2 reglerbart
+- Lägga enhet etc i tooltip
+- Admin-panel
+- Testpersonsinställning i url
+
+-Sökfrågor/highlighting
+- Skapa kontrollpanel med reglage och funktionalitet för
+-- konfigurerbar färg-highligt baserad på rubrik/"sökord"
+-- Färgpalett och index för highlighting
+-- on/off
+-- Komptimering i flera steg
+-- spalter
+
+Svarsformulär
+- Via google forms
+- Prefill testcase och testperson via URL från visualiseringen
+- Learning, 3xfall,
+- Svarsformulär SUS
+- Ta emot handläggn/ordination via server? 
+
+
+- Buggfixar gjorda:
+-- klick-gömmer och kan ej återfås
+-- få radbrytning på första okomprimerade rubrik efter komprimerad text
+-- spökande rubriknivå för "längd" m.m. (berodde på osynliga mellanslag)
+
+- Tvätta/buggfixa journaldata i kalkylarket
+-- komprimera reflexer, pulsar m.m mha mellanrubrik
+-- ta bort mellansag innan kolon m.m.
+-- Ändra rubrikstrukturering (puh...)
+-- Lägga enhet i  meta-spalt
+
+- Valfri tidssortering upp/ner
+
+Konverteringsscript
+- Tilverka...
+- Hantera nivåer som hoppar mer än ett steg mellan rader (Nivå 3 direkt till 1)
+- lägga upp på webb
+- Generera .JS-fil för download av konverterad testdata
+-- Från lista med Ehr-id och kalkylarks-URL
+-- Extrahera patient och PNR ur konverteringsformulär
+
+- Visa upp rätt patient och PNR från testdata-fil
+
+- Få SPAN i genererad kod att omsluta subsections (så att de kan döljas/highlightas sektionsvis)
+- Få CSS och omgivande SPAN för mellanrubriker och underliggande delrubriker att funka för nästlad highlighting (Puh, det var jobbigt)
+
+
+
+Diskutera:
+==========
+Inte starta med uppställning I, läreffekt på journalstruktur (sökord) ska drabba II eller III istället
+
+
+Tankar till papper:
+===================
+- Jämför journal och programmeringsmiljö
+-- Search-hit/TODO/Error-highlighting i olika färger
+-- (Syntax highligting)
+
+- Jämför sequenser/mixer
+-- Solo-track
+
+- Timeline från FB
+-- Bra (kompakt, informationstät) funkar för korta inlägg men svår för långa (mkt scroll upp/ner)
+
+- Lägga openEHR-paths (och template ID för övergripande typ) i en ny kolumn av metadta, så kan ett script relativt lätt posta till ContributionBuilder.
+
+- Lägga enhet+Protocol i tooltip?
+
+- Please replicate or fork and modify + publish your testcases! Ref til SEE-papper om test-replication!
+
+

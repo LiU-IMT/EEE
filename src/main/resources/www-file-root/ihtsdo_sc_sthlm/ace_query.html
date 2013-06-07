@@ -1,0 +1,18 @@
+<form>
+<p>AQL statement <a onclick="explain('1')">*</a> 
+</p>
+<textarea id="aql" rows="12">
+SELECT
+ d/data/items[at0010] as diagnosis_regocnized,
+ d/data/items[at0003] as diagnosis_initial_onset,
+ d/data/items[at0002.1] as diagnosis
+FROM 
+ Ehr e[ehr_id/value=$current_ehr_uid] 
+ CONTAINS EVALUATION d[openEHR-EHR-EVALUATION.problem-diagnosis.v1]
+WHERE
+ ( d/data/items[at0002.1]/value/defining_code/terminology_id/value = "SNOMED-CT" AND
+  d/data/items[at0002.1]/value/defining_code/code_string matches { http://localhost:8183/query?q=Descendants(84114007) } ) AND
+ ( d/data/items[at0003]/value < "2012-10-10" )
+
+</textarea>
+</form>

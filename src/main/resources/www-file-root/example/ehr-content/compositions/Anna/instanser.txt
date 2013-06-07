@@ -1,0 +1,8 @@
+Instanser skall skapas utifrån följande arketyper:
+
+2007-10-23 09.05
+openEHR-EHR-COMPOSITION.encounter.v1
+openEHR-EHR-OBSERVATION.blood_pressure.v1
+openEHR-EHR-EVALUATION.problem.v1 (-diagnosis???)
+openEHR-EHR-EVALUATION.goal.v1
+openEHR-EHR-INSTRUCTION.medication.v1

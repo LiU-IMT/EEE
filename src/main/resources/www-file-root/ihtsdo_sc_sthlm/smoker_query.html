@@ -1,0 +1,14 @@
+<form>
+<p>AQL statement <a onclick="explain('1')">*</a> 
+</p>
+<textarea id="aql" rows="10" cols="100">
+SELECT   
+ s/data as smoking_status
+FROM 
+ Ehr e[ehr_id/value=$current_ehr_uid] 
+ CONTAINS EVALUATION s[openEHR-EHR-EVALUATION.substance_use_summary-tobacco.v1]
+WHERE
+ ( s/data/items[at0002]/value/defining_code/terminology_id/value = "SNOMED-CT" AND
+  s/data/items[at0002]/value/defining_code/code_string = "8517006" )
+</textarea>
+</form>

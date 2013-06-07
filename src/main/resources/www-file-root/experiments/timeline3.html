@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Timeline experiment 3</title>
+<link rel="stylesheet" href="../css/timeline3.css" type="text/css" />
+<script src="/static/js/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+<!-- script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js -->
+<script src="/static/js/jquery/jquery.masonry-2.1.03.min.js.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/d3/d3-2.0.0/d3.min.js"></script>
+<script type="text/javascript" src="/static/js/d3/d3-2.0.0/d3.time.min.js"></script>		
+<script type="text/javascript" src="/js/utils/EEE-utils.js" ></script> 
+</head>
+<body>
+<!-- For timeline explanation/inspiration see http://www.9lessons.info/2012/01/facebook-timeline-design-using-jquery.html -->
+
+<div id="topHeaderUser" class="topHeader">
+<p>User related info and</br>controls will go here</p>
+</div>
+
+<div id="topHeaderPatient" class="topHeader">
+	<span style='float: right'><img src="/static/images/avatars/anna-avatar.jpg" height="35" width="35" border="1" valign="middle"/>&nbsp;<img id="alertsymbol" src="/static/images/alertsymbol/signal.2.gif" height="32" width="32" valign="middle"/></span>
+	<strong>&nbsp;Anna&nbsp;Exempelsson&nbsp;</strong><br/>
+	&nbsp;19310909-9000
+	</div>
+</div>
+
+<div id="containertop">
+<div id='profile' style='margin: 10px; height: 100px'>
+<img src='/static/images/avatars/anna-avatar.jpg'
+	style='border: solid 2px #cc0000; float: left;'
+	alt='Anna Exempelsson'></img>
+
+<h1 style='margin-left: 90px'>Patientöversikt, Tidslinje #3</br>(Prototyp-utveckling pågår...)</h1>
+</div>
+</div>
+
+<div id="container">
+
+<div class="timeline_container">
+	<div class="timeline">
+		<div class="plus"></div>
+	</div>
+</div>
+
+<div class="item ">
+	<a href='#' class='deletebox'>X</a>
+	<div><h2>Getting started</h2>
+		<p>Click a note to fetch details, click again to hide details.</p>
+		<h3>Codes for care settings</h3>
+		<p><ul>
+			<li><span class="openEHR-setting-227">emergency care</span></li>
+			<li><span class="openEHR-setting-228">primary medical</span>, <span class="openEHR-setting-229">primary nursing</span>, <span class="openEHR-setting-230">primary allied</span></li> 
+			<li><span class="openEHR-setting-232">secondary medical</span>, <span class="openEHR-setting-233">secondary nursing</span>, <span class="openEHR-setting-234">secondary allied</span></li> 
+			<li><span class="openEHR-setting-225">home</span>, <span class="openEHR-setting-238">other care</span></li>
+		</ul></p>	
+		<h3>Known bugs/TODO</h3>
+		<p>Bookmarking does not yet work from this page.</p>
+		<p>Redundant big ugly headers in detailed view should be removed</p>
+		</div>
+</div>
+
+
+<div id="popup" class='shade'>
+	<div class="Popup_rightCorner"></div>
+	<div id='box'>
+		<b>What's Up?</b><br />
+		<textarea id='update' cols="" rows=""></textarea>
+		<input type='submit' value=' Update ' id='update_button' />
+	</div>
+</div>
+
+</div>
+
+
+<script type="text/javascript">	
+console.log("Hello world, entering timeline-3 script tag");
+
+function compareStartTime(a, b){
+	  var aTime = a.comp_start_time;
+	  var bTime = b.comp_start_time; 
+	  return ((aTime < bTime) ? -1 : ((aTime > bTime) ? 1 : 0));
+}
+
+var queries = new Array();
+
+queries[0] = new String("All compositions");
+queries[0].aql = 
+"SELECT " + "\n" +
+" v/uid/value as composition_id,"+ "\n" +
+" c/name/value as composition_title, " + "\n" +
+" c/context/start_time/value as comp_start_time, "+ "\n" +
+" c/context/end_time/value as comp_end_time, "+	 "\n" +
+" c/context/health_care_facility/name as comp_facility, "+ "\n" +		
+" c/context/setting/defining_code/code_string as comp_setting "+ "\n" +		
+"FROM Ehr [ehr_id/value=$current_ehr_uid] "+ "\n" +
+" CONTAINS VERSION v "+ "\n" +
+" CONTAINS COMPOSITION c "+ "\n" +
+" ORDER BY c/context/start_time/value DESCENDING";
+// IMPORTANT: If you change the query above then replace the 'sha' value on line below with "" and reload the page in order to receive a new sha value from the server that you then can place between the quote signs.
+queries[0].sha="ba5ddc1275fe0cfe6a69003b7da042756f4c2857";
+queries[0].responseArray = [ ]
+queries[0].callback = function(q, queryResponse) {
+	q.responseArray = objectifyAQLXmlResult(queryResponse);
+
+	// console.log(q.responseArray);
+	q.responseArray.sort(compareStartTime);
+	q.responseArray.reverse();	
+	// console.log(q.responseArray);
+
+	// console.log("Test");
+	// Parse dates and put into standardized variables + do other query specific processing
+	$.each(q.responseArray, function(index, d) {
+		// console.log("d.comp_start_time:"+d.comp_start_time+"Z")	  	
+		d.date = d3.time.format.iso.parse(d.comp_start_time+"Z");
+		if(d.comp_end_time) {
+			d.enddate = d3.time.format.iso.parse(d.comp_end_time+"Z");
+		}
+		// console.log("d.date:"+d.date)
+		d.category = d.composition_title;
+		// console.log("d.category:"+d.category) 
+		$('#container').append(
+			'<div class="item" id="'+d.composition_id+'">'+
+				'<div id="'+d.comp_start_time+'Z"><small>'+d.date.toDateString()+' '+d.date.toTimeString().substring(0,5)+
+				' <span class="facility openEHR-setting-'+d.comp_setting+'">'+d.comp_facility+'</span></small>'+
+				  '<br/><span class="composition_title" style="visibility:visible;"><b>'+d.composition_title+'</b></span>'+
+				  '<div class="fetch" style="visibility:visible;">'+
+				  '...'+
+				' </div>'+
+				'</div>'+
+			'</div>');
+//		var newItem = $('#'+d.composition_id).data(newItem, "aqlResponse", d);
+//		console.log("newItem: "+newItem);
+//		console.log(newItem);
+	});
+	console.log("Test 2");
+	
+	q.minDate = d3.min(q.responseArray, function(d) { return d.date; })
+	q.maxDate = d3.max(q.responseArray, function(d) { return d.date; }) // TODO: check enddate (if available) not startdate!
+	q.done = true;
+
+	// Reload masonry
+	$('#container').masonry( 'reload' );
+	$('.rightCorner').hide();
+	$('.leftCorner').hide();
+	Arrow_Points();
+	console.log("q.minDate:"+q.minDate+" q.maxDate:"+q.maxDate);
+	
+	//drawIfAllQueriesDone();
+} 
+
+function Arrow_Points() { 
+	var s = $('#container').find('.item');
+	$.each(s,function(i,obj){
+		var posLeft = $(obj).css("left");
+		$(obj).addClass('borderclass');
+		if(posLeft == "0px")
+		{
+			html = "<span class='rightCorner'></span>";
+			$(obj).prepend(html);			
+		}
+		else
+		{
+			html = "<span class='leftCorner'></span>";
+			$(obj).prepend(html);
+		}
+	});
+}
+
+
+
+$(document).ready(function() {
+	console.log("Starting $(document).ready function");
+
+	var incomingFrag = window.location.hash;
+	console.log("incoming window.location.hash: "+incomingFrag);
+	var parsedFragmentData;
+	if (incomingFrag){
+		parsedFragmentData = queryStringToHash(incomingFrag.split("#")[1]); // Remove # TODO: look for simpler version later	
+		console.log("parsedFragmentData:");
+		console.log(parsedFragmentData);		
+	}
+		
+	if(incomingFrag && parsedFragmentData.ehr){
+		console.log("parsedFragmentData.ehr: "+parsedFragmentData.ehr);
+		var ehrId = parsedFragmentData.ehr		
+	} else {
+		console.log("parsedFragmentData did not contain an ehr id");
+		var ehrId = null;
+	}
+
+
+	$('.timeline_container').mousemove(
+			function(e) {
+				var topdiv=$("#containertop").height();
+				var pag= e.pageY - topdiv-26;
+				$('.plus').css({"top":pag +"px", "background":"url('/static/images/timeline/plus.png')","margin-left":"1px"});}).
+				mouseout(function(){
+					$('.plus').css({"background":"url('')"}
+				);
+			}
+	);
+
+	$("#update_button").live('click',
+			function() {
+		var x=$("#update").val();
+		$("#container").prepend('<div class="item"><a href="#" class="deletebox">X</a><div>'+x+'</div></div>');
+
+		// Reload masonry
+		$('#container').masonry( 'reload' ); // TODO: Check possible side effects
+		$('.rightCorner').hide();
+		$('.leftCorner').hide();
+		Arrow_Points();
+
+		$("#update").val('');
+		$("#popup").hide();
+		return false;
+	});
+
+	// Divs
+	function refreshLayout(){
+		$('#container').masonry({itemSelector : '.item',});
+		$('.rightCorner').hide();
+		$('.leftCorner').hide();
+		Arrow_Points();
+	}
+
+	// Mouseup textarea false
+	$("#popup").mouseup(function() {return false});
+
+	$(".timeline_container").click(function(e) {
+		var topdiv=$("#containertop").height();
+		$("#popup").css({'top':(e.pageY-topdiv-33)+'px'});
+		$("#popup").fadeIn();
+		$("#update").focus();
+	});  
+
+
+	$(".deletebox").live('click',function()
+	{
+		if(confirm("Are your sure?"))
+		{
+			$(this).parent().fadeOut('slow');  
+			// Remove item
+			$('#container').masonry( 'remove', $(this).parent() );
+			// Reload masonry
+			$('#container').masonry( 'reload' );
+			$('.rightCorner').hide();
+			$('.leftCorner').hide();
+			Arrow_Points();
+		}
+		return false;
+	});
+
+	$(".item").live('click',function()
+		{
+			console.log(" - - - Click: "+this.id);
+			console.log(this);
+			var fetchTarget = $(this).find(".fetch")		
+			if (this.alreadyOpen) {
+				fetchTarget.empty();
+				fetchTarget.text("...");
+				refreshLayout();
+				this.alreadyOpen=false;
+			} else {
+				var fetchDiv = $("<div></div>")
+				var fetchUrl = '/ehr:'+ehrId+'/'+this.id+'?media=text/html'
+				console.log("fetchUrl:");
+				console.log(fetchUrl);
+				$.get(fetchUrl, 
+						function(resp, code){
+							console.log(" Click callback code:"+code+" resp:"+resp);
+							fetchTarget.html($(resp).find('#versionWrap')); //.children().slice(1));
+							refreshLayout();
+						});
+				console.log("fetchDiv:");
+				console.log(fetchDiv);
+				console.log(" Click after fetch call");
+				this.alreadyOpen=true;
+			} // End if (this.alreadyOpen) ... else
+		}
+	);
+	
+	// Textarea without editing.
+	$(document).mouseup(function() {
+		$('#popup').hide();
+	});
+
+	if (ehrId) {
+	    $.each(queries,function(index, q){
+	    	console.log("will call executeQuery("+q+", "+ehrId+", ...)");
+			executeQuery(q, ehrId, q.callback);
+		});	
+	} else {
+		$('#container').append(
+				'<div class="item" id="missingEhr">'+
+				'An ehr id must be provided in the url-fragment, for example timeline3.html#ehr=example-ehr-id&foo=test'+
+				'</div>');
+	}
+
+    refreshLayout();	
+
+}); // End $(document).ready
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1329 @@
+ /**
+  * This is a JavaCC file, see http://java.net/projects/javacc
+  * It should be compiled using JavaCC in order to generate a set of .java-files
+  * Grammar based on AQL grammar v0.6 found at http://www.openehr.org/wiki/display/spec/Archetype+Query+Language+Grammar 
+  * Re-designed by Mikael Nyström & Martin Eneling, Linköping University, Sweden
+  * Main implementor Martin Eneling, Linköping University, Sweden
+  * Modified by Erik Sundvall, Linköping University, Sweden
+  */
+options{  JDK_VERSION = "1.6";
+  STATIC = false ;}PARSER_BEGIN(AqlParser)package se.liu.imt.mi.eee.AQL_Parser;//import java.io.File;
+import se.liu.imt.mi.eee.structure.EEEConstants;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.ArrayList; 
+import java.util.Iterator;
+import java.util.ListIterator;
+
+// As soon as we started programming, we found to our surprise that it wasn't as easy
+// to get programs right as we had thought. Debugging had to be discovered.
+// I can remember the exact instant when I realized that a large part of my life from
+// then on was going to be spent in finding mistakes in my own programs. 
+//     -- Maurice Wilkes
+
+public class AqlParser{
+  final boolean debugPrint = true;
+    // Default to XML
+  public EEEConstants.AQLParserReturnType returnType = EEEConstants.AQLParserReturnType.XQuery_EEE_0_1;
+
+  public void setReturnType(EEEConstants.AQLParserReturnType returnType)	{
+	  this.returnType = returnType;    }
+		    
+
+  protected String generateXsiTypeComparison(String objectName)  {	 return "[(@xsi:type = '" + objectName + "' or @xsi:type = 'v1:" + objectName + "')"; 
+  }     
+  }PARSER_END(AqlParser)SKIP :{  " "| "\r"| "\t"| "\n"}
+//Brackets
+TOKEN :
+{
+  < LEFT_PARENS : "(" >
+}
+TOKEN :{  < RIGHT_PARENS : ")" >}
+TOKEN :
+{
+  < LEFT_BRACKET : "[" >
+}
+TOKEN :
+{
+  < RIGHT_BRACKET : "]" >
+}
+TOKEN :
+{
+  < LEFT_BRACE : "{" >
+}
+TOKEN :
+{
+  < RIGHT_BRACE : "}" >
+}
+
+//Other tokens for JavaCC
+//EHR specifics
+TOKEN:
+{  <  COMMA : "," >
+}
+TOKEN:
+{
+  < VERSIONED_OBJECT : "VERSIONED_OBJECT" >
+}
+TOKEN:
+{  < EHR : "EHR" | "Ehr" | "ehr" >
+}
+TOKEN:
+{
+  < VERSION : "VERSION" >}
+TOKEN:
+{
+  < ALL_VERSIONS : "ALL_VERSIONS" | "all_versions" >
+}
+TOKEN:
+{
+  < LATEST_VERSION : "LATEST_VERSION" | "latest_versions" >
+}
+
+TOKEN:
+{  <  AS : "AS" | "as" >
+}
+TOKEN:
+{  <  MATCHES : "MATCHES" | "matches" >
+}
+TOKEN:
+{
+  < FORWARD_SLASH : "/" >}
+
+TOKEN:
+{  < SELECT: "SELECT" >
+}
+TOKEN:
+{  < FROM : "FROM" >
+}
+TOKEN:
+{  <  WHERE : "WHERE" >
+}
+TOKEN:
+{
+  < CONTAINS : "CONTAINS" >}
+TOKEN:
+{  < EXISTS : "EXISTS" >
+}
+TOKEN:
+{
+  < TIMEWINDOW : "TIMEWINDOW" >}
+TOKEN:
+{
+  <  #ORDER : "ORDER" >
+}
+TOKEN:
+{
+  <  #BY : "BY" >
+}
+TOKEN:
+{
+  <  ORDER_BY : < ORDER > <BY >|"ORDERBY" |"ORDER BY">
+}
+TOKEN:
+{  <  TOP : "TOP" >
+}
+TOKEN:
+{  < FORWARD : "FORWARD" >
+}
+TOKEN:
+{
+  < ASCENDING : "ASCENDING" | "ASC" >
+}TOKEN:
+{
+  < DESCENDING : "DESCENDING" | "DESC" >
+}
+TOKEN:
+{  < BACKWARD : "BACKWARD" >
+}
+//Logical operators
+TOKEN:
+{
+  < OR : "OR" | "or" >
+}
+TOKEN:
+{
+  < AND : "AND" | "and" >
+}
+
+TOKEN:
+{
+  < XOR : "XOR" | "xor" >
+}
+TOKEN:
+{
+  < NOT : "NOT" | "not" >
+}
+
+//TOKEN : /* OPERATORS */
+//{
+//	< PLUS: "+" >
+//|	< MINUS: "-" >
+//|	< MULTIPLY: "*" >
+//|	< DIVIDE: "/" >
+//}
+//TOKEN :
+//{
+//    < CONSTANT: ( <DIGIT> )+ >
+//|   < #DIGIT: ["0" - "9"] >
+//}
+//! Character Set Definitions
+//
+//{quote} = ['']
+TOKEN :
+{  < DASH : "-" >
+}
+
+TOKEN :
+{  < UNDERSCORE : "_" >
+}
+
+TOKEN :
+{  < DOT : "." >
+}
+
+TOKEN :{  < QUOTE : "'" >}TOKEN :{  < DIGIT : [ "0"-"9" ] >}TOKEN :{  < #ALPHANUMERIC :    < DIGIT >  | [ "a"-"z", "A"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6", "." ] > // works in Sweden!}//{Hex Char} = {Digit} + [ABCDEF]
+TOKEN :{  < #HEX_CHAR :    < DIGIT >  | [ "A"-"F" ] >}//{NonZeroDigit} = {Digit} - [0]
+TOKEN :{  < #NON_ZERO_DIGIT : [ "1"-"9" ] >}TOKEN :{  < #LETTER : [ "a"-"z", "A"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6" ] >}//{String Char} = {Printable} - ["] - {quote}
+TOKEN :
+{
+  < #STRING_CHAR :
+   "\u00A0"  				//No-break space 
+ | [ "\u0020", "\u0021", "\u0023" - "\u0026", "\u0028" - "\u007E"] >
+}//
+//{LetterMinusA} = {Letter} - [aA]
+TOKEN :{  < #LETTER_MINUS_A : [ "b"-"z", "B"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6" ] >}//{LetterMinusT} = {Letter} - [tT]
+TOKEN :{  < #LETTER_MINUS_T : [ "a"-"s", "u"-"z", "A"-"S", "U"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6" ] >}//
+//!{AlphanumericMinusT} = {Alphanumeric} - [t]
+TOKEN :{  < #ALPHANUMERIC_MINUS_T :    < LETTER_MINUS_T >  | < DIGIT > >}//!{NonZeroAlphanumeric} = {Alphanumeric} - [0]
+TOKEN :{  < #NON_ZERO_ALPHANUMERIC :    < NON_ZERO_DIGIT >  | [ "a"-"z", "A"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6" ] >}//{IdChar} = {Alphanumeric} + [_] - [.]   ! not allowing a dot
+TOKEN :{  < #ID_CHAR :    < DIGIT >  | [ "a"-"z", "A"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6"] 
+  | < UNDERSCORE > >}//{IdCharMinusT} = {IdChar} - [tT]
+TOKEN :{  < #ID_CHAR_MINUS_T :    < DIGIT >  | [ "a"-"s", "u"-"z", "A"-"S", "U"-"Z", "\u00c5", "\u00c4", "\u00d6", "\u00e5", "\u00e4", "\u00f6"]
+  | <  UNDERSCORE > >}//{UriString} = {Alphanumeric} + [_-/:.?&%$#@!+=*()| ]
+TOKEN :{  < #URI_STRING :    < ALPHANUMERIC >
+  | [ "_", "-", "/", ":", ".", "?", "&", "%", "$", "#", "@", "!", "+", "=", "*", "(", ")", "|", " " ] >}
+
+//{UriStringPlus} = {Alphanumeric} + [_-/:.?&%$#@!+=*(){}| ]
+TOKEN :
+{
+  < #URI_STRING_PLUS :
+    < ALPHANUMERIC >
+  | [ "_", "-", "/", ":", ".", "?", "&", "%", "$", "#", "@", "!", "+", "=", "*", "(", ")", "{", "}", "|", " " ] >
+}//
+//!{RegExChar} = {Alphanumeric} + [']'] + ['['] + [_-/:.?&%$#@!+=*() ]
+//{RegExChar} = {Alphanumeric} + [_-/:.?&%$#|@!+=*()\\\^{}] + [']'] + ['[']
+TOKEN :{  < #REG_EX_CHAR :    < ALPHANUMERIC >  | [ "_", "-", "/", ":", ".", "?", "&", "%", "$", "#", "|", "@", "!", "+", "=", "*", "(", ")", "\\", "^", "{", "}", "]", "[" ] >}//
+//
+//! Terminal Definitions
+//
+//!Identifier  = {Letter}({Alphanumeric}|'_')*   ! Conflicts with UID
+//!Identifier  = {Letter}{IdChar}*   ! Conflicts with extended NodeId 
+//! restricted to allow only letters after the 4th character due to conflict with extended NodeId
+//!Identifier  = {Letter}{IdChar}?{IdChar}?{IdChar}?({Letter}|'_')*  !Conflicts with NodeId which may have any length of digit, such as at0.9
+//Identifier = {LetterMinusA}{IdCharMinusT}?{IdChar}* | 'a''t'?(({letter}|'_')*|{LetterMinusT}{Alphanumeric}*)  
+TOKEN :{  < IDENTIFIER :    < LETTER_MINUS_A > (< ID_CHAR >)*
+			  | ("a"|"A") <LETTER_MINUS_T > (< ID_CHAR >)*
+  | ("a"|"A") ("t"|"T")  (< LETTER > | < UNDERSCORE >) (< ID_CHAR >)* >
+}//
+//!PathItem = '/'{Letter}({Alphanumeric}|'_')*
+//TOKEN ://{//  < PATH_ITEM ://    < FORWARD_SLASH > < LETTER >//    (//      < ALPHANUMERIC >//    | "_"//    )* >//}//String      = '"'{String Char}*'"'
+//            | ''{String Char}*''
+TOKEN :{  < STRING :    "\"" (< STRING_CHAR >)* "\""  | < QUOTE > (< STRING_CHAR >)* < QUOTE > >}//Integer     = {Digit}+
+TOKEN :{  < INTEGER : (< DIGIT >)+ >}//Float       = {Digit}+'.'{Digit}+
+TOKEN :{  < FLOAT : (< DIGIT >)+ "." (< DIGIT >)+ >}//Date        = ''{Digit}{Digit}{Digit}{Digit}'-'{Digit}{Digit}'-'{Digit}{Digit}''
+TOKEN :{  < DATE : < DIGIT > < DIGIT > < DIGIT > < DIGIT > "-" < DIGIT > < DIGIT > "-" < DIGIT > < DIGIT > >  //TODO: Check representation, unsure about ''
+}//Boolean     = 'true' | 'false'
+TOKEN :{  < BOOLEAN :    "true"  | "false" >}//!NodeId      = 'a''t'{Digit}{Digit}{Digit}{Digit}
+//! conflict with Identifier
+//!NodeId	     = 'at'({Digit}{Digit}{Digit}{Digit}('.0'*('.'{NonZeroDigit}{Digit}*)+|('.'{NonZeroDigit}{Digit}*)*)|'0''.0'*('.'{NonZeroDigit}{Digit}*)+|('.'{NonZeroDigit}{Digit}*)+)
+//NodeId	     = 'at'({Digit}+('.'{Digit}+)*) 
+TOKEN :{  < NODE_ID :
+      "at" (< DIGIT >)+    (      "." (< DIGIT >)+    )* >} //!Parameter   = '$'{letter}({Alphanumeric}|'_')*
+//Parameter   = '$'{letter}{IdChar}*
+TOKEN :{  < PARAMETER : "$" < LETTER > (< ID_CHAR >)* >}//! could constrain UID further
+//UniqueId    = {digit}+('.'{digit}+)+'.'{digit}+  ! OID
+//            | {Hex Char}+('-'{Hex Char}+)+       ! UUID
+//TOKEN ://{//  < UNIQUE_ID ://    (< DIGIT >)+//    (//      "." (< DIGIT >)+//    )+//    "." (< DIGIT >)+//  | (< HEX_CHAR >)+//    (//      "-" (< HEX_CHAR >)+//    )+ >//}//
+//! could constrain ArchetypeId further
+//!ArchetypeId = {Letter}+'-'{Letter}+'-'({Letter}|'_')+'.'({Letter}|'_'|'-')+'.v'{Digit}+('.'{Digit}+)?  ! not allow a number in archetype id concept, such as openEHR-EHR-OBSERVATION.laboratory-hba1c.v1 
+//ArchetypeId = {Letter}+'-'{Letter}+'-'({Letter}|'_')+'.'({IdChar}|'-')+'.v'{Digit}+('.'{Digit}+)?
+TOKEN :{  < ARCHETYPE_ID :    (< LETTER >)+ < DASH > (< LETTER >)+ < DASH >    (< LETTER > | <  UNDERSCORE >)+    < DOT >    (< ID_CHAR > | < DASH >)+    < DOT > "v" (< DIGIT >)+    (      < DOT > (< DIGIT >)+    )? >}//ComparableOperator = '=' | '!=' | '>' | '>=' | '<' | '<='
+TOKEN :{  < COMPARABLE_OPERATOR :    "="  | "!="  | " >"  | " >="  | "<"  | "<=" >}//UriValue   = {Letter}+'://'({UriString}|'['|']'|', '''|'')* 
+//            |{Letter}+':'({UriString}|'['|']'|'')*
+TOKEN :{  < URI_VALUE :    (< LETTER >)+ ":/"    (      < URI_STRING >
+    | "\\" "{"
+    | "\\" "}"    | "["    | "]"    | ", " ""    | ""    )*  | (< LETTER >)+ ":/"    (      < URI_STRING >
+    | "\\" "{"
+    | "\\" "}"    | "["    | "]"    | ""    )* 
+  | (< LETTER >)+ ":/"
+    (
+      "'" < URI_STRING_PLUS > "'"
+    | "["
+    | "]"
+    | ""
+    )* >}//RegExPattern = '{/'{RegExChar}+'/}'
+TOKEN :{  < REG_EX_PATTERN : "{/" (< REG_EX_CHAR >)+ "/}" >}
+//! _____________Rule Definitions________________________________
+//<Query> ::= <Select> <From>
+//            | <Select> <From> <Where>
+//            | <Select> <From> <OrderBy>   ! is this allowed?
+//            | <Select> <From> <Where> <OrderBy>
+//TODO: ADD TIMEWINDOW to the query
+
+
+String Query() :{
+  Object retSelect = null;  String retF = null, retW = null, retO = null, retT = null;
+   if (debugPrint) System.out.println("Query");}{
+  retSelect = Select() retF = From() (retW = Where())? (retO = OrderBy())? //(retT = TimeWindow())?
+  {
+   if (debugPrint) System.out.println("ReturnQuery");
+   
+   switch (returnType) {
+    case XML:
+	     return "<query>"
+	     + (retSelect != null? retSelect :"")
+	     + (retF != null? retF :"")
+	     + (retW != null? retW :"")
+	     + (retO != null? retO :"")
+	     + (retT != null? retT :"")
+	     + "</query>";
+    	break;
+    case XQuery_EEE_0_1:    
+		//Create a SPARQL-like structure for output
+		//Make the head
+		String head = "<res:head>";
+		//Add the variable names
+		for(Iterator i = ((ArrayList<String>)retSelect).iterator();i.hasNext();)
+		{
+		  	//Add the variable names to the head
+			head = head + "\n<res:variable name='"
+		   		+ (i.next())
+		   		+ "'/>";
+		   	//Skip the path
+		   	i.next();
+		}
+		head = head + "\n</res:head>";
+
+		//Add the query
+		String result = "\n<res:results>\n";
+		result += "{";
+		result += (retF != null? retF :"");
+	    result += (retW != null? retW :"");
+	    result += (retO != null? retO :"");
+	    result += (retT != null? retT :"");
+	    result += "\nreturn\n<res:result>";
+		//Compose the results 
+	    for(Iterator i = ((ArrayList<String>)retSelect).iterator();i.hasNext();)
+		{
+		  	//Add the binding name to the result structure
+			result += "\n<res:binding name='"
+		   		+ (i.next())
+		   		+ "'>";
+		   	//Add the path (and replace the ehr_id with the EEE namespace specific equivalent
+		   	//TODO: Check possible replacement collisions
+		   	result += "{" + ((String)i.next()).replace("ehr_id", "eee:ehr_id") + "}</res:binding>";
+		}
+
+		result += "\n</res:result>";
+		result += "}";
+		result += "\n</res:results>";
+
+		//return result;  
+	    return "<res:xml-results>\n"+head + result+"\n</res:xml-results>";
+	    
+	    break;
+   }  }}//<Select> ::= 'SELECT' <SelectExpr>
+//         | 'SELECT' <TOP> <SelectExpr>
+Object Select() :{  Object expression = null, top = null;
+   if (debugPrint) System.out.println("Select");
+  }{
+  < SELECT > (top = Top())? expression = SelectExpr()  {
+   if (debugPrint) System.out.println("ReturnSelect");
+        switch (returnType) {
+       case XML:
+       return "<Select>"
+       +(top != null? top :"")
+       + expression
+       + "</Select>";
+       break;
+       case XQuery_EEE_0_1:    	
+       //TODO: Add support for "Top" functionality
+       	return expression;
+       break;
+     }
+      }}//<Top> ::= 'TOP' Integer
+//          | 'TOP' Integer 'BACKWARD'
+//          | 'TOP' Integer 'FORWARD'
+String Top() :{   if (debugPrint) System.out.println("Top");
+  
+  Token integer = null, direction = null;}{
+  < TOP > integer = < INTEGER > ( direction = < BACKWARD > | direction = < FORWARD > )?//  LOOKAHEAD(2) "TOP" integer = < INTEGER > //| LOOKAHEAD(2) "TOP" integer = < INTEGER > direction = "BACKWARD"//| "TOP" integer = < INTEGER > direction = "FORWARD"  {
+   if (debugPrint) System.out.println("ReturnTop");    switch (returnType) {
+       case XML:
+       return "<Top>"
+       + (integer != null? "<INTEGER>" + integer.image +"</INTEGER>":"")
+       + (direction != null? "<DIRECTION>" + direction.image + "</DIRECTION >" : "")
+       + "</Top>";
+       break;
+       case XQuery_EEE_0_1:
+       break;
+     }  }}//<Where> ::= 'WHERE' <IdentifiedExpr>
+String Where() :{  String identifiedExpr = null;
+  if (debugPrint) System.out.println("Where");
+  }{  < WHERE > identifiedExpr = IdentifiedExpr()  {
+   if (debugPrint) System.out.println("ReturnWhere");    switch (returnType) {
+      case XML:
+      return "<Where>"+ identifiedExpr+ "</Where>";
+      break;
+      case XQuery_EEE_0_1:
+      	return
+      		"\nwhere " + identifiedExpr; 
+      break;
+     }  }}//<OrderBy> ::= 'ORDER BY' <OrderBySeq>
+String OrderBy() :{  String orderBySeq = null;
+  if (debugPrint) System.out.println("OrderBy");}{  < ORDER_BY > orderBySeq = OrderBySeq()  {
+    if (debugPrint) System.out.println("ReturnOrderBy");    switch (returnType) {
+      case XML:
+      return "<OrderBy>"+ orderBySeq+ "</OrderBy>";
+      break;
+      case XQuery_EEE_0_1:
+      	return "\norder by " + orderBySeq;
+      break;
+     }  }}
+
+//TODO: Add time interval parsing - or perhaps NOT, because AQL is changing and moving time-windowing from query to service interface, see: http://www.openehr.org/wiki/display/spec/Archetype+Query+Language+Grammar?focusedCommentId=10649601#comment-10649601
+// <TimeWindow > ::= < TIMEWINDOW > < TimeInterval >
+//String TimeWindow()://{//}//{//  < TIMEWINDOW > //}//<OrderBySeq>  ::= <OrderByExpr> 
+//		| <OrderByExpr> ',' <OrderBySeq>
+//
+String OrderBySeq() :{  String orderBySeq = null;  String orderByExpr = null;
+  if (debugPrint) System.out.println("OrderBySeq");}{
+  orderByExpr = OrderByExpr() ("," orderBySeq = OrderBySeq())?
+  //  LOOKAHEAD(2) orderByExpr = OrderByExpr()//| orderByExpr = OrderByExpr() "," orderBySeq = OrderBySeq()  {
+    if (debugPrint) System.out.println("ReturnOrderBySeq");    switch (returnType) {
+      case XML:
+      return "<OrderBySeq>"+ orderByExpr
+      + (orderBySeq != null? orderBySeq :"")
+      + "</OrderBySeq>";
+      break;
+      case XQuery_EEE_0_1:
+      	return orderByExpr + (orderBySeq != null? "," + orderBySeq :"");
+      break;
+     }  }}//<OrderByExpr> ::= <IdentifiedPath>
+//		| <IdentifiedPath> 'DESCENDING'
+//		| <IdentifiedPath> 'ASCENDING'
+//		| <IdentifiedPath> 'DESC'
+//		| <IdentifiedPath> 'ASC'
+//
+String OrderByExpr() :{  String identifiedPath = null;  Token sortingDescending = null;
+  Token sortingAscending = null;
+  if (debugPrint) System.out.println("OrderByExpr");}{
+  identifiedPath = IdentifiedPath() (sortingDescending = < DESCENDING > | sortingAscending = < ASCENDING >)?
+//TODO: Discuss Token definitions of ascending & descending  {
+    if (debugPrint) System.out.println("ReturnOrderByExpr");    switch (returnType) {
+      case XML:
+      return "<OrderByExpr>"
+    	  + identifiedPath
+      + (sortingDescending != null? "<SortingOrder>" + sortingDescending.image + "</SortingOrder>" :"")
+      + (sortingAscending != null? "<SortingOrder>" + sortingAscending.image + "</SortingOrder>" :"")
+      + "</OrderByExpr>";
+      break;
+      case XQuery_EEE_0_1:
+      	return identifiedPath
+      			+ (sortingDescending != null? " descending":"")
+     			+ (sortingAscending != null? " ascending":"");
+      break;
+     }  }}//<SelectExpr> ::= <IdentifiedPathSeq>
+Object SelectExpr() :{  ArrayList<String> identifiedPathSeq = new ArrayList<String>();
+  Object returnIdentifiedPathSeq = null;
+  if (debugPrint) System.out.println("SelectExpr");}{  returnIdentifiedPathSeq = IdentifiedPathSeq(identifiedPathSeq)  {
+    if (debugPrint) System.out.println("ReturnSelectExpr");    switch (returnType) {
+      case XML:
+      	return "<SelectExpr>"+ returnIdentifiedPathSeq+ "</SelectExpr>";
+      	break;
+      case XQuery_EEE_0_1:
+      	return returnIdentifiedPathSeq;
+      	break;
+     }  }}//! When multiple paths provided, each IdentifiedPath must represent an object of type DataValue
+//<IdentifiedPathSeq> ::= <IdentifiedPath>
+//			| <IdentifiedPath> 'as' Identifier
+//			| <IdentifiedPath> ',' <IdentifiedPathSeq>
+//			| <IdentifiedPath> 'as' Identifier ',' <IdentifiedPathSeq>
+//
+Object IdentifiedPathSeq(Object identifiedPathSeq) :{  String identifiedPath = null;  Object nextIdentifiedPathSeq = null;  Token identifier = null;  if (debugPrint) System.out.println("IdentifiedPathSeq");
+}{
+  identifiedPath = IdentifiedPath()
+  (< AS > identifier = < IDENTIFIER >)?
+  (< COMMA > nextIdentifiedPathSeq = IdentifiedPathSeq(identifiedPathSeq))?  {
+    if (debugPrint) System.out.println("ReturnIdentifiedPathSeq");    switch (returnType) {
+      case XML:
+	      return "<IdentifiedPathSeq>"
+	      + identifiedPath
+	      + (nextIdentifiedPathSeq != null? nextIdentifiedPathSeq :"")
+	      + (identifier != null? "<Identifier>" + identifier.image+ "</Identifier>"  :"")
+	      + "</IdentifiedPathSeq>";
+      	break;
+      case XQuery_EEE_0_1:
+		//Add a binding name and path as a tuple to a list
+		if (identifier != null) //There is an alias, "as something", present
+		{		  //Add the identifier as binding name
+		  ((ArrayList<String>)identifiedPathSeq).add(identifier.image);
+		}
+		else		{		  //Add the path as binding name (but without the $-sign, which is disliked in xml tags)		 ((ArrayList<String>)identifiedPathSeq).add(identifiedPath.substring(1));		}		//Add the path
+		((ArrayList<String>)identifiedPathSeq).add(identifiedPath);
+		    
+     return identifiedPathSeq;
+     break;  	}
+ }  }
+//<From> ::=   'FROM' <FromExpr>		! stop or/and without root class
+//	    | 'FROM' <FromEHR> <ContainsExpr>
+//           | 'FROM' <FromEHR>
+//!          'FROM' <ContainsOr>  
+String From() :{  Object fromEHR = null;
+  String fromExpr = null;
+  String containsExpr = null;
+  HashMap<String, String > ehrRoot = new HashMap<String, String >();
+  ehrRoot.put("listIdentifier", "$ehrRoot");
+  if (debugPrint) System.out.println("From");}{
+  
+  < FROM > ((fromEHR = FromEHR())
+  {    if(fromEHR != null)
+    	ehrRoot.put("listIdentifier", ((HashMap<String, String >)fromEHR).get("identifier"));
+    	//+"/");
+  }
+   (containsExpr = ContainsExpr(ehrRoot))?) //< FROM > ((from = FromExpr()) |  ((from = FromEHR()) (containsExpr = ContainsExpr())?))
+  {
+    if (debugPrint) System.out.println("ReturnFrom");    switch (returnType) {
+      case XML:
+      return "<From>"
+	      + fromEHR
+	      + (containsExpr != null? containsExpr :"")
+	      + "</From>";
+      break;
+      case XQuery_EEE_0_1:
+      	//TODO: Split the fromEHR
+				//The from
+		if (fromEHR !=null){
+		  return "let $ehrRoot := //eee:EHR\n"
+		  		+ (fromEHR != null? ((HashMap<String, String >)fromEHR).get("fromString") :"")
+				+ (containsExpr != null? containsExpr :"");		}		
+      break;
+     }  }}//
+//<FromExpr> ::=  <SimpleClassExpr>		
+//		| <SimpleClassExpr> <ContainsExpr>	
+//
+String FromExpr(Object ehrRoot) :{  Object simpleClassExpr = null;  String containsExpr = null;
+  if (debugPrint) System.out.println("FromExpr");}{
+  simpleClassExpr = SimpleClassExpr() (containsExpr = ContainsExpr(ehrRoot))?//  LOOKAHEAD(2) simpleClassExpr = SimpleClassExpr()//| simpleClassExpr = SimpleClassExpr() containsExpr = ContainsExpr()  {
+    if (debugPrint) System.out.println("ReturnFromExpr");    switch (returnType) {
+      case XML: return "<FromExpr>"
+      + (String)simpleClassExpr + (containsExpr != null? containsExpr :"")
+      + "</FromExpr>";
+      break;
+      case XQuery_EEE_0_1:
+       	return "for "
+			+ (simpleClassExpr != null? ((HashMap<String, String >)ehrRoot).get("listIdentifier") : "")
+			+ (containsExpr != null? containsExpr :"");
+;
+      
+      break;
+     }  }}//<FromEHR> ::= 'EHR' <StandardPredicate>
+//              | 'EHR' Identifier <StandardPredicate>
+//              | 'EHR' Identifier
+//
+Object FromEHR() :{
+  HashMap<String, String > fromEHR = new HashMap<String, String >();;  String standardPredicate = null;  Token identifier = null;
+  if (debugPrint) System.out.println("FromEHR");}{
+  < EHR > ((standardPredicate = StandardPredicate())
+| (identifier = < IDENTIFIER >) (standardPredicate = StandardPredicate())?)  {
+    if (debugPrint) System.out.println("ReturnFromEHR");
+    switch (returnType) {
+      case XML: return "<FromEHR>"
+      + (identifier != null? "<Identifier>" +identifier.image+"</Identifier>" : "")
+      + (standardPredicate != null? standardPredicate : "")
+      + "</FromEHR>";
+      break;
+      case XQuery_EEE_0_1:
+      	String ident =  (identifier != null?  "$" + identifier.image : "$e");
+        fromEHR.put("fromString",
+         		"for "
+         		+ ident
+         		+ " in $ehrRoot"
+				+ (standardPredicate != null? "[eee:"+ standardPredicate + "]":"")
+				+ "\n");
+		 fromEHR.put("identifier",ident);
+		 return fromEHR; 
+//		if (standardPredicate != null)//		{
+//		  return standardPredicate;
+//	 	}
+//	 	else if (identifier != null)
+//	 	{//	 	  return (HashMap<String, String >)standardPredicate.put("identifier", identifier.image);
+//	 	}	
+//     	return null;
+      break;
+     }  }}//<IdentifiedExpr> ::= <IdentifiedEquality>
+//                   | <IdentifiedExprBoolean>
+//                   |'(' <IdentifiedExprBoolean> ')'
+//
+//String IdentifiedExpr() ://{//  String identified = null;//  if (debugPrint) System.out.println("IdentifiedExpr");//}//{ //TODO: Check for a way to rewrite without lookahead// (//  	identified = IdentifiedEquality()//	// Not allowed, causes left recursion: |  identified = IdentifiedExprBoolean()//	| < LEFT_PARENS > identified = IdentifiedExprBoolean() < RIGHT_PARENS > //	//| (LOOKAHEAD((< LEFT_PARENS > identified = IdentifiedExprBoolean() < RIGHT_PARENS >) (< AND > |< OR >| < XOR >)) < LEFT_PARENS > identified = IdentifiedExprBoolean() < RIGHT_PARENS >)//	//| < LEFT_PARENS > identified = IdentifiedExprBoolean() (< AND > |< OR >| < XOR >) identified = IdentifiedExprBoolean() < RIGHT_PARENS > // )//////  {//    if (debugPrint) System.out.println("ReturnIdentifiedExpr");//    switch (returnType) {//      case XML://      return "<IdentifedExpr>"+ identified + "</IdentifedExpr>";//      break;//      case XQuery_EEE_0_1://      	return identified;//      break;//     }//  }//}//<IdentifiedExprBoolean> ::= <IdentifiedExpr> 'OR' <IdentifiedExpr>
+//                              | <IdentifiedExpr> 'AND' <IdentifiedExpr>
+//                              | <IdentifiedExpr> 'XOR' <IdentifiedExpr>
+//                              | 'NOT''(' <IdentifiedExprBoolean> ')'
+//                              | 'NOT' <IdentifiedEquality>
+// Rewritten, due to left recursion, as:
+//<IdentifiedExprBoolean> ::= (//                              <IdentifiedEquality> //                            | 'NOT' <IdentifiedEquality>
+//                            | 'NOT' '(' <IdentifiedExprBoolean> ')'
+//                            | '(' <IdentifiedExprBoolean> ')' //                            | '(' <IdentifiedExprBoolean> ')' 'OR' <IdentifiedEquality> //                            | '(' <IdentifiedExprBoolean> ')' 'AND' <IdentifiedEquality> //                            | '(' <IdentifiedExprBoolean> ')' 'XOR' <IdentifiedEquality> //                            )//
+
+//String IdentifiedExprBoolean() ://{//  String identifiedLeft = null;//  String identifiedRight = null;//  Token bool = null;//  char caseNumber;//  String result = null;//  if (debugPrint) System.out.println("IdentifiedExprBoolean");//}//{//		    ((//		      LOOKAHEAD (2)//		      bool = < NOT > identifiedRight = IdentifiedEquality()//		  |   bool = < NOT > < LEFT_PARENS > identifiedRight = IdentifiedExprBoolean() < RIGHT_PARENS >)//	  |   ( identifiedLeft = IdentifiedExpr() (((bool = < OR > | bool = < AND >) | bool = < XOR >) identifiedRight = IdentifiedExpr())+ ))//  {//    if (debugPrint)//    {//      System.out.println("ReturnIdentifiedExpressionBoolean");//      System.out.println("identifiedRight: "+identifiedRight.//    }//    switch (returnType) {//      case XML://	      return "<IdentifiedExprBoolean>"//		      + (identifiedLeft != null? identifiedLeft :"")//		      + "<BooleanOperator>" + bool.image + "</BooleanOperator>"//		      + (identifiedRight != null? identifiedRight :"")//		      + "</IdentifiedExprBoolean>";//	      break;//      case XQuery_EEE_0_1://      	return //      		"(" //ES//      		+(identifiedLeft != null? identifiedLeft :"")//      		// + "\n" //ES commented out//      		+ " "//      		+ bool.image.toLowerCase() + " "//      		+ (identifiedRight != null? identifiedRight :"")//      		+ ")"; //ES//      	break;//     }//  }//}
+// // also old:
+//<IdentifiedEquality> ::=
+//                 <IdentifiedOperand> ComparableOperator <IdentifiedOperand>
+//			     | <IdentifiedOperand> 'matches' '{' <MatchesOperand> '}'
+//               | <IdentifiedOperand> 'matches' RegExPattern
+//               | 'EXISTS' <IdentifiedPath>
+//
+
+// ****************************************************************************************************
+// ES: The above variations have problems with longer sequences and nestings of boolean expressions.
+// Instead trying a classical and/or rewrite that is used in Bostjans ANTLR grammar found at
+// http://www.openehr.org/wiki/display/spec/ANTLR+AQL+grammar
+//
+// identifiedExpr
+// 	: identifiedExprAnd ((OR|XOR)^ identifiedExprAnd)*;
+//
+
+String IdentifiedExpr() :
+{
+  String identifiedLeft = null, identifiedRight = null, result = null;
+  Token bool = null; char caseNumber;
+  if (debugPrint) System.out.println("IdentifiedExprBoolean");
+}
+{
+	( identifiedLeft = IdentifiedExprAnd() ((bool = < OR > | bool = < XOR >) identifiedRight = IdentifiedExprAnd())* )
+  {
+    if (debugPrint)
+    {
+      System.out.println("IdentifiedExpr :-: identifiedLeft: "+identifiedLeft+" -- bool: "+bool+" -- identifiedRight: "+identifiedRight);
+    }
+    switch (returnType) {
+      case XML:
+	      return "<IdentifiedExpr>" + (identifiedLeft != null? identifiedLeft :"") + "<BooleanOperator>" + bool.image + "</BooleanOperator>"
+		      + (identifiedRight != null? identifiedRight :"")+ "</IdentifiedExpr>";
+	      break;
+      case XQuery_EEE_0_1:
+            if (bool != null && identifiedRight != null)
+      		{
+      			String output =  (identifiedLeft != null? identifiedLeft :"") + " "
+      			+ bool.image.toLowerCase() + " " 
+      			+ (identifiedRight != null? identifiedRight :"") ;
+
+      			System.out.println("IdentifiedExpr :---: "+output);
+      			return output;
+      		} else {
+      			return (identifiedLeft != null? identifiedLeft :"");
+      		}
+      	break;
+     }
+  }
+}
+
+// identifiedExprAnd
+//	: identifiedEquality (AND^ identifiedEquality)*;
+//
+
+String IdentifiedExprAnd() :
+{
+  String identifiedLeft = null, identifiedRight = null, result = null;
+  Token bool = null; char caseNumber;
+  if (debugPrint) System.out.println("IdentifiedExprBoolean");
+}
+{
+	( identifiedLeft = IdentifiedEquality() ((bool = < AND >) identifiedRight = IdentifiedEquality())* )
+  {
+    if (debugPrint)
+    {
+      System.out.println("IdentifiedExprAnd :--: identifiedLeft: "+identifiedLeft+" -- bool: "+bool+" -- identifiedRight: "+identifiedRight);
+    }
+    switch (returnType) {
+      case XML:
+	      return "<IdentifiedExprAnd>" + (identifiedLeft != null? identifiedLeft :"") + "<BooleanOperator>" + bool.image + "</BooleanOperator>"
+		      + (identifiedRight != null? identifiedRight :"")+ "</IdentifiedExprAnd>";
+	      break;
+      case XQuery_EEE_0_1: 
+      		if (bool != null && identifiedRight != null)      		{      			String output = (identifiedLeft != null? identifiedLeft :"") + " "      			+ bool.image.toLowerCase() + " " // TODO: replace w/ "and"      			+ (identifiedRight != null? identifiedRight :"");
+
+//      			String output =  identifiedLeft  + " and " + identifiedRight ;//      			System.out.println("IdentifiedExprAnd :-----: "+output);
+      			return output;
+      		} else {
+      			return (identifiedLeft != null? identifiedLeft :"");
+      		}      	break;
+     }
+  }
+}
+
+// identifiedEquality
+// 	     : identifiedOperand ((MATCHES^ '{'! matchesOperand '}'!)
+//        |(COMPARABLEOPERATOR^ identifiedOperand))
+//        | EXISTS identifiedPath -> ^(EXISTS identifiedPath)
+//        | '('! identifiedExpr ')'!
+//        | NOT^ identifiedEquality
+// 	;
+
+// Instead of old:
+//<IdentifiedEquality> ::=
+//                 <IdentifiedOperand> ComparableOperator <IdentifiedOperand>
+//			     | <IdentifiedOperand> 'matches' '{' <MatchesOperand> '}'
+//               | <IdentifiedOperand> 'matches' RegExPattern
+//               | 'EXISTS' <IdentifiedPath>
+//
+String IdentifiedEquality() :{  String identifiedOperandLeft = null, identifiedOperandRight = null, matchesOperand = null, identifiedPath = null, identifiedEquality = null, identifiedExpr = null;
+  Token comparableOperator = null, matches = null, regExPattern = null, exists = null, neg = null;
+  if (debugPrint) System.out.println("IdentifiedEquality");}
+{//IdentifiedOperand() < MATCHES >  (
+   (LOOKAHEAD(IdentifiedOperand() < COMPARABLE_OPERATOR >)
+   (identifiedOperandLeft = IdentifiedOperand() comparableOperator = < COMPARABLE_OPERATOR > identifiedOperandRight = IdentifiedOperand())  
+|  (LOOKAHEAD(IdentifiedOperand() < MATCHES > < REG_EX_PATTERN >) 
+   (identifiedOperandLeft = IdentifiedOperand() matches = < MATCHES > regExPattern = < REG_EX_PATTERN >)|  (identifiedOperandLeft = IdentifiedOperand() matches = < MATCHES >
+		< LEFT_BRACE > matchesOperand = MatchesOperand(identifiedOperandLeft) <  RIGHT_BRACE >)))
+| (exists = < EXISTS > identifiedPath = IdentifiedPath())
+| neg = < NOT > identifiedEquality = IdentifiedEquality()
+| < LEFT_PARENS > identifiedExpr = IdentifiedExpr() < RIGHT_PARENS >
+)  {
+    if (debugPrint) System.out.println("ReturnIdentifiedEquality identifiedPath: "+identifiedPath+", identifiedOperandRight: "+identifiedOperandRight);    switch (returnType) {
+      case XML:
+      return "<IdentifiedEquality>"
+      + (identifiedOperandLeft != null? identifiedOperandLeft :"")
+      + (identifiedOperandRight != null? identifiedOperandRight :"")
+      + (identifiedPath != null? identifiedPath :"")
+      + "</IdentifiedEquality>";      break;
+      case XQuery_EEE_0_1:
+      //TODO: RegExPattern support. How does the matches operand work with regEx?
+      if(comparableOperator != null)
+      	return identifiedOperandLeft + " " + comparableOperator.image + " " + identifiedOperandRight;
+      	// return "("+identifiedOperandLeft + " " + comparableOperator.image + " " + identifiedOperandRight+")";
+      else if (matches != null && matchesOperand != null)
+      	return identifiedOperandLeft + " = (" + matchesOperand + ")";
+	  //  XQuery exists case? - ES tries an EXISTS experiment below:
+	  else if (neg != null && identifiedEquality != null)
+	  	return "not (" + identifiedEquality + ")";
+	  else if (identifiedPath != null)
+	  	return "exists(" + identifiedPath + ")";
+	  else if (identifiedExpr != null)
+	  	return "(" + identifiedExpr + ")";	  	
+      else
+      	return null;
+      break;
+     }
+  }}
+// ****************************************************************************************************
+
+//<IdentifiedOperand> ::= <Operand> | <IdentifiedPath>
+//!<IdentifiedOperand> ::= <Operand> | <RelativePath>
+//
+String IdentifiedOperand() :{  String identifiedPath = null, operand = null;
+  if (debugPrint) System.out.println("IdentifiedOperand");}{
+  ((operand = Operand()) | (identifiedPath = IdentifiedPath()))  {
+    if (debugPrint) System.out.println("ReturnIdentifiedOperand");    switch (returnType) {
+      case XML:
+	      return "<IdentifiedOperand>"
+	      + (operand != null? operand :"")
+	      + (identifiedPath != null? identifiedPath :"")
+	      + "</IdentifiedOperand>";
+	      break;
+      case XQuery_EEE_0_1:
+		return
+	  		(operand != null? operand :"")
+	  		+ (identifiedPath != null?  identifiedPath :"");
+       break;
+     }  }}//<IdentifiedPath>::= Identifier
+//                    | Identifier <Predicate>
+//                    | Identifier '/' <ObjectPath>
+//                    | Identifier <Predicate> '/' <ObjectPath>
+//!		| Identifer <AbsolutePath>
+//!		| Identifer <Predicate> <AbsolutePath>
+//
+String IdentifiedPath() :{  String predicate = null;  String objectPath = null;
+  Token identifier = null;
+  if (debugPrint) System.out.println("IdentifiedPath");}{ //TODO: Check and discuss
+ identifier = < IDENTIFIER > (predicate = Predicate())? (< FORWARD_SLASH > objectPath = ObjectPath())?
+  {
+    if (debugPrint) System.out.println("ReturnIdentifiedPath");
+    switch (returnType) {
+      case XML:
+      return "<IdentifiedPath>"
+      + "<Identifier>"+identifier.image+"</Identifier>" 
+      + (predicate != null? predicate :"")
+      + (objectPath != null? objectPath :"")
+      + "</IdentifiedPath>";
+      break;
+      case XQuery_EEE_0_1:
+      	//TODO: Verify support for predicates
+      	return "$" + identifier.image
+      			   + (predicate != null? predicate :"")
+      	           + (objectPath != null? "/" + objectPath :"");
+      break;
+     }  }}//<Predicate> ::= <NodePredicate>
+//
+String Predicate() :{  String nodePredicate = null;
+  if (debugPrint) System.out.println("Predicate");}{  nodePredicate = NodePredicate()  {
+    if (debugPrint) System.out.println("ReturnPredicate");    switch (returnType) {
+      case XML:
+      return "<Predicate>"+ nodePredicate+ "</Predicate>";
+      break;
+      case XQuery_EEE_0_1:
+      	return nodePredicate;
+      break;
+     }  }}//<NodePredicate> ::= '['<NodePredicateOr>']'
+//
+String NodePredicate() :{  String nodePredicateOr = null;
+  if (debugPrint) System.out.println("NodePredicate");}{   < LEFT_BRACKET > nodePredicateOr = NodePredicateOr() < RIGHT_BRACKET >  {
+    if (debugPrint) System.out.println("ReturnNodePredicate");    switch (returnType) {
+      case XML:
+      return "<NodePredicate>"+ nodePredicateOr + "</NodePredicate>";
+      break;
+      case XQuery_EEE_0_1:
+      	return nodePredicateOr;
+      break;
+     }  }}//<NodePredicateOr> ::= <NodePredicateAnd>
+//                 | <NodePredicateOr> 'or' <NodePredicateAnd>
+// Rewritten, due to left recursion, as:
+//<NodePredicateOr> ::= <NodePredicateAnd> ('or' <NodePredicateAnd>)*
+//
+String NodePredicateOr() :{  String nodePredicateAnd = "";  String nodePredicateAndTemp = null;
+  Token or = null;
+  if (debugPrint) System.out.println("NodePredicateOr");
+}{  nodePredicateAnd = NodePredicateAnd()  (    or = < OR > nodePredicateAndTemp = NodePredicateAnd()    {
+      nodePredicateAnd += " or " + nodePredicateAndTemp;    }  )*  {
+    if (debugPrint) System.out.println("ReturnNodePredicateOr");    switch (returnType) {
+      case XML:
+      return "<NodePredicateOr>"
+      + (or != null? or.image :"") 
+      +  nodePredicateAnd
+      + "</NodePredicateOr>";
+      break;
+      case XQuery_EEE_0_1:
+      	return nodePredicateAnd;
+      break;
+     }  }}//<NodePredicateAnd> ::= <NodePredicateComparable>
+//                 | <NodePredicateAnd> 'and' <NodePredicateComparable>
+// Rewritten, due to left recursion, as:
+//<NodePredicateAnd > ::= <NodePredicateComparable> ('and' <NodePredicateComparable>)*
+//
+String NodePredicateAnd() :{  String nodePredicateComparable = null;  String nodePredicateComparableTemp = null;
+  Token and = null;
+  if (debugPrint) System.out.println("NodePredicateAnd");}{   nodePredicateComparable = NodePredicateComparable()  (    and = < AND > nodePredicateComparableTemp = NodePredicateComparable()    {      nodePredicateComparable += " and " + nodePredicateComparableTemp;    }  )*  {
+    if (debugPrint) System.out.println("ReturnNodePredicateAnd");    switch (returnType) {
+      case XML: return "<NodePredicateAnd>"
+      + (and != null? and.image :"")
+      + nodePredicateComparable+ "</NodePredicateAnd>";
+      break;
+      case XQuery_EEE_0_1:
+      	return nodePredicateComparable;
+      break;
+     }  }}//<NodePredicateComparable> ::= <PredicateOperand> ComparableOperator <PredicateOperand>
+//                          | NodeId
+//                          | NodeId ',' String        ! <NodeId> and name/value = <String> shortcut
+//                          | NodeId ',' parameter     ! <NodeId> and name/value = <Parameter> shortcut
+//                          | <NodePredicateRegEx>     ! /items[{/at0001.*/}], /items[at0001 and name/value matches {//}]
+//                          | ArchetypeId
+//                          | ArchetypeId ',' String        ! <NodeId> and name/value = <String> shortcut
+//                          | ArchetypeId ',' parameter     ! <NodeId> and name/value = <Parameter> shortcut
+//
+String NodePredicateComparable() :{  String predicateOperandLeft = null;  String predicateOperandRight = null;  String nodePredicateRegEx = null;
+  Token nodeId = null, archetypeId = null, comparableOperator = null;
+  Token param = null;
+  if (debugPrint) System.out.println("NodePredicateComparable");}{
+  //TODO: Get test case with NodePredicateRegEx and ARCHETYPE_ID
+(  LOOKAHEAD(3)(
+  LOOKAHEAD(2)(
+  predicateOperandLeft = PredicateOperand() comparableOperator = < COMPARABLE_OPERATOR > predicateOperandRight = PredicateOperand()
+| nodeId = < NODE_ID > (< COMMA > (param = < STRING > | param = < PARAMETER >))?)
+| nodePredicateRegEx = NodePredicateRegEx())| archetypeId = < ARCHETYPE_ID > (< COMMA > (param = < STRING > | param = < PARAMETER >))?)  {
+    if (debugPrint) System.out.println("ReturnNodePredicateComparable");    switch (returnType) {
+      case XML:
+      return "<NodePredicateComparable>"
+	      + (nodeId != null? "<NodeId>" + nodeId.image + "</NodeId>" : "")
+	      + (archetypeId != null? "<ArchetypeId>" + archetypeId.image + "</ArchetypeId>" : "")
+	      + (predicateOperandLeft != null? predicateOperandLeft :"")
+	      + (predicateOperandRight != null? predicateOperandRight :"")
+	      + (nodePredicateRegEx != null? nodePredicateRegEx :"")
+	      + "</NodePredicateComparable>";
+      	  break;
+      case XQuery_EEE_0_1:
+      if (comparableOperator != null)
+		return predicateOperandLeft + " " + comparableOperator.image + " " + predicateOperandRight;
+	  else if (nodeId != null && param != null)
+	  	return "[@archetype_node_id = '" + nodeId.image + "']," + param;
+	  else if (nodeId != null)
+	  	return "[@archetype_node_id = '" + nodeId.image + "']";
+	  else if(nodePredicateRegEx != null)
+	  	return nodePredicateRegEx;
+	  else if (archetypeId != null && param != null)
+	  	return "[@archetype_node_id = '" + archetypeId.image + "']," + param;
+	  else if (archetypeId != null)
+	  	return "[@archetype_node_id = '" + archetypeId.image + "']";
+     }  }}//<NodePredicateRegEx>    ::= RegExPattern
+//                          | <PredicateOperand> 'matches' RegExPattern                          
+//
+String NodePredicateRegEx() :{  String predicateOperand = null;
+  if (debugPrint) System.out.println("NodePredicateRegEx");}{  < REG_EX_PATTERN >| predicateOperand = PredicateOperand() < MATCHES > < REG_EX_PATTERN >  {
+    if (debugPrint) System.out.println("ReturnNodePredicateRegEx");    switch (returnType) {
+      case XML:
+      return "<NodePredicateRegEx>"
+      + (predicateOperand != null? predicateOperand : "")
+      + "</NodePredicateRegEx>";
+      break;
+      case XQuery_EEE_0_1:
+      break;
+     }  }}//<MatchesOperand> ::= <ValueListItems>
+//			| UriValue
+//
+String MatchesOperand(String identifiedOperand) :{  String valueListItems = null;
+  Token uriValue = null;
+  if (debugPrint) System.out.println("MatchesOperand : " + identifiedOperand);}{  (    valueListItems = ValueListItems(identifiedOperand)| uriValue = < URI_VALUE >)  {
+    if (debugPrint) System.out.println("ReturnMatchesOperand");    switch (returnType) {
+      case XML:
+	      return "<MatchesOperand>"
+	      + (valueListItems != null? valueListItems :"")
+	      + (uriValue != null? uriValue.image :"")
+	      + "</MatchesOperand>";
+	      break;
+      case XQuery_EEE_0_1:
+      	if(valueListItems != null)
+      	{      	    if (debugPrint) System.out.println("ReturnMatchesOperand - ValueList");
+      		return valueListItems;
+      }
+      	else if(uriValue != null)      	{      	  if (debugPrint) System.out.println("ReturnMatchesOperand - URIValue");
+      		return URIProcessor.processURI(uriValue.image);
+      }
+      	break;
+     }  }}//! <ValueList> ::= '{'<ValueListItems>'}'
+//
+//<ValueListItems> ::= <Operand>
+//                     |<Operand> ',' <ValueListItems>
+//
+String ValueListItems(String identifiedOperand) :{  String operand = null;  String valueListItems = null;
+  if (debugPrint) System.out.println("ValueListItems");}{
+  operand = Operand() (<  COMMA > valueListItems = ValueListItems(identifiedOperand))?  {
+    if (debugPrint) System.out.println("ReturnValueListItems"
+    + operand + (valueListItems != null? valueListItems :""));    switch (returnType) {
+      case XML:
+	      return "<ValueListItems>"
+	      + operand
+	      + (valueListItems != null? valueListItems : "")
+	      + "</ValueListItems>";
+	      break;
+      case XQuery_EEE_0_1:
+	      return
+		      identifiedOperand + " = " + operand   
+		      + (valueListItems != null? "\nor " + valueListItems : "");
+	      break;
+     }  }}//<URI>     ::= '{' UriValue '}'
+// TODO: Check if this is used at all, otherwise remove
+String URI() :{
+  Token uriValue = null;
+  
+  if (debugPrint) System.out.println("URI");
+}{  "{" uriValue = < URI_VALUE > "}"
+    {      if (debugPrint) System.out.println("ReturnURI");      switch (returnType) {
+      case XML:
+      return "<URI>"+ uriValue.image + "</URI>";
+      break;
+      case XQuery_EEE_0_1:
+      	return URIProcessor.processURI(uriValue.image); 
+      break;
+     }  }}//<ArchetypePredicate> ::= '[' ArchetypeId ']'
+//			 			 | '[' Parameter ']'
+//                       | '[' RegExPattern ']'
+//
+String ArchetypePredicate() :{
+  Token t1 = null, t2 = null, t3 = null;
+  if (debugPrint) System.out.println("ArchetypePredicate");}{
+  < LEFT_BRACKET > ((t1 = < ARCHETYPE_ID > | t2 = < PARAMETER >) |  t3 = < REG_EX_PATTERN >) < RIGHT_BRACKET >  {
+    if (debugPrint) System.out.println("ReturnArchetypePredicate");    switch (returnType) {
+      case XML:
+      return "<ArchetypePredicate>"
+      +  (t1 != null? "<ArchetypeId>"+ t1.image + "</ArchetypeId>" :"")
+      +  (t2 != null? "<Parameter>"+ t2.image + "</Parameter>" :"")
+      +  (t3 != null? "<RegExPattern>"+ t3.image + "</RegExPattern>" :"")
+      + "</ArchetypePredicate>";
+      break;
+      case XQuery_EEE_0_1:
+      return 
+         (t1 != null? "@archetype_node_id = '"+ t1.image + "'" :"")
+      +  (t2 != null? t2.image :"")
+      +  (t3 != null? t3.image :"");
+      break;
+     }  }}//<VersionPredicate> ::= '[' <VersionPredicateOptions> ']'
+String VersionPredicate() :{  String versionPredicateOptions = null;
+  if (debugPrint) System.out.println("VersionPredicate");}{  "[" versionPredicateOptions = VersionPredicateOptions() "]"  {
+    if (debugPrint) System.out.println("ReturnVersionPredicate");    switch (returnType) {
+      case XML:
+      return "<VersionPredicate>"+ versionPredicateOptions+ "</VersionPredicate>";
+      break;
+      case XQuery_EEE_0_1:
+      return versionPredicateOptions;
+      break;
+     }  }}//<VersionPredicateOptions> ::= 'latest_version' | 'all_versions'
+//
+String VersionPredicateOptions() :{if (debugPrint) System.out.println("VersionPredicateOptions");}{  < LATEST_VERSION >| < ALL_VERSIONS >  {
+    if (debugPrint) System.out.println("ReturnVersionPredicateOptions");    switch (returnType) {
+      case XML:
+      return "<VersionPredicateOptions>"+ "</VersionPredicateOptions>";
+      break;
+      case XQuery_EEE_0_1:
+      break;
+     }  }}//<StandardPredicate> ::= '[' <PredicateExpr> ']'
+String StandardPredicate() :{  String predicateExpr = null;
+  if (debugPrint) System.out.println("StandardPredicate");}{  "[" predicateExpr = PredicateExpr() "]"  {
+    if (debugPrint) System.out.println("ReturnStandardPredicate");    switch (returnType) {
+      case XML: return "<StandardPredicate>"+ predicateExpr+ "</StandardPredicate>";
+      break;
+      case XQuery_EEE_0_1:
+      	return predicateExpr;
+      break;
+     }  }}//<PredicateExpr> ::= <PredicateOr>
+String PredicateExpr() :{  String predicateOr = null;
+  if (debugPrint) System.out.println("PredicateExpr");}{  predicateOr = PredicateOr()  {
+    if (debugPrint) System.out.println("ReturnPredicateExpr");    switch (returnType) {
+      case XML:
+      return "<PredicateExpr>"+ predicateOr+ "</PredicateExpr>";
+      break;
+      case XQuery_EEE_0_1:
+      	return predicateOr;
+      break;
+     }  }}//<PredicateOr> ::= <PredicateAnd>
+//                 | <PredicateOr> 'or' <PredicateAnd>
+// Rewritten, due to left recursion, as:
+//<PredicateOr > ::= <PredicateAnd> ('or' <PredicateAnd>)*
+//
+String PredicateOr() :{  String predicateAnd = "";  String predicateAndTemp = null;
+  if (debugPrint) System.out.println("PredicateOr");}{  predicateAnd = PredicateAnd()  (    <  OR > predicateAndTemp = PredicateAnd()    {      predicateAnd += "or " + predicateAndTemp;    }  )*  {
+    if (debugPrint) System.out.println("ReturnPredicateOr");    switch (returnType) {
+      case XML:
+      return "<PredicateOr>"+ predicateAnd +  "</PredicateOr>";
+      break;
+      case XQuery_EEE_0_1:
+      	return predicateAnd;
+      break;
+     }  }}//<PredicateAnd> ::= <PredicateEquality>
+//                 | <PredicateAnd> 'and' <PredicateEquality>
+// Rewritten, due to left recursion, as:
+//<PredicateAnd > ::= <PredicateEquality> ('and' <PredicateEquality>)*
+//
+String PredicateAnd() :{  String predicateEquality = null;  String predicateEqualityTemp = null;  if (debugPrint) System.out.println("PredicateAnd");
+ }{  predicateEquality = PredicateEquality()  (    < AND > predicateEqualityTemp = PredicateEquality()    {      predicateEquality += "and " + predicateEqualityTemp;    }  )*
+    { if (debugPrint) System.out.println("ReturnPredicateAnd");
+  switch (returnType) {
+    case XML:
+    return "<PredicateAnd>"+ predicateEquality +"</PredicateAnd>";
+    break;
+      case XQuery_EEE_0_1:
+      	return predicateEquality
+      	+  (predicateEqualityTemp != null? "and " + predicateEqualityTemp :"");
+      break;
+     }  }}
+
+//<PredicateEquality> ::= <PredicateOperand> ComparableOperator <PredicateOperand>
+//
+String PredicateEquality() :{
+  String predicateOperandLeft = null;  String predicateOperandRight = null;
+  Token operator = null;
+  if (debugPrint) System.out.println("PredicateEquality");}{  predicateOperandLeft = PredicateOperand() operator = < COMPARABLE_OPERATOR > predicateOperandRight = PredicateOperand()  {
+    if (debugPrint) System.out.println("ReturnPredicateEquality");    switch (returnType) {
+      case XML:
+      return "<PredicateEquality>"
+      + predicateOperandLeft
+      +(operator.image != null? "<ComparableOperator>" +operator.image+"</ComparableOperator>" :"")
+      + predicateOperandRight
+      + "</PredicateEquality>";
+      break;
+      case XQuery_EEE_0_1:
+        return predicateOperandLeft + operator.image + predicateOperandRight;
+      break;
+     }  }}//<PredicateOperand> ::= !Identifier
+//			!| Identifier PathItem
+//                     | <ObjectPath>
+//                     | <Operand> 
+//
+String PredicateOperand() :{  String objectPath = null;  String operand = null;
+  if (debugPrint) System.out.println("PredicateOperand");}{   ((objectPath = ObjectPath()) | (operand = Operand()))  {
+    if (debugPrint) System.out.println("ReturnPredicateOperand");    switch (returnType) {
+      case XML:
+      return "<PredicateOperand>"
+      +(objectPath != null? objectPath :"")
+      + (operand != null? operand :"")
+      + "</PredicateOperand>";
+      break;
+      case XQuery_EEE_0_1:
+		if (objectPath != null)
+		 	return objectPath;
+		else 
+        	return operand;
+      break;
+     }  }}//<Operand> ::= String | Integer | Float | Date | Parameter | Boolean
+//
+String Operand() :{
+			  Token t1 = null,t2 = null,t3 = null,t4 = null,t5 = null,t6 = null;
+  if (debugPrint) System.out.println("Operand");
+}{  (((((  t1 = < STRING >| t2 = < INTEGER >)| t3 = < FLOAT >)| t4 = < DATE >)| t5 = < PARAMETER >)| t6 = < BOOLEAN >)  {
+    if (debugPrint) System.out.println("ReturnOperand");    switch (returnType) {
+      case XML:
+	      return "<Operand>"
+	      +(t1 != null? "<String>" + t1.image + "</String>" :"")
+	      +(t2 != null? "<Integer>" + t2.image + "</Integer>" :"")
+	      +(t3 != null? "<Float>" + t3.image + "</Float>" :"")
+	      +(t4 != null? "<Date>" + t4.image + "</Date>" :"")
+	      +(t5 != null? "<Parameter>" + t5.image + "</Parameter>" :"")
+	      +(t6 != null? "<Boolean>" + t6.image + "</Boolean>" :"")
+	      + "</Operand>";
+	      break;
+      case XQuery_EEE_0_1:
+          if (t1 != null)
+          	return t1.image;
+          else if (t2 != null)
+          	return t2.image;
+	      else if(t3 != null)
+	      	return t3.image;
+	      else if(t4 != null)
+	      	return t4.image;
+	      else if(t5 != null)
+			return t5.image;
+	      else 
+	      	return t6.image;
+	      break;
+     }  }}//<ObjectPath> ::=  <PathPart>
+//                | <PathPart> '/' <ObjectPath>
+//
+String ObjectPath() :{  String pathPart = null;  String objectPath = null;
+  if (debugPrint) System.out.println("ObjectPath");}{
+  (pathPart = PathPart()) (< FORWARD_SLASH > objectPath = ObjectPath())?  {
+    if (debugPrint) System.out.println("ReturnObjectPath");
+    switch (returnType) {
+      case XML: return "<ObjectPath>"
+	      + pathPart
+	      + (objectPath != null? objectPath :"")
+	      + "</ObjectPath>";
+      	break;
+      case XQuery_EEE_0_1:
+      	return  pathPart + (objectPath != null? "/" + objectPath :"");
+      	break;
+     }  }}//<PathPart> ::= Identifier
+//           | Identifier <Predicate>
+//
+String PathPart() :{  String predicate = null;
+  Token identifier = null;
+  if (debugPrint) System.out.println("PathPart");}{
+  identifier = < IDENTIFIER > (predicate = Predicate())? {
+    if (debugPrint) System.out.println("ReturnPathPart");    switch (returnType) {
+      case XML:
+      return "<PathPart>"
+      + "<Identifier>" + identifier.image + "</Identifier>"
+      + (predicate != null? predicate :"")
+      + "</PathPart>";
+      break;
+      case XQuery_EEE_0_1:
+      	return identifier.image + (predicate != null? predicate :"");
+      break;
+     }  }}//<ContainsExpr>::= 'CONTAINS' <ContainsExpression>
+//                  !'CONTAINS' <ContainsOr>
+//
+String ContainsExpr(Object simpleClassExpr) :{  Object containsExpression = null;
+  if (debugPrint) System.out.println("ContainsExpr");}{  < CONTAINS > containsExpression = ContainsExpression()  {
+    if (debugPrint) System.out.println("ReturnContainsExpr");    switch (returnType) {
+      case XML:
+      return "<ContainsExpr>"+ (String)containsExpression+ "</ContainsExpr>";
+      break;
+      case XQuery_EEE_0_1:
+		return
+			"for "
+			+ ((HashMap<String, String >)containsExpression).get("listIdentifier") + " in "
+			+ (simpleClassExpr != null? ((HashMap<String, String >)simpleClassExpr).get("listIdentifier") : "")
+			+ "//*" + ((HashMap<String, String >)containsExpression).get("typeRestriction")
+			+ (((HashMap<String, String >)containsExpression).get("furtherContainsExprs") != null?
+			"\n" + ((HashMap<String, String >)containsExpression).get("furtherContainsExprs"):"");
+      break;
+     }  }}//<ContainsExpression> ::= <ClassExpr>
+//                        | <ContainExpressionBoolean>
+//                        |'(' <ContainExpressionBoolean> ')'
+// 
+Object ContainsExpression() :{  Object classExpr = null;  Object containExpressionBoolean = null;
+  if (debugPrint) System.out.println("ContainsExpression");}{ //TODO: Discuss lookahead on recursiveness (should be solved by proper subfunction handling) (LOOKAHEAD(3)
+ (LOOKAHEAD(3) classExpr = ClassExpr()|  containExpressionBoolean = ContainExpressionBoolean())| "(" containExpressionBoolean = ContainExpressionBoolean() ")")  {
+    if (debugPrint) System.out.println("ReturnContainsExpression");    switch (returnType) {
+      case XML:
+      return "<ContainsExpression>"
+      + (classExpr != null? (String)classExpr : "")
+      + (containExpressionBoolean != null? (String)containExpressionBoolean : "")
+      + "</ContainsExpression>";
+      break;
+      case XQuery_EEE_0_1:
+		if (classExpr != null)
+			return classExpr;
+		else
+			return containExpressionBoolean; 
+      	break;
+     }  }}//<ContainExpressionBoolean> ::= <ContainsExpression> 'OR' <ContainsExpression>
+//                              | <ContainsExpression> 'AND' <ContainsExpression>
+//                              | <ContainsExpression> 'XOR' <ContainsExpression>
+// Rewritten, due to left recursion, as:
+//<ContainExpressionBoolean> ::=// 	                             (//                                 <ClassExpr> //                               | '(' <ContainExpressionBoolean> ')' //                               | '(' <ContainExpressionBoolean> ')' 'OR' <ClassExpr> //                               | '(' <ContainExpressionBoolean> ')' 'AND' <ClassExpr> //                               | '(' <ContainExpressionBoolean> ')' 'XOR' <ClassExpr> //	                             )//
+String ContainExpressionBoolean() :{  Object classExpr = null;  String containExpressionBoolean = null;  char caseNumber;  String result = null;
+  if (debugPrint) System.out.println("ContainsExpressionBoolean");}{  (    (      LOOKAHEAD(3) (      LOOKAHEAD(3) (      LOOKAHEAD(3) (      LOOKAHEAD(3) classExpr = ClassExpr()    {      caseNumber = 0;    }  | "(" containExpressionBoolean = ContainExpressionBoolean() ")")    {      caseNumber = 1;    }  | "(" containExpressionBoolean = ContainExpressionBoolean() ")" < OR > classExpr = ClassExpr())    {      caseNumber = 2;    }  | "(" containExpressionBoolean = ContainExpressionBoolean() ")" < AND > classExpr = ClassExpr())    {      caseNumber = 3;    }  | "(" containExpressionBoolean = ContainExpressionBoolean() ")" < XOR > classExpr = ClassExpr())    {      caseNumber = 4;    }  )  {
+  
+    if (debugPrint) System.out.println("ReturnContainsExpressionBoolean");    switch (returnType) {
+      case XML:
+        switch (caseNumber)
+	    {
+	      case 0 : result = (String)classExpr;
+	      break;
+	      case 1 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>";
+	      break;
+	      case 2 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>"+ "<OR/>"+ (String)classExpr;
+	      break;
+	      case 3 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>"+ "<AND/>"+ (String)classExpr;
+	      break;
+	      case 4 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>"+ "<XOR/>"+ (String)classExpr;
+	      break;
+	    }
+      return "<ContainExpressionBoolean>"+ result+ "</ContainExpressionBoolean>";
+      break;
+      case XQuery_EEE_0_1:
+      //TODO: 
+//        switch (caseNumber)//	    {//	      case 0 : result = classExpr;//	      break;//	      case 1 : result = containExpressionBoolean;//	      break;//	      case 2 : result = containExpressionBoolean + " OR " + classExpr;//	      break;//	      case 3 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>"+ "<AND/>"+ (String)classExpr;//	      break;//	      case 4 : result = "<Bracket>"+ containExpressionBoolean+ "</Bracket>"+ "<XOR/>"+ (String)classExpr;//	      break;//	    }      	return result;
+      break;
+     }  }}//
+//<ClassExpr>::=   <SimpleClassExpr>
+//		   | '(' <SimpleClassExpr> <ContainsExpr> ')'
+//		   | <SimpleClassExpr> <ContainsExpr>
+//
+Object ClassExpr() :{  Object simpleClassExpr = null;  String containsExpr = null;
+  if (debugPrint) System.out.println("ClassExpr");}{    ((simpleClassExpr = SimpleClassExpr() (containsExpr = ContainsExpr(simpleClassExpr))?)
+   | ("(" simpleClassExpr = SimpleClassExpr() ")"))  {
+    if (debugPrint) System.out.println("ReturnClassExpr");    switch (returnType) {
+      case XML:
+      return "<ClassExpr>"
+      + (String)simpleClassExpr
+      + (containsExpr != null? containsExpr :"")
+      + "</ClassExpr>";
+      break;
+      case XQuery_EEE_0_1:
+      	if(containsExpr != null)((HashMap<String, String >)simpleClassExpr).put("furtherContainsExprs", containsExpr); 
+      	return simpleClassExpr;
+      break;
+     }  }}//<SimpleClassExpr>::= Identifier							! RM_TYPE_NAME
+//               | Identifier Identifier					! RM_TYPE_NAME variable
+//               | <ArchetypedClassExpr>
+//		 | <VersionedClassExpr> 
+//		 | <VersionClassExpr> 
+//		 ! | <IdentifiedObjectExpr>                           ! need to be used once VersionedClassExpr is removed
+//               
+Object SimpleClassExpr() :{  Object archetypedClassExpr = null;  Object versionedClassExpr = null;  Object versionClassExpr = null;
+  Token t = null, t2 = null;
+  if (debugPrint) System.out.println("SimpleClassExpr");}{
+  (((LOOKAHEAD(3) (archetypedClassExpr = ArchetypedClassExpr())
+  | (t = < IDENTIFIER > (t2 = < IDENTIFIER >)?))
+  | (versionedClassExpr = VersionedClassExpr()))
+  | (versionClassExpr = VersionClassExpr()))  {
+    if (debugPrint) System.out.println("ReturnSimpleClassExpr");    switch (returnType) {
+      case XML:
+	    return "<SimpleClassExpr>"
+	    + (t != null? "<Identifier>" + t.image +"</Identifier>" :"")
+	    + (t2 != null? "<Identifier>" + t2.image+"</Identifier>" :"")
+	    + (archetypedClassExpr != null? (String)archetypedClassExpr : "")
+	    + (versionedClassExpr != null? versionedClassExpr : "")
+	    + (versionClassExpr != null? versionClassExpr : "")
+	    + "</SimpleClassExpr>";
+    	break;
+      case XQuery_EEE_0_1:
+      	HashMap<String, String > expr = new HashMap<String, String >();
+		if (t != null) expr.put("typeRestriction", generateXsiTypeComparison(t.image)+"]");
+    	if (t2 != null) expr.put("listIdentifier", "$" + t2.image);
+    	//Return whatever archetype class expression that has been built by the subfunction
+		if (archetypedClassExpr != null) expr = (HashMap<String, String >)archetypedClassExpr;    	//TODO: Add versioned/version class functionality
+    	//Return whatever versioned class expression that has been built by the subfunction
+		if (versionedClassExpr != null) expr = (HashMap<String, String >)versionedClassExpr;
+    	//Return whatever version class expression that has been built by the subfunction
+		if (versionClassExpr != null) expr = (HashMap<String, String >)versionClassExpr;
+		return expr;
+      	break;
+     }  }}//<ArchetypedClassExpr>::= Identifier <ArchetypePredicate>	! RM_TYPE_NAME [archetype_id]
+//               | Identifier Identifier <ArchetypePredicate>	! RM_TYPE_NAME variable [archetype_id]
+//
+Object ArchetypedClassExpr() :{      String archetypePredicate = null;
+  Token t = null, t2 = null;
+  if (debugPrint) System.out.println("ArchetypedClassExpr");}{   t = < IDENTIFIER > (t2 = < IDENTIFIER >)? archetypePredicate = ArchetypePredicate()  {
+    if (debugPrint) System.out.println("ReturnArchetypedClassExpr");    switch (returnType) {
+      case XML:
+      return "<ArchetypedClassExpr>"
+      +  "<Identifier>" +t.image +"</Identifier>"
+      + (t2 != null? "<Identifier>" + t2.image+"</Identifier>" :"")
+      + archetypePredicate
+      + "</ArchetypedClassExpr>";
+      break;
+      case XQuery_EEE_0_1:
+      	HashMap<String, String > expr = new HashMap<String, String >();
+      	expr.put("typeRestriction", generateXsiTypeComparison(t.image)
+      									 + " and " + archetypePredicate + "]");
+      	if (t2 != null) expr.put("listIdentifier", "$" + t2.image);
+      	return expr;
+      break;
+     }  }}//! need to be used once VersionedClassExpr is removed
+//!<IdentifiedObjectExpr>::= Identifier <StandardPredicate>	! RM_TYPE_NAME [path operator operand]
+//!               | Identifier Identifier <StandardPredicate>	! RM_TYPE_NAME variable [path operator operand]
+//
+//<VersionedClassExpr>::= 'VERSIONED_OBJECT'
+//               | 'VERSIONED_OBJECT' Identifier
+//               | 'VERSIONED_OBJECT' <StandardPredicate>
+//               | 'VERSIONED_OBJECT' Identifier <StandardPredicate>
+//
+Object VersionedClassExpr() :{  String standardPredicate = null;
+  Token versionedObject = null, identifier = null;
+  if (debugPrint) System.out.println("VersionedClassExpr");}{  versionedObject = < VERSIONED_OBJECT > ( identifier = < IDENTIFIER > )? (standardPredicate = StandardPredicate())?   {
+    if (debugPrint) System.out.println("ReturnVersionedClassExpr");    switch (returnType) {
+      case XML:
+      return "<VersionedClassExpr>"
+      + (versionedObject != null? " versionedObject:" +  versionedObject.image :"")
+      + (identifier != null? " identifier:" + identifier.image :"")
+      + (standardPredicate != null? standardPredicate :"")
+      + "</VersionedClassExpr>";
+      break;
+      case XQuery_EEE_0_1:
+		HashMap<String, String > expr = new HashMap<String, String >();
+      	expr.put("typeRestriction", generateXsiTypeComparison(versionedObject.image) 
+      									 + " and " + standardPredicate + "]");
+      	if (identifier != null) expr.put("listIdentifier", "$" + identifier.image);
+      	return expr;
+    
+      break;
+     }  }}//<VersionClassExpr>::= 'VERSION'
+//               | 'VERSION' Identifier
+//               | 'VERSION' <StandardPredicate>
+//               | 'VERSION' Identifier <StandardPredicate>
+//				 | 'VERSION' <VersionPredicate>
+//               | 'VERSION' Identifier <VersionPredicate>
+//
+Object VersionClassExpr() :{  String standardPredicate = null;  String versionPredicate = null;
+  Token identifier = null;
+  if (debugPrint) System.out.println("VersionClassExpr");}{
+  < VERSION > (identifier = < IDENTIFIER >)?
+  (LOOKAHEAD(3) (standardPredicate = StandardPredicate()) | (versionPredicate = VersionPredicate()))?
+  {
+    if (debugPrint) System.out.println("ReturnVersionClassExpr");    switch (returnType) {
+      case XML:
+      return "<VersionClassExpr>"
+      + (standardPredicate != null? standardPredicate : "")
+      + (versionPredicate != null? versionPredicate : "")
+      + "</VersionClassExpr>";
+      break;
+      case XQuery_EEE_0_1:
+    	HashMap<String, String > expr = new HashMap<String, String >();
+	    if (identifier != null)      	{      	  expr.put("typeRestriction", "eee:versioned_objects/eee:versions");
+     	  expr.put("listIdentifier", "$" + identifier.image);
+     	}  
+      	return expr;
+      break;
+     }  }}

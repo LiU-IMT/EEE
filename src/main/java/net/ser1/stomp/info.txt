@@ -1,0 +1,9 @@
+Path=.
+URL=file:///repos/databases/Gozirra/tags/0.4.1
+Repository UUID=efb3146f-d900-0410-9645-f7e7bd1fa665
+Revision=75
+Node Kind=directory
+Schedule=normal
+Last Changed Rev=75
+Last Changed Date=2005-10-28 04:56:35 -0700 (Fri, 28 Oct 2005)
+

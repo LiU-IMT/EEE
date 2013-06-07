@@ -1,0 +1,75 @@
+                                    Gozirra
+                                    0.4.1 (75)
+
+Home page: http://www.germane-software.com/software/Gozirra
+
+Gozirra is a lightweight implementation of the Stomp specification[1].  As
+of the first release it includes both client and server implementations for
+Java.
+
+I made a conscious choice to use only Java 1.4 syntax here, because the 
+project that I originally developed this for was being deployed on 1.4
+VMs.
+
+The overarching goal of this project is to provide an ultra-light messaging
+mechanism.
+
+
+BUILDING
+
+Uses Jakarta Ant.  You build one of: all-jar, server-only-jar, or
+client-only-jar depending on what you're using it for.
+
+  * client-only-jar Produces a 8kb jarball.  Useful for applications
+    that only want to be able to connect via a network to a Stomp server.
+  * server-only-jar Produces a 12.5kb jarball.  Useful for
+    applications that want to run a server, but don't need the client
+    class.  Right now, this doesn't gain you much over the all-jar, but
+    I'll refactor with factories and it'll get a bit smaller in future
+    versions.
+  * all-jar Produces a 13.5kb jarball.  Contains both the client and server
+    codes.
+
+
+USAGE
+
+See doc/index.html and java/Test.java for examples.
+
+
+INCOMPLETENESS
+
+The Stomp protocol is still growing, unfortunately.  There are a couple of
+features which I haven't yet, and may never, implement.  The outstanding
+features, as of this writing, are:
+
+  1) Named transactions
+     I'll implement this, eventually... I just don't have any use for it at 
+     the moment, so it isn't high on my list.
+  2) content-length
+     I disapprove of this addition to the spec, but it weaseled its way
+     in.  content-length is a header for binary messages, and Stomp is a text
+     oriented protocol.  I may add support for this, but don't hold your breath.
+  3) Alternate encodings, via the content-type header
+     Again, no use to me but I'll add it in sooner or later.  I know it is 
+     important for the non-english speaking world.
+  4) ACK
+     ACK is to the server what the receipt header is to the client.  I don't
+     see the need for it unless you're implementing an email server.  Gozirra 
+     will probably not implement ACK.
+
+ACK and content-length: are bordering on gratuitous bloat, and I disagree
+with their inclusion in the spec.  If the Stomp protocol gets any more bloated, 
+I may just freeze this project.  If I wanted a heavy protocol, I'd use Jabber.
+There are people out there who want to make Stomp a full-fledged mechanism for
+JMI; if that happens, I'll fork the spec.  Seriously.  If you want to be fat,
+slow, and dumb, go ahead and pig out on potato chips, but leave the specs
+alone.
+
+For the moment, I'm leaving content-length and ACK out.  If the Stomp protocol
+doesn't change in the next several months (6-12), I'll probably go ahead and
+implement them, for completeness.  If the Spec continues it's trend toward
+accepting all lard proposals, then I won't -- I'll fork the spec as it stands.
+
+
+
+[1] http://docs.codehaus.org/display/STOMP/Home

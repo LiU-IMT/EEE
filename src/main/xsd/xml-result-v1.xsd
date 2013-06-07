@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://www.imt.liu.se/mi/ehr/2010/xml-result-v1#"
+	xmlns:res="http://www.imt.liu.se/mi/ehr/2010/xml-result-v1#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<xs:annotation>
+		<xs:documentation>Experimental result format queries of XML data
+			(originally intended for openEHR AQL queries), inspired by
+			http://www.w3.org/TR/rdf-sparql-XMLres/</xs:documentation>
+	</xs:annotation>
+	
+	<xs:element name="xml-results">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="res:head" />
+				<xs:element ref="res:results" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="head">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="res:variable" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="res:link" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="variable">
+		<xs:complexType>
+			<xs:attributeGroup ref="res:nameAttr" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:attributeGroup name="nameAttr">
+		<xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="hrefAttr">
+		<xs:attribute name="href" use="required" type="res:URI-reference" />
+	</xs:attributeGroup>
+
+	<xs:element name="link">
+		<xs:complexType>
+			<xs:attributeGroup ref="res:hrefAttr" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="results">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="res:result" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="result">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="res:binding" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="binding">
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any minOccurs="0" />
+			</xs:sequence>
+			<xs:attributeGroup ref="res:nameAttr" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="uri" type="xs:string" />
+
+	<xs:simpleType name="URI-reference">
+		<xs:restriction base="xs:anyURI" />
+	</xs:simpleType>
+
+</xs:schema>

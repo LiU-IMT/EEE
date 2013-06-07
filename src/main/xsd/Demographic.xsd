@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- openEHR Release 1.0.1 Demographic  XML schema -->
+<!-- Authored by Ocean Informatics 2008.03.05  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.openehr.org/v1"
+	targetNamespace="http://schemas.openehr.org/v1" elementFormDefault="qualified" version="v1.0.1"
+	id="Demographic.xsd">
+	<xs:include schemaLocation="Structure.xsd"/>
+	<!-- using redefine only can redefine the uid in LOCATABLE is mandatory. Cannot redefine its type as HIER_OBJECT_ID -->
+	<xs:redefine schemaLocation="Structure.xsd">		
+		<xs:complexType name="LOCATABLE" abstract="true">
+		<xs:complexContent>
+			<xs:restriction base="LOCATABLE">
+					<xs:sequence>
+						<xs:element name="name" type="DV_TEXT"/>
+						<xs:element name="uid" type="UID_BASED_ID"/>						
+						<xs:element name="links" type="LINK" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="archetype_details" type="ARCHETYPED" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="feeder_audit" type="FEEDER_AUDIT" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="archetype_node_id" type="archetypeNodeId" use="required"/>
+				</xs:restriction>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:redefine>
+	<xs:complexType name="PARTY">
+		<xs:complexContent>			
+			<xs:extension base="LOCATABLE">				
+				<xs:sequence>
+					<!--uid inherited from LOCATABLE must be type of HIER_OBJECT_ID and it is mandatory -->					
+					<xs:element name="identifiers" type="PARTY_IDENTITY" maxOccurs="unbounded"/>
+					<xs:element name="contacts" minOccurs="0" maxOccurs="unbounded"></xs:element>
+					<xs:element name="relationships" type="PARTY_RELATIONSHIP" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="reverse_relationships" type="LOCATABLE_REF" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="details" type="ITEM_STRUCTURE" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PARTY_IDENTITY">
+		<xs:complexContent>
+			<xs:extension base="LOCATABLE">
+				<xs:sequence>
+					<xs:element name="details" type="ITEM_STRUCTURE"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CONTACT">
+		<xs:complexContent>
+			<xs:extension base="LOCATABLE">
+				<xs:sequence>
+					<!-- upper and lower must be type of DV_DATE  -->
+					<xs:element name="time_validity" type="DV_INTERVAL"/>					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ADDRESS">
+		<xs:complexContent>
+			<xs:extension base="LOCATABLE">
+				<xs:sequence>
+					<xs:element name="details" type="ITEM_STRUCTURE"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ROLE">
+		<xs:complexContent>
+			<xs:extension base="PARTY">
+				<xs:sequence>
+					<xs:element name="capabilities" type="CAPABILITY" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="time_validity" type="DV_INTERVAL" minOccurs="0"/>
+					<xs:element name="performer" type="PARTY_REF"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CAPABILITY">
+		<xs:complexContent>
+			<xs:extension base="LOCATABLE">
+				<xs:sequence>
+					<xs:element name="credentials" type="ITEM_STRUCTURE"/>
+					<xs:element name="time_validity" type="DV_INTERVAL" minOccurs="0"></xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ACTOR" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="PARTY">
+				<xs:sequence>
+					<xs:element name="roles" type="PARTY_REF" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="languages" type="DV_TEXT" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PERSON">
+		<xs:complexContent>
+			<xs:extension base="ACTOR"/>				
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GROUP">
+		<xs:complexContent>
+			<xs:extension base="ACTOR"/>				
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AGENT">
+		<xs:complexContent>
+			<xs:extension base="ACTOR"/>				
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ORGANISATION">
+		<xs:complexContent>
+			<xs:extension base="ACTOR"/>				
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PARTY_RELATIONSHIP">
+		<xs:complexContent>
+			<xs:extension base="LOCATABLE">
+				<xs:sequence>
+					<!-- uid inherited from LOCATABLE is mandatory and must be type of HIER_OBJECT_ID -->
+					<xs:element name="details" type="ITEM_STRUCTURE" minOccurs="0"/>
+					<!-- lower and upper must be type of DV_DATE -->
+					<xs:element name="time_validity" type="DV_INTERVAL" minOccurs="0"/>
+					<xs:element name="source" type="PARTY_REF"/>
+					<xs:element name="target" type="PARTY_REF"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

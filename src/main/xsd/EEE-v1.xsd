@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Partly referencing openEHR Release 1.0.2 Version XML schema, see
+		http://www.openehr.org/releases/1.0.2/its/XML-schema/
+		Some definitions and documentation is derived from the openEHR
+		specifications at http://www.openehr.org/releases/1.0.2/
+	-->
+	<!--
+		Authored by Erik Sundvall, Linköping University, Sweden, 2010. 
+		Updated 2010-08-31
+		
+		This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+		See: http://creativecommons.org/licenses/by/3.0/
+	-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd"
+	elementFormDefault="qualified" xmlns:oe="http://schemas.openehr.org/v1">
+	<xs:import
+		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/BaseTypes.xsd"
+		namespace="http://schemas.openehr.org/v1" />
+	<xs:import
+		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/Version.xsd"
+		namespace="http://schemas.openehr.org/v1" />
+
+	<xs:complexType name="CONTRIBUTION">
+		<xs:annotation>
+			<xs:documentation>A schema formalization of the openEHR CONTRIBUTION
+				object from release 1.0.2 (from the package common.change_control).
+
+				Many systems will never transfer CONTRIBUTION objects to other
+				systems, only references (of typeOBJECT_REF), thus it is not
+				included in the official openEHR XML schemas. This schema type was
+				introduced for the cases where it is desirable to store the
+				CONTRIBUTIONs in XML format, e.g. for backup purposes or in
+				XML-based databases.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uid" type="oe:HIER_OBJECT_ID" />
+			<xs:element name="audit" type="oe:AUDIT_DETAILS" />
+			<xs:element name="versions" type="oe:OBJECT_REF"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ContributionBuild">
+		<xs:annotation>
+			<xs:documentation>
+				A container for a set of ORIGINAL_VERSIONs to be committed
+				in a single CONTRIBUTION. Current ehr_id, committer and
+				system_id are expected to be present in the receiving
+				environment already and will in the creation-case overwrite
+				such information in all the ORIGINAL_VERSIONs' AUDIT_DETAILS
+				- in the import-case on the other hand this will be kept in
+				the contained ORIGINAL_VERSION and the current system values
+				(committer etc) will instead be used for creating the
+				AUDIT_DETAILS of the enclosing IMPORTED_VERSION.commit_audit.
+				Note that the receiving environment will need to extract
+				lifecycle_state (mandatory), commit_audit.change_type (mandatory)
+				and commit_audit.description (optional) from each included
+				ORIGINAL_VERSION in the creation-case. 
+        	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="versions" type="oe:ORIGINAL_VERSION"
+				maxOccurs="unbounded" minOccurs="1" />
+			<xs:element name="description" type="oe:DV_TEXT"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Optional description for the entire
+						CONTRIBUTION. (It will be stored in the
+						CONTRIBUTION.audit.description field.) Each
+						ORIGINAL_VERSION can have a separate description
+						in addition to this CONTRIBUTION-level
+						description.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="suggestedContributionID" type="oe:HIER_OBJECT_ID" minOccurs="0" maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="EHR_STATUS">
+		<xs:complexContent>
+			<xs:extension base="oe:LOCATABLE">
+				<xs:sequence>
+					<xs:element name="subject" type="oe:PARTY_SELF" />
+					<xs:element name="is_queryable" type="xs:boolean" />
+					<xs:element name="is_modifiable" type="xs:boolean" />
+					<xs:element name="other_details" type="oe:ITEM_STRUCTURE" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EHR_ACCESS">
+		<xs:complexContent>
+			<xs:extension base="oe:LOCATABLE">
+				<xs:sequence>
+						<xs:element name="settings" type="ACCESS_CONTROL_SETTINGS" />
+				</xs:sequence>
+				<xs:attribute name="scheme" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The name of the access control scheme in
+						use; corresponds to the concrete instance of
+						the settings attribute.</xs:documentation>
+					</xs:annotation></xs:attribute>
+			</xs:extension>
+		</xs:complexContent>			
+	</xs:complexType>
+	
+	<xs:complexType name="ACCESS_CONTROL_SETTINGS" abstract="true"/>
+	
+	<xs:complexType name="EEE_v1_ACCESS_CONTROL_SETTINGS">
+		<xs:annotation>
+			<xs:documentation>
+				A simple stub for very limited basic authentication in EEE. (Needs to be extended later)
+				TODO: Change this to Demographic AQL-queries instead???
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ACCESS_CONTROL_SETTINGS">
+				<xs:sequence>
+						<xs:element name="default_authorised_parties" type="oe:PARTY_REF" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="default_denied_parties" type="oe:PARTY_REF" minOccurs="0" maxOccurs="unbounded"/>									
+						<xs:element name="details" type="oe:ITEM_STRUCTURE" minOccurs="0" />						
+				</xs:sequence>
+				<xs:attribute name="scheme" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>	
+	</xs:complexType>
+
+	<xs:complexType name="VERSIONED_OBJECT">
+		<xs:annotation>
+			<xs:documentation>
+				A schema formalization of the openEHR VERSIONED_OBJECT
+				object from release 1.0.2 (from the package
+				common.change_control). Many systems may never transfer
+				entire VERSIONED_OBJECT objects to other systems, thus
+				it is not included in the official openEHR XML schemas.
+				This schema type was introduced for the cases where it
+				is desirable to store the VERSIONED_OBJECTs in XML
+				format, e.g. for backup purposes or in XML-based
+				databases.
+
+				The functions defined in the VERSIONED_OBJECT
+				specification (like "version_count()") are assumed to be
+				implemented as separate database queries etc.
+			</xs:documentation>
+		</xs:annotation>	
+		<xs:sequence>
+			<xs:element name="uid" type="oe:HIER_OBJECT_ID" />
+			<xs:element name="time_created" type="oe:DV_DATE_TIME" />
+			<xs:element name="owner_id" type="oe:OBJECT_REF" />
+			<xs:element name="versions" type="oe:VERSION" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Versionable classes from the "ehr" package follow -->
+	<xs:complexType name="VERSIONED_COMPOSITION" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="VERSIONED_FOLDER">
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+  
+	<xs:complexType name="VERSIONED_EHR_ACCESS">
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="VERSIONED_EHR_STATUS">
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<!-- Versionable classes from the "demographic" package follow -->
+	<xs:complexType name="VERSIONED_PARTY" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_ACTOR" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_ROLE" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_ORGANISATION" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_PERSON" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_AGENT" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="VERSIONED_GROUP" >
+		<xs:complexContent><xs:extension base="VERSIONED_OBJECT" /></xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

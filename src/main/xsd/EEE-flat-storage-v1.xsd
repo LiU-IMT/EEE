@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Partly referencing openEHR Release 1.0.2 Version XML schema, see
+		http://www.openehr.org/releases/1.0.2/its/XML-schema/
+		Some definitions and documentation is derived from the openEHR
+		specifications at http://www.openehr.org/releases/1.0.2/
+	-->
+	<!--
+		Authored by Erik Sundvall, Linköping University, Sweden, 2010. 
+		Updated 2010-07-30
+		
+		This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+		See: http://creativecommons.org/licenses/by/3.0/
+	-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd"
+	elementFormDefault="qualified" xmlns:oe="http://schemas.openehr.org/v1">
+	<xs:import
+		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/BaseTypes.xsd"
+		namespace="http://schemas.openehr.org/v1" />
+	<xs:import
+		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/Version.xsd"
+		namespace="http://schemas.openehr.org/v1" />
+	<xs:include schemaLocation="EEE-v1.xsd"/>
+		
+		<xs:complexType name="EHR">
+		<xs:annotation>
+			<xs:documentation>
+				A schema formalization of the openEHR EHR object
+				from release 1.0.2 (from the package ehr).
+				Many systems will never
+				transfer EHR objects to other systems, only
+				partial content of EHRs, thus it is not included in the
+				official openEHR XML schemas. This schema type was
+				introduced for the cases where it is desirable to store
+				the EHRs in XML format, e.g. for backup purposes or in
+				XML-based databases.
+				
+				In this particular EEE storage implementation we have added a
+				field to contain all VERSIONED_OBJECTs (i.e. a mix of 
+				VERSIONED_COMPOSITIONs, VERSIONED_FOLDERs etc) 
+				
+				The EHR XML object is not expected to be visible to the 
+				"outside" world (just parts of the content via REST calls)
+				and will differ depending on storage implementation. Thus
+				this file was defined separate from EEE-v1.xsd
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="system_id" type="oe:HIER_OBJECT_ID" />
+			<xs:element name="ehr_id" type="oe:HIER_OBJECT_ID" />
+			<xs:element name="time_created" type="oe:DV_DATE_TIME" />
+			
+			<!-- EHR_ACCESS is likely to be stored in a separate DB in 
+				 EEE implementations for security reasons -->
+			<xs:element name="ehr_access" type="oe:OBJECT_REF" />
+			
+			<xs:element name="ehr_status" type="oe:OBJECT_REF" /> 		
+
+			<!-- In this EEE storage implementation the list of
+			 compositions for an EHR is generated via queries
+			<xs:element name="compositions" type="oe:OBJECT_REF"
+				 minOccurs="0" maxOccurs="unbounded"/> -->
+
+			<xs:element name="directory" type="oe:OBJECT_REF"
+				 minOccurs="0" maxOccurs="1"/>
+
+			<!-- In this EEE storage implementation the list of
+			 CONTRIBUTIONs for an EHR is generated via queries
+			 <xs:element name="contributions" type="oe:OBJECT_REF"
+				 minOccurs="0" maxOccurs="unbounded"/> -->
+				 
+			<xs:element name="versioned_objects" type="VERSIONED_OBJECT"
+				 minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A container containing VERSIONED_OBJECTs
+					 (i.e. a mix of VERSIONED_COMPOSITIONs, VERSIONED_FOLDERs etc). 
+					 This is a storage specific extension that is NOT part of 
+					 the official openEHR Reference Model (RM)</xs:documentation>
+				</xs:annotation>
+			</xs:element>	 
+				 
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

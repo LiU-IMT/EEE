@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.imt.liu.se/mi/ehr/2010/EEEQuery" targetNamespace="http://www.imt.liu.se/mi/ehr/2010/EEEQuery"
+	elementFormDefault="qualified">
+	<!-- Commenting out parameters no longer needed in schema, they can now be transmitted as form parameters etc 
+	 <xs:element name="query">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded" minOccurs="1">
+				<xs:element name="parameter">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" />
+						<xs:attribute name="value" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element> 
+	-->
+	<xs:element name="aql" type="xs:string" />
+</xs:schema>

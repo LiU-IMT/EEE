@@ -1,0 +1,1 @@
+Free flags from https://www.gosquared.com/resources/2400-flags

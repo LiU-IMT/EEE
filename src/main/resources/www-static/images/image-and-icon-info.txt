@@ -1,0 +1,24 @@
+http://openiconlibrary.sourceforge.net/gallery2/?./Icons/actions/bookmark-new-7.png
+http://openiconlibrary.sourceforge.net/gallery2/?./Icons/actions/bookmark-5.png
+http://openiconlibrary.sourceforge.net/gallery2/?./Icons/actions/list-add-7.png
+anna-avatar: http://www.flickr.com/photos/bleuman/5652420825/
+
+- - -
+
+The csg-* files are generated via http://balin.imt.liu.se:8182/images/images.html
+
+css info for csg-4e9457c972efa.png:
+
+Css rules:
+.sprite-aiv_logga{ background-position: 0 0; width: 593px; height: 136px; } 
+.sprite-bookmarks{ background-position: 0 -141px; width: 128px; height: 128px; } 
+.sprite-lio_logga{ background-position: 0 -274px; width: 169px; height: 98px; } 
+.sprite-liu_logga{ background-position: 0 -377px; width: 255px; height: 169px; } 
+.sprite-nmt_logga{ background-position: 0 -551px; width: 266px; height: 64px; } 
+.sprite-share{ background-position: 0 -620px; width: 128px; height: 128px; } 
+
+Don't forget to add a background rule to reference the sprite image. Something like this, for example:
+
+#container li {
+   background: url(/images/csg-4e9457c972efa.png) no-repeat top left;
+}

@@ -14,7 +14,7 @@ This repository will host the initial LiU EEE release that includes the server s
 The pre-layout BMC paper draft is now online:
 - Title: Applying representational state transfer (REST) architecture to archetype-based
 electronic health record systems
-- Authors: Erik Sundvall, Mikael Nystr�m, Daniel Karlsson, Martin Eneling, Rong Chen and H�kan �rman
+- Authors: Erik Sundvall, Mikael Nyström, Daniel Karlsson, Martin Eneling, Rong Chen and Håkan Örman
 - BMC Medical Informatics and Decision Making.2013, 13:57.
 - URL: http://www.biomedcentral.com/1472-6947/13/57
 - DOI: 10.1186/1472-6947-13-57

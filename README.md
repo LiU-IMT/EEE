@@ -9,9 +9,9 @@ The openEHR website is at http://www.openehr.org
 - Installation instructions: https://github.com/LiU-IMT/EEE/wiki/install
 - Issue tracker: https://github.com/LiU-IMT/EEE/issues
 
-This repository will host the initial LiU EEE release that includes the server side code needed to run the Educational EHR Environment.
+This repository hosts the LiU EEE source code for the Linköping University Educational EHR Environment.
 
-The pre-layout BMC paper draft is now online:
+A BMC paper that explains the design is available online:
 - Title: Applying representational state transfer (REST) architecture to archetype-based
 electronic health record systems
 - Authors: Erik Sundvall, Mikael Nyström, Daniel Karlsson, Martin Eneling, Rong Chen and Håkan Örman
@@ -28,3 +28,4 @@ Related older information
 
 LiU EEE Coordinator:
 Erik Sundvall, http://www.imt.liu.se/~erisu/
+Linköping University & the County Council of Östergötland, Sweden

@@ -97,6 +97,7 @@
 				<version>2.6</version>
 				<configuration>
 					<packageName>se.liu.imt.mi.eee.AQL_Parser</packageName>
+					<sourceDirectory>src/main/java/se/liu/imt/mi/eee/AQL_Parser</sourceDirectory>
 				</configuration>
                 <executions>
                     <execution>

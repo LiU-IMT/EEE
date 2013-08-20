@@ -17,7 +17,7 @@
 	targetNamespace="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd" xmlns="http://www.imt.liu.se/mi/ehr/2010/EEE-v1.xsd"
 	elementFormDefault="qualified" xmlns:oe="http://schemas.openehr.org/v1">
 	<xs:import
-		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/BaseTypes.xsd"
+		schemaLocation="https://raw.github.com/openEHR/specifications/Release-1.0.2/publishing/its/XML-schema/BaseTypes.xsd"
 		namespace="http://schemas.openehr.org/v1" />
 	<xs:import
 		schemaLocation="http://www.openehr.org/releases/1.0.2/its/XML-schema/Version.xsd"

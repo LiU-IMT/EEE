@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- openEHR Release 1.0.1 BaseTypes  XML schema -->
-<!-- Authored by Ocean Informatics 2007.04.13  -->
+<!-- openEHR Release 1.0.2 BaseTypes  XML schema -->
+<!-- Authored by Ocean Informatics 2008.12.22  -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.openehr.org/v1"
-	targetNamespace="http://schemas.openehr.org/v1" elementFormDefault="qualified" version="v1.0.1"
+	targetNamespace="http://schemas.openehr.org/v1" elementFormDefault="qualified" version="v1.0.2"
 	id="BaseTypes.xsd">
 	<xs:complexType name="DATA_VALUE" abstract="true">
 		<xs:sequence/>
@@ -92,7 +92,7 @@
 		<xs:complexContent>
 			<xs:extension base="DV_QUANTIFIED">
 				<xs:sequence>
-					<xs:element name="accuracy" type="xs:float" minOccurs="0"/>
+					<xs:element name="accuracy" type="xs:float" minOccurs="0" default="-1.0"/>
 					<xs:element name="accuracy_is_percent" type="xs:boolean" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
@@ -358,7 +358,7 @@
 			<xs:element name="value" type="xs:token"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="UID_BASED_ID">
+	<xs:complexType name="UID_BASED_ID" abstract="true">
 		<xs:complexContent>
 			<xs:extension base="OBJECT_ID">
 				<xs:sequence/>

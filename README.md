@@ -20,6 +20,11 @@ electronic health record systems
 - DOI: 10.1186/1472-6947-13-57
 - PMID: 23656624
 
+A presentation of an upcoming Expression Repository that enables advanced querying of SNOMED CT post-coordinated EHR content:
+- Title: An integrated Expression Repository EHR system
+- Authors: Daniel Karlsson, Mikael Nyström, Bengt Kron
+- URL: http://www.ihtsdo.org/fileadmin/user_upload/doc/showcase/?t=show12_EhrDesign
+
 Related older information
 - http://www.imt.liu.se/~erisu/2010/EEE-Poster-multipage.pdf (Poster 2010)
 - http://www.imt.liu.se/~erisu/2011/20110222-EEE-Brazil.pdf (Presentation 2011)

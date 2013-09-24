@@ -28,6 +28,17 @@ A presentation of an upcoming __Expression Repository__ that enables advanced __
 - http://www.imt.liu.se/~erisu/2011/20110222-EEE-Brazil.pdf (Presentation 2011)
 - http://www.imt.liu.se/~erisu/2011/MIE2011-bookmarking-Sundvall.pdf (Poster abstract 2011)
 
+###Acknowledgements
+
+This work was partly funded by the [Swedish National Board of Health and Welfare](http://www.socialstyrelsen.se/), 
+by the [Swedish Association of Local Authorities and Regions (SALAR)](http://www.cehis.se/en), by [Cambio Healthcare Systems](http://www.cambio.se/), 
+by TEKIT funds from [Linköping University](http://www.liu.se),  by the EU-funded regional network [NovaMedTech](http://novamedtech.se/), 
+and by the [Vinnova](http://www.vinnova.se/sv/) funded project "Testbädd LiÖ".
+
+
+The Department of Clinical Engineering (MTÖ) in the County Council of Östergötland supported 
+feedback and funding for GUI prototyping through the [AIV project](http://www.advancedinfovis.org/).
+
 ======================
 
 LiU EEE Coordinator:

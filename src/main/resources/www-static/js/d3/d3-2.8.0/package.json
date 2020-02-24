@@ -24,7 +24,7 @@
     "jsdom": "0.2.10"
   },
   "devDependencies": {
-    "uglify-js": "1.2.3",
+    "uglify-js": "3.8.0",
     "vows": "0.6.x"
   },
   "scripts": {

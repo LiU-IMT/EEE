@@ -1,4 +1,4 @@
-#LiU EEE
+# LiU EEE
 
 A REST based Educational Electroinc Health Record (EHR) Environment based on openEHR.
 This repository hosts the LiU EEE source code for the Linköping University Educational EHR Environment. (The openEHR website is at http://www.openehr.org)
@@ -23,12 +23,7 @@ A presentation of an upcoming __Expression Repository__ that enables advanced __
 - Authors: Daniel Karlsson, Mikael Nyström, Bengt Kron
 - URL: __http://www.ihtsdo.org/fileadmin/user_upload/doc/showcase/?t=show12_EhrDesign__
 
-###Related older information
-- http://www.imt.liu.se/~erisu/2010/EEE-Poster-multipage.pdf (Poster 2010)
-- http://www.imt.liu.se/~erisu/2011/20110222-EEE-Brazil.pdf (Presentation 2011)
-- http://www.imt.liu.se/~erisu/2011/MIE2011-bookmarking-Sundvall.pdf (Poster abstract 2011)
-
-###Acknowledgements
+### Acknowledgements
 
 This work was partly funded by the [Swedish National Board of Health and Welfare](http://www.socialstyrelsen.se/), 
 by the [Swedish Association of Local Authorities and Regions (SALAR)](http://www.cehis.se/en), by [Cambio Healthcare Systems](http://www.cambio.se/), 
@@ -42,5 +37,5 @@ feedback and funding for GUI prototyping through the [AIV project](http://www.ad
 ======================
 
 LiU EEE Coordinator:
-Erik Sundvall, http://www.imt.liu.se/~erisu/
-Linköping University & the County Council of Östergötland, Sweden
+Erik Sundvall, https://liu.se/en/employee/erisu87
+Linköping University & Region Östergötland, Sweden
